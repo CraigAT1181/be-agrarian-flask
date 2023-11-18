@@ -1,0 +1,10 @@
+flask
+python-dotenv
+psycopg2-binary
+pytest
+requests
+asyncio
+asyncpg
+configparser
+Gunicorn
+flask_cors

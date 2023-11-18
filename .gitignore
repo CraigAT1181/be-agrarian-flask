@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+instance/
+.vscode/
+.idea/
+*.db
+*.log
+playground.sql
+playground.txt
+database.ini
+.env*
+.flaskenv
