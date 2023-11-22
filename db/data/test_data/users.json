@@ -1,0 +1,87 @@
+{
+  "page": 1,
+  "users": [
+    {
+      "user_id": 1,
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "password": "random_password_1",
+      "location": { "long": -74.005974, "lat": 40.712776 },
+      "produce": ["Carrot", "Tomato"]
+    },
+    {
+      "user_id": 2,
+      "name": "Jane Smith",
+      "email": "jane.smith@example.com",
+      "password": "random_password_2",
+      "location": { "long": -118.243683, "lat": 34.052235 },
+      "produce": ["Tomato", "Cucumber", "Lettuce"]
+    },
+    {
+      "user_id": 3,
+      "name": "Alice Johnson",
+      "email": "alice.johnson@example.com",
+      "password": "random_password_3",
+      "location": { "long": 139.691706, "lat": 35.689487 },
+      "produce": ["Lettuce", "Broccoli", "Spinach"]
+    },
+    {
+      "user_id": 4,
+      "name": "Bob Williams",
+      "email": "bob.williams@example.com",
+      "password": "random_password_4",
+      "location": { "long": -0.128002, "lat": 51.507351 },
+      "produce": ["Broccoli", "Courgette"]
+    },
+    {
+      "user_id": 5,
+      "name": "Eva Martinez",
+      "email": "eva.martinez@example.com",
+      "password": "random_password_5",
+      "location": { "long": -3.70379, "lat": 40.416775 },
+      "produce": ["Cucumber", "Bell Pepper"]
+    },
+    {
+      "user_id": 6,
+      "name": "Michael Lee",
+      "email": "michael.lee@example.com",
+      "password": "random_password_6",
+      "location": { "long": 116.407395, "lat": 39.904211 },
+      "produce": ["Bell Pepper", "Courgette"]
+    },
+    {
+      "user_id": 7,
+      "name": "Sara Brown",
+      "email": "sara.brown@example.com",
+      "password": "random_password_7",
+      "location": { "long": -0.127647, "lat": 51.507321 },
+      "produce": ["Courgette"]
+    },
+    {
+      "user_id": 8,
+      "name": "Daniel Chen",
+      "email": "daniel.chen@example.com",
+      "password": "random_password_8",
+      "location": { "long": 126.978291, "lat": 37.566536 },
+      "produce": ["Spinach"]
+    },
+    {
+      "user_id": 9,
+      "name": "Olivia Kim",
+      "email": "olivia.kim@example.com",
+      "password": "random_password_9",
+      "location": { "long": 2.352222, "lat": 48.856613 },
+      "produce": ["Kale"]
+    },
+    {
+      "user_id": 10,
+      "name": "William Wilson",
+      "email": "william.wilson@example.com",
+      "password": "random_password_10",
+      "location": { "long": -87.629798, "lat": 41.878113 },
+      "produce": ["Cauliflower"]
+    }
+  ],
+  "total_pages": 2,
+  "total_results": 10
+}

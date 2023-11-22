@@ -1,0 +1,47 @@
+{
+  "page": 1,
+  "produce": [
+    {
+      "produce_id": 1,
+      "name": "Carrot"
+    },
+    {
+      "produce_id": 2,
+      "name": "Tomato"
+    },
+    {
+      "produce_id": 3,
+      "name": "Cucumber"
+    },
+    {
+      "produce_id": 4,
+      "name": "Lettuce"
+    },
+    {
+      "produce_id": 5,
+      "name": "Broccoli"
+    },
+    {
+      "produce_id": 6,
+      "name": "Spinach"
+    },
+    {
+      "produce_id": 7,
+      "name": "Courgette"
+    },
+    {
+      "produce_id": 8,
+      "name": "Bell Pepper"
+    },
+    {
+      "produce_id": 9,
+      "name": "Kale"
+    },
+    {
+      "produce_id": 10,
+      "name": "Cauliflower"
+    }
+  ],
+  "pages": 1,
+  "total_results": 10
+}
