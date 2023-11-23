@@ -3,6 +3,7 @@ from flask_restful import Api, Resource
 from flask_cors import CORS
 from db.connection import get_connection
 from dotenv import load_dotenv
+import os
 
 import json
 
@@ -11,6 +12,8 @@ load_dotenv()
 app = Flask(__name__)
 api = Api(app)
 CORS(app)
+
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 connection = get_connection()
 

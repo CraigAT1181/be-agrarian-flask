@@ -3,7 +3,8 @@ from db.connection import get_connection
 
 # function to seed database
 
-def seed_database ():
+def seed_database():
+
     with open('./db/data/test_data/users.json', 'r') as json_file:
         user_test_data = json.load(json_file)
 
@@ -71,7 +72,7 @@ def seed_database ():
     db_connection = None
     try:
         db_connection = get_connection()
-        # db_connection.autocommit = True
+        db_connection.autocommit = True
 
         cursor = db_connection.cursor()
 

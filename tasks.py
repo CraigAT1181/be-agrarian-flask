@@ -1,8 +1,8 @@
 from invoke import task
 
 @task
-def create_db(ctx):
-    ctx.run("python setup.sql")
+def create(ctx):
+    ctx.run("psql -f ./db/setup.sql")
 
 @task
 def seed(ctx):
