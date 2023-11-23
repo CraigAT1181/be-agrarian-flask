@@ -3,83 +3,83 @@
   "users": [
     {
       "user_id": 1,
-      "name": "John Doe",
+      "user_name": "John Doe",
       "email": "john.doe@example.com",
       "password": "random_password_1",
-      "location": { "long": -74.005974, "lat": 40.712776 },
-      "produce": ["Carrot", "Tomato"]
+      "postcode": "SW1A 1AA",
+      "goods": ["Carrot", "Tomato"]
     },
     {
       "user_id": 2,
-      "name": "Jane Smith",
+      "user_name": "Jane Smith",
       "email": "jane.smith@example.com",
       "password": "random_password_2",
-      "location": { "long": -118.243683, "lat": 34.052235 },
-      "produce": ["Tomato", "Cucumber", "Lettuce"]
+      "postcode": "EC1A 1BB",
+      "goods": ["Tomato", "Cucumber", "Lettuce"]
     },
     {
       "user_id": 3,
-      "name": "Alice Johnson",
+      "user_name": "Alice Johnson",
       "email": "alice.johnson@example.com",
       "password": "random_password_3",
-      "location": { "long": 139.691706, "lat": 35.689487 },
-      "produce": ["Lettuce", "Broccoli", "Spinach"]
+      "postcode": "W1A 1AB",
+      "goods": ["Lettuce", "Broccoli", "Spinach"]
     },
     {
       "user_id": 4,
-      "name": "Bob Williams",
+      "user_name": "Bob Williams",
       "email": "bob.williams@example.com",
       "password": "random_password_4",
-      "location": { "long": -0.128002, "lat": 51.507351 },
-      "produce": ["Broccoli", "Courgette"]
+      "postcode": "NW1A 1AD",
+      "goods": ["Broccoli", "Courgette"]
     },
     {
       "user_id": 5,
-      "name": "Eva Martinez",
+      "user_name": "Eva Martinez",
       "email": "eva.martinez@example.com",
       "password": "random_password_5",
-      "location": { "long": -3.70379, "lat": 40.416775 },
-      "produce": ["Cucumber", "Bell Pepper"]
+      "postcode": "SW1A 0AA",
+      "goods": ["Cucumber", "Bell Pepper"]
     },
     {
       "user_id": 6,
-      "name": "Michael Lee",
+      "user_name": "Michael Lee",
       "email": "michael.lee@example.com",
       "password": "random_password_6",
-      "location": { "long": 116.407395, "lat": 39.904211 },
-      "produce": ["Bell Pepper", "Courgette"]
+      "postcode": "SE1 7PB",
+      "goods": ["Bell Pepper", "Courgette"]
     },
     {
       "user_id": 7,
-      "name": "Sara Brown",
+      "user_name": "Sara Brown",
       "email": "sara.brown@example.com",
       "password": "random_password_7",
-      "location": { "long": -0.127647, "lat": 51.507321 },
-      "produce": ["Courgette"]
+      "postcode": "E1 8PY",
+      "goods": ["Courgette"]
     },
     {
       "user_id": 8,
-      "name": "Daniel Chen",
+      "user_name": "Daniel Chen",
       "email": "daniel.chen@example.com",
       "password": "random_password_8",
-      "location": { "long": 126.978291, "lat": 37.566536 },
-      "produce": ["Spinach"]
+      "postcode": "N1C 4QP",
+      "goods": ["Spinach"]
     },
     {
       "user_id": 9,
-      "name": "Olivia Kim",
+      "user_name": "Olivia Kim",
       "email": "olivia.kim@example.com",
       "password": "random_password_9",
-      "location": { "long": 2.352222, "lat": 48.856613 },
-      "produce": ["Kale"]
+      "postcode": "SW1E 5LH",
+      "goods": ["Kale"]
     },
     {
       "user_id": 10,
-      "name": "William Wilson",
+      "user_name": "William Wilson",
       "email": "william.wilson@example.com",
       "password": "random_password_10",
-      "location": { "long": -87.629798, "lat": 41.878113 },
-      "produce": ["Cauliflower"]
+      "postcode": "EC2A 4BX",
+      "goods": ["Cauliflower"]
     }
   ],
   "total_pages": 2,

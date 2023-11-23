@@ -15,40 +15,41 @@ def seed_database():
     user_list = user_test_data['users']
     for user in user_list:
         user_values.append((
-            user["name"],
+            user["user_name"],
             user["email"],
             user["password"],
-            user["location"],
-            user["produce"]
+            user["postcode"],
+            user["goods"]
         ))
-
+    
     drop_users_table = """
         DROP TABLE IF EXISTS users;
     """
-
+    
     create_users_table = """
         CREATE TABLE users (
         user_id SERIAL PRIMARY KEY,
-        name VARCHAR(255) UNIQUE NOT NULL,
+        user_name VARCHAR(255) UNIQUE NOT NULL,
         email VARCHAR(255) UNIQUE NOT NULL,
         password VARCHAR(255) NOT NULL,
-        location JSONB NOT NULL,
-        produce VARCHAR(255)[] NOT NULL
+        postcode VARCHAR(255) NOT NULL,
+        goods VARCHAR(255)[] NOT NULL
         );
     """
-
+    
     insert_user_data = """
         INSERT INTO users 
-        (name, email, password, location, produce)
+        (user_name, email, password, postcode, goods)
         VALUES 
         (%s, %s, %s, %s, %s);
     """
-
+    
     produce_values = []
     produce_list = produce_test_data['produce']
     for item in produce_list:
         produce_values.append((
-            item["name"]
+            item["produce_name"],
+            item["type"]
         ))
 
     drop_produce_table = """
@@ -58,15 +59,16 @@ def seed_database():
     create_produce_table = """
         CREATE TABLE produce (
         produce_id SERIAL PRIMARY KEY,
-        name VARCHAR(255) UNIQUE NOT NULL,
+        produce_name VARCHAR(255) UNIQUE NOT NULL,
+        type VARCHAR(255)
         );
     """
 
     insert_produce_data = """
         INSERT INTO produce
-        (name)
+        (produce_name, type)
         VALUES
-        (%s);
+        (%s, %s);
     """
 
     db_connection = None
@@ -75,25 +77,17 @@ def seed_database():
         db_connection.autocommit = True
 
         cursor = db_connection.cursor()
-
-        cursor.execute(drop_users_table)
-        db_connection.commit()
-
-        cursor.execute(drop_produce_table)
-        db_connection.commit()
         
-        cursor.execute(create_users_table)
-        db_connection.commit()
-
+        cursor.execute(drop_produce_table)
         cursor.execute(create_produce_table)
-        db_connection.commit()
+        for item in produce_values:
+            cursor.execute(insert_produce_data, item)
 
-        cursor.executemany(insert_user_data, user_values)
-        db_connection.commit()
-
-        cursor.executemany(insert_produce_data, produce_values)
-        db_connection.commit()
-
+        cursor.execute(drop_users_table)       
+        cursor.execute(create_users_table)
+        for user in user_values:        
+            cursor.execute(insert_user_data, user)
+    
         print("Data seeded successfully!")
     
     except Exception as e:

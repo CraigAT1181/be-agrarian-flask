@@ -14,8 +14,6 @@ def load_db_config(filename='database.ini', section='postgresql'):
 
     db_config = {}
 
-    print(filepath, "filepath")
-
     db_url = os.getenv('DATABASE_URL')
     if db_url:
         db_config['dsn'] = db_url
@@ -32,5 +30,4 @@ def load_db_config(filename='database.ini', section='postgresql'):
     else:
         raise Exception('No database configuration found.')
 
-    print(db_config)
     return db_config
