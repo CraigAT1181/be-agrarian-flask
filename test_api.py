@@ -35,13 +35,14 @@ def test_get_all_produce(seed_db):
         else:
             raise ValueError(f'Missing required key for produce: {item}')
 
-def test_get_users_by_produce_name(seed_db):
-    endpoint = '/users/Cucumber'
+def test_get_users(seed_db):
+    endpoint = '/users'
     url = urljoin(path, endpoint)
 
     response=requests.get(url)
     assert response.status_code == 200
     user_list = response.json()
+    assert len(user_list["users"]) == 10
     required_keys = [
         "user_id",
         "user_name",
@@ -53,4 +54,23 @@ def test_get_users_by_produce_name(seed_db):
             pass
         else:
             raise ValueError(f'Missing required key for user: {user}')
+        
+def test_get_users_with_query(seed_db):
+    endpoint = '/users?produce=Cucumber'
+    url = urljoin(path, endpoint)
 
+    response=requests.get(url)
+    assert response.status_code == 200
+    user_list = response.json()
+    assert len(user_list["users"]) == 2
+    required_keys = [
+        "user_id",
+        "user_name",
+        "postcode",
+        "produce"
+        ]
+    for user in user_list["users"]:
+        if all(key in user for key in required_keys):
+            pass
+        else:
+            raise ValueError(f'Missing required key for user: {user}')
