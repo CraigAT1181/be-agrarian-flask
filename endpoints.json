@@ -1,5 +1,46 @@
 {
   "GET /": {
-    "description": "serves up a json representation of all the available endpoints of the API"
+    "description": "serves up a json of all the available endpoints of the API"
+  },
+  "GET /produce": {
+    "description": "serves up a json of all produce currently stored in the database",
+    "example response": [
+      {
+        "produce": [
+          {
+            "produce_id": 1,
+            "produce_name": "Carrot",
+            "type": "vegetable"
+          },
+          {
+            "produce_id": 2,
+            "produce_name": "Tomato",
+            "type": "salad"
+          }
+        ]
+      }
+    ]
+  },
+  "GET /users": {
+    "description": "serves up a json of all users currently stored in the database",
+    "queries": ["produce"],
+    "example response": [
+      {
+        "users": [
+          {
+            "postcode": "EC1A 1BB",
+            "produce": ["Tomato", "Cucumber", "Lettuce"],
+            "user_id": 2,
+            "user_name": "Jane Smith"
+          },
+          {
+            "postcode": "W1A 1AB",
+            "produce": ["Lettuce", "Broccoli", "Spinach"],
+            "user_id": 3,
+            "user_name": "Alice Johnson"
+          }
+        ]
+      }
+    ]
   }
 }
