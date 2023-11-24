@@ -7,7 +7,7 @@
       "email": "john.doe@example.com",
       "password": "random_password_1",
       "postcode": "SW1A 1AA",
-      "goods": ["Carrot", "Tomato"]
+      "produce": ["Carrot", "Tomato"]
     },
     {
       "user_id": 2,
@@ -15,7 +15,7 @@
       "email": "jane.smith@example.com",
       "password": "random_password_2",
       "postcode": "EC1A 1BB",
-      "goods": ["Tomato", "Cucumber", "Lettuce"]
+      "produce": ["Tomato", "Cucumber", "Lettuce"]
     },
     {
       "user_id": 3,
@@ -23,7 +23,7 @@
       "email": "alice.johnson@example.com",
       "password": "random_password_3",
       "postcode": "W1A 1AB",
-      "goods": ["Lettuce", "Broccoli", "Spinach"]
+      "produce": ["Lettuce", "Broccoli", "Spinach"]
     },
     {
       "user_id": 4,
@@ -31,7 +31,7 @@
       "email": "bob.williams@example.com",
       "password": "random_password_4",
       "postcode": "NW1A 1AD",
-      "goods": ["Broccoli", "Courgette"]
+      "produce": ["Broccoli", "Courgette"]
     },
     {
       "user_id": 5,
@@ -39,7 +39,7 @@
       "email": "eva.martinez@example.com",
       "password": "random_password_5",
       "postcode": "SW1A 0AA",
-      "goods": ["Cucumber", "Bell Pepper"]
+      "produce": ["Cucumber", "Bell Pepper"]
     },
     {
       "user_id": 6,
@@ -47,7 +47,7 @@
       "email": "michael.lee@example.com",
       "password": "random_password_6",
       "postcode": "SE1 7PB",
-      "goods": ["Bell Pepper", "Courgette"]
+      "produce": ["Bell Pepper", "Courgette"]
     },
     {
       "user_id": 7,
@@ -55,7 +55,7 @@
       "email": "sara.brown@example.com",
       "password": "random_password_7",
       "postcode": "E1 8PY",
-      "goods": ["Courgette"]
+      "produce": ["Courgette"]
     },
     {
       "user_id": 8,
@@ -63,7 +63,7 @@
       "email": "daniel.chen@example.com",
       "password": "random_password_8",
       "postcode": "N1C 4QP",
-      "goods": ["Spinach"]
+      "produce": ["Spinach"]
     },
     {
       "user_id": 9,
@@ -71,7 +71,7 @@
       "email": "olivia.kim@example.com",
       "password": "random_password_9",
       "postcode": "SW1E 5LH",
-      "goods": ["Kale"]
+      "produce": ["Kale"]
     },
     {
       "user_id": 10,
@@ -79,7 +79,7 @@
       "email": "william.wilson@example.com",
       "password": "random_password_10",
       "postcode": "EC2A 4BX",
-      "goods": ["Cauliflower"]
+      "produce": ["Cauliflower"]
     }
   ],
   "total_pages": 2,

@@ -15,6 +15,3 @@ def test(ctx):
 @task
 def playground(ctx):
     ctx.run("psql -f playground.sql > playground.txt")
-
-
-

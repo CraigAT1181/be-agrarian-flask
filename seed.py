@@ -19,7 +19,7 @@ def seed_database():
             user["email"],
             user["password"],
             user["postcode"],
-            user["goods"]
+            user["produce"]
         ))
     
     drop_users_table = """
@@ -33,19 +33,20 @@ def seed_database():
         email VARCHAR(255) UNIQUE NOT NULL,
         password VARCHAR(255) NOT NULL,
         postcode VARCHAR(255) NOT NULL,
-        goods VARCHAR(255)[] NOT NULL
+        produce VARCHAR(255)[] NOT NULL
         );
     """
     
     insert_user_data = """
         INSERT INTO users 
-        (user_name, email, password, postcode, goods)
+        (user_name, email, password, postcode, produce)
         VALUES 
         (%s, %s, %s, %s, %s);
-    """
-    
+    """    
+
     produce_values = []
     produce_list = produce_test_data['produce']
+    
     for item in produce_list:
         produce_values.append((
             item["produce_name"],
@@ -78,16 +79,16 @@ def seed_database():
 
         cursor = db_connection.cursor()
         
+        cursor.execute(drop_users_table)       
+        cursor.execute(create_users_table)
+        for user in user_values:     
+            cursor.execute(insert_user_data, user)
+
         cursor.execute(drop_produce_table)
         cursor.execute(create_produce_table)
         for item in produce_values:
             cursor.execute(insert_produce_data, item)
 
-        cursor.execute(drop_users_table)       
-        cursor.execute(create_users_table)
-        for user in user_values:        
-            cursor.execute(insert_user_data, user)
-    
         print("Data seeded successfully!")
     
     except Exception as e:
