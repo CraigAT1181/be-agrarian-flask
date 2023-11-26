@@ -50,7 +50,7 @@ def seed_database():
     for item in produce_list:
         produce_values.append((
             item["produce_name"],
-            item["type"]
+            item["produce_type"]
         ))
 
     drop_produce_table = """
@@ -61,13 +61,13 @@ def seed_database():
         CREATE TABLE produce (
         produce_id SERIAL PRIMARY KEY,
         produce_name VARCHAR(255) UNIQUE NOT NULL,
-        type VARCHAR(255)
+        produce_type VARCHAR(255)
         );
     """
 
     insert_produce_data = """
         INSERT INTO produce
-        (produce_name, type)
+        (produce_name, produce_type)
         VALUES
         (%s, %s);
     """

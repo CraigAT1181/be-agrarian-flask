@@ -6,7 +6,8 @@ from dotenv import load_dotenv
 import json
 import os
 from endpoints.fetch_all_produce import fetch_all_produce
-from endpoints.fetch_users import fetch_users
+from endpoints.fetch_all_users import fetch_all_users
+from endpoints.fetch_users_by_produce_name import fetch_users_by_produce_name
 
 load_dotenv()
 
@@ -33,11 +34,18 @@ def get_all_produce():
     result = fetch_all_produce(connection)
     return result
 
-# GET users
+# GET all users
 @app.route('/users', methods=['GET'])
 @cross_origin()
-def get_users():
-    result = fetch_users(connection)
+def get_all_users():
+    result = fetch_all_users(connection)
+    return result
+
+# GET users_by_produce_name
+@app.route('/users/<produce_list>', methods=['GET'])
+@cross_origin()
+def get_users_by_produce_name(produce_list):
+    result = fetch_users_by_produce_name(connection, produce_list.split(','))
     return result
 
 if __name__ == '__main__':

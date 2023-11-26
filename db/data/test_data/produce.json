@@ -4,52 +4,52 @@
     {
       "produce_id": 1,
       "produce_name": "Carrot",
-      "type": "vegetable"
+      "produce_type": "vegetable"
     },
     {
       "produce_id": 2,
       "produce_name": "Tomato",
-      "type": "salad"
+      "produce_type": "salad"
     },
     {
       "produce_id": 3,
       "produce_name": "Cucumber",
-      "type": "salad"
+      "produce_type": "salad"
     },
     {
       "produce_id": 4,
       "produce_name": "Lettuce",
-      "type": "salad"
+      "produce_type": "salad"
     },
     {
       "produce_id": 5,
       "produce_name": "Broccoli",
-      "type": "vegetable"
+      "produce_type": "vegetable"
     },
     {
       "produce_id": 6,
       "produce_name": "Apple",
-      "type": "fruit"
+      "produce_type": "fruit"
     },
     {
       "produce_id": 7,
       "produce_name": "Pear",
-      "type": "fruit"
+      "produce_type": "fruit"
     },
     {
       "produce_id": 8,
       "produce_name": "Bell Pepper",
-      "type": "salad"
+      "produce_type": "salad"
     },
     {
       "produce_id": 9,
       "produce_name": "Kale",
-      "type": "vegetable"
+      "produce_type": "vegetable"
     },
     {
       "produce_id": 10,
       "produce_name": "Cauliflower",
-      "type": "vegetable"
+      "produce_type": "vegetable"
     }
   ],
   "pages": 1,

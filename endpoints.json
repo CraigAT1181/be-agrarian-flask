@@ -10,12 +10,12 @@
           {
             "produce_id": 1,
             "produce_name": "Carrot",
-            "type": "vegetable"
+            "produce_type": "vegetable"
           },
           {
             "produce_id": 2,
             "produce_name": "Tomato",
-            "type": "salad"
+            "produce_type": "salad"
           }
         ]
       }

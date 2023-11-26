@@ -10,7 +10,7 @@ def seed_db():
     seed_database()
     yield
 
-def test_home_endpoint(seed_db):
+def test_get_endpoint(seed_db):
     endpoint = '/'
     url = urljoin(path, endpoint)
 
@@ -27,7 +27,7 @@ def test_get_all_produce(seed_db):
     required_keys = [
         "produce_id",
         "produce_name",
-        "type"
+        "produce_type"
         ]
     for item in produce_list["produce"]:
         if all(key in item for key in required_keys):
@@ -35,7 +35,7 @@ def test_get_all_produce(seed_db):
         else:
             raise ValueError(f'Missing required key for produce: {item}')
 
-def test_get_users(seed_db):
+def test_get_all_users(seed_db):
     endpoint = '/users'
     url = urljoin(path, endpoint)
 
@@ -55,14 +55,15 @@ def test_get_users(seed_db):
         else:
             raise ValueError(f'Missing required key for user: {user}')
         
-def test_get_users_with_query(seed_db):
-    endpoint = '/users?produce=Cucumber'
+def test_get_users_by_produce_name(seed_db):
+    produce_list = 'Courgette,Tomato'
+    endpoint = f'/users/{produce_list}'
     url = urljoin(path, endpoint)
 
     response=requests.get(url)
     assert response.status_code == 200
     user_list = response.json()
-    assert len(user_list["users"]) == 2
+    assert len(user_list["users"]) == 5
     required_keys = [
         "user_id",
         "user_name",
