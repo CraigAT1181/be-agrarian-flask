@@ -5,19 +5,19 @@ import os
 load_dotenv()
 
 def load_db_config(filename='database.ini', section='postgresql'):
-
-    script_dir = os.path.dirname(__file__)
-    filepath = os.path.join(script_dir, filename)
-
-    parser = ConfigParser()
-    parser.read(filepath)
-
     db_config = {}
 
+    # Check if DATABASE_URL is available
     db_url = os.getenv('DATABASE_URL')
     if db_url:
         db_config['dsn'] = db_url
-    elif filepath:
+        return db_config
+
+    # If DATABASE_URL is not available, load from INI file
+    script_dir = os.path.dirname(__file__)
+    filepath = os.path.join(script_dir, filename)
+
+    if os.path.exists(filepath):
         parser = ConfigParser()
         parser.read(filepath)
 
@@ -28,6 +28,6 @@ def load_db_config(filename='database.ini', section='postgresql'):
         else:
             raise Exception('Section {0} not found in the {1} file'.format(section, filename))
     else:
-        raise Exception('No database configuration found.')
-    print(db_config, "<<<<<<")
+        raise Exception('No database configuration found in either environment variables or {0}'.format(filename))
+    print(db_config)
     return db_config
