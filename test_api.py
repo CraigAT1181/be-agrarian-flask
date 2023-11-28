@@ -32,7 +32,8 @@ def test_get_all_produce(seed_db, api_session):
     required_keys = [
         "produce_id",
         "produce_name",
-        "produce_type"
+        "produce_type",
+        "produce_icon"
         ]
     for item in produce_list["produce"]:
         if all(key in item for key in required_keys):
