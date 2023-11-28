@@ -10,18 +10,23 @@ def seed_db():
     seed_database()
     yield
 
-def test_get_endpoint(seed_db):
+@pytest.fixture
+def api_session():
+    with requests.Session() as session:
+        yield session
+
+def test_get_endpoint(seed_db, api_session):
     endpoint = '/'
     url = urljoin(path, endpoint)
 
-    response=requests.get(url)
+    response=api_session.get(url)
     assert response.status_code == 200
 
-def test_get_all_produce(seed_db):
+def test_get_all_produce(seed_db, api_session):
     endpoint = '/produce'
     url = urljoin(path, endpoint)
 
-    response=requests.get(url)
+    response=api_session.get(url)
     assert response.status_code == 200
     produce_list = response.json()
     required_keys = [
@@ -35,11 +40,11 @@ def test_get_all_produce(seed_db):
         else:
             raise ValueError(f'Missing required key for produce: {item}')
 
-def test_get_all_users(seed_db):
+def test_get_all_users(seed_db, api_session):
     endpoint = '/users'
     url = urljoin(path, endpoint)
 
-    response=requests.get(url)
+    response=api_session.get(url)
     assert response.status_code == 200
     user_list = response.json()
     assert len(user_list["users"]) == 10
@@ -55,15 +60,15 @@ def test_get_all_users(seed_db):
         else:
             raise ValueError(f'Missing required key for user: {user}')
         
-def test_get_users_by_produce_name(seed_db):
-    produce_list = 'Courgette,Tomato'
+def test_get_users_by_produce_name(seed_db, api_session):
+    produce_list = 'Apple,Tomato'
     endpoint = f'/users/{produce_list}'
     url = urljoin(path, endpoint)
 
-    response=requests.get(url)
+    response=api_session.get(url)
     assert response.status_code == 200
     user_list = response.json()
-    assert len(user_list["users"]) == 5
+    assert len(user_list["users"]) == 3
     required_keys = [
         "user_id",
         "user_name",

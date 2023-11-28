@@ -4,52 +4,62 @@
     {
       "produce_id": 1,
       "produce_name": "Carrot",
-      "produce_type": "vegetable"
+      "produce_type": "vegetable",
+      "produce_icon": "https://drive.google.com/file/d/1WYfCB-GPwOkUvK9YEThkw6YxpftzBfYi/view?usp=drive_link"
     },
     {
       "produce_id": 2,
       "produce_name": "Tomato",
-      "produce_type": "salad"
+      "produce_type": "fruit",
+      "produce_icon": "https://drive.google.com/file/d/1x9kyBQG-7G8rVYRvsHb_9TKVzMlSYndp/view?usp=drive_link"
     },
     {
       "produce_id": 3,
       "produce_name": "Cucumber",
-      "produce_type": "salad"
+      "produce_type": "vegetable",
+      "produce_icon": "https://drive.google.com/file/d/1K-mPsO9AAetNJ8WHrNfRaWlzUO_iY1em/view?usp=drive_link"
     },
     {
       "produce_id": 4,
       "produce_name": "Lettuce",
-      "produce_type": "salad"
+      "produce_type": "vegetable",
+      "produce_icon": "https://drive.google.com/file/d/1PLr1esfPqE6wKPZSw_bQohGdtAjWAfaQ/view?usp=drive_link"
     },
     {
       "produce_id": 5,
       "produce_name": "Broccoli",
-      "produce_type": "vegetable"
+      "produce_type": "vegetable",
+      "produce_icon": "https://drive.google.com/file/d/1_Qmll0_wVqT7Goa5C8zbnBSi7eFoo2Ta/view?usp=drive_link"
     },
     {
       "produce_id": 6,
       "produce_name": "Apple",
-      "produce_type": "fruit"
+      "produce_type": "fruit",
+      "produce_icon": "https://drive.google.com/file/d/19rS1OZjPkJLi7sADOvq7kAOLOArBPY9Z/view?usp=drive_link"
     },
     {
       "produce_id": 7,
       "produce_name": "Pear",
-      "produce_type": "fruit"
+      "produce_type": "fruit",
+      "produce_icon": "https://drive.google.com/file/d/1LJtjezs4sxVcaVZY1hFoiXvILxQ0_CYQ/view?usp=drive_link"
     },
     {
       "produce_id": 8,
       "produce_name": "Bell Pepper",
-      "produce_type": "salad"
+      "produce_type": "fruit",
+      "produce_icon": "https://drive.google.com/file/d/10s044xoN3RJ-1oOdEx6Q2cUYLfAKMIHW/view?usp=drive_link"
     },
     {
       "produce_id": 9,
-      "produce_name": "Kale",
-      "produce_type": "vegetable"
+      "produce_name": "Sweetcorn",
+      "produce_type": "vegetable",
+      "produce_icon": "https://drive.google.com/file/d/1f2_4tODB_2EkljbM_0Dlqbozd__h4cRI/view?usp=drive_link"
     },
     {
       "produce_id": 10,
       "produce_name": "Cauliflower",
-      "produce_type": "vegetable"
+      "produce_type": "vegetable",
+      "produce_icon": "https://drive.google.com/file/d/1BNgS9itikw0HxqaSM7ZVgzS4SjN5MF1g/view?usp=drive_link"
     }
   ],
   "pages": 1,

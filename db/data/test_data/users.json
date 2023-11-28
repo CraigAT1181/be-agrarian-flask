@@ -23,7 +23,7 @@
       "email": "alice.johnson@example.com",
       "password": "random_password_3",
       "postcode": "W1A 1AB",
-      "produce": ["Lettuce", "Broccoli", "Spinach"]
+      "produce": ["Lettuce", "Broccoli", "Apple"]
     },
     {
       "user_id": 4,
@@ -31,7 +31,7 @@
       "email": "bob.williams@example.com",
       "password": "random_password_4",
       "postcode": "NW1A 1AD",
-      "produce": ["Broccoli", "Courgette"]
+      "produce": ["Broccoli", "Sweetcorn"]
     },
     {
       "user_id": 5,
@@ -47,7 +47,7 @@
       "email": "michael.lee@example.com",
       "password": "random_password_6",
       "postcode": "SE1 7PB",
-      "produce": ["Bell Pepper", "Courgette"]
+      "produce": ["Bell Pepper", "Sweetcorn"]
     },
     {
       "user_id": 7,
@@ -55,7 +55,7 @@
       "email": "sara.brown@example.com",
       "password": "random_password_7",
       "postcode": "E1 8PY",
-      "produce": ["Courgette"]
+      "produce": ["Broccoli"]
     },
     {
       "user_id": 8,
@@ -63,7 +63,7 @@
       "email": "daniel.chen@example.com",
       "password": "random_password_8",
       "postcode": "N1C 4QP",
-      "produce": ["Spinach"]
+      "produce": ["Pear", "Cucumber"]
     },
     {
       "user_id": 9,
@@ -71,7 +71,7 @@
       "email": "olivia.kim@example.com",
       "password": "random_password_9",
       "postcode": "SW1E 5LH",
-      "produce": ["Kale"]
+      "produce": ["Sweetcorn"]
     },
     {
       "user_id": 10,
@@ -82,6 +82,6 @@
       "produce": ["Cauliflower"]
     }
   ],
-  "total_pages": 2,
+  "total_pages": 1,
   "total_results": 10
 }
