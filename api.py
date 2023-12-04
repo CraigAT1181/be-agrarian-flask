@@ -8,6 +8,7 @@ import os
 from endpoints.fetch_all_produce import fetch_all_produce
 from endpoints.fetch_all_users import fetch_all_users
 from endpoints.fetch_users_by_produce_name import fetch_users_by_produce_name
+from endpoints.fetch_conversations_by_user_id import fetch_conversations_by_user_id
 
 load_dotenv()
 
@@ -46,6 +47,14 @@ def get_all_users():
 @cross_origin()
 def get_users_by_produce_name(produce_list):
     result = fetch_users_by_produce_name(connection, produce_list.split(','))
+    return result
+
+#GET conversations_by_user_id
+@app.route('/users/<user_id>/conversations', methods=['GET'])
+@cross_origin()
+def get_conversations_by_user_id(user_id):
+    result = fetch_conversations_by_user_id(connection, user_id)
+    print(result)
     return result
 
 if __name__ == '__main__':

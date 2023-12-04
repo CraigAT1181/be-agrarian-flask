@@ -81,3 +81,25 @@ def test_get_users_by_produce_name(seed_db, api_session):
             pass
         else:
             raise ValueError(f'Missing required key for user: {user}')
+
+def test_get_conversations_by_user_id(seed_db, api_session):
+    user_id = 4
+    endpoint = f'/users/{user_id}/conversations'
+    url = urljoin(path, endpoint)
+
+    response=api_session.get(url)
+    assert response.status_code == 200
+    conversation_list = response.json()
+    assert len(conversation_list["conversations"]) == 2
+    required_keys = [
+        "conversation_id",
+        "sender_id",
+        "recipient_id",
+        "body",
+        "created_at"
+    ]
+    for conversation in conversation_list["conversations"]:
+        if all(key in conversation for key in required_keys):
+            pass
+        else:
+            raise ValueError(f'Missing required key for user: {conversation}')
