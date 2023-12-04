@@ -1,4 +1,5 @@
 import json
+import psycopg2
 from db.connection import get_connection
 
 def seed_database():
@@ -8,6 +9,9 @@ def seed_database():
 
     with open('./db/data/test_data/produce.json', 'r') as json_file:
         produce_test_data = json.load(json_file)
+
+    with open('./db/data/test_data/conversations.json', 'r') as json_file:
+        conversation_test_data = json.load(json_file)
 
     user_values = []
     user_list = user_test_data['users']
@@ -21,7 +25,7 @@ def seed_database():
         ))
     
     drop_users_table = """
-        DROP TABLE IF EXISTS users;
+        DROP TABLE IF EXISTS users CASCADE;
     """
     
     create_users_table = """
@@ -71,12 +75,50 @@ def seed_database():
         (%s, %s, %s);
     """
 
+    conversation_values = []
+    conversation_list = conversation_test_data['conversations']
+    for conversation in conversation_list:
+        conversation["body"] = json.dumps(conversation["body"])
+        conversation_values.append((
+            conversation["sender_id"],
+            conversation["recipient_id"],
+            conversation["body"],
+            conversation["created_at"]
+        ))
+    
+    drop_conversations_table = """
+        DROP TABLE IF EXISTS conversations;
+    """
+    
+    create_conversations_table = """
+        CREATE TABLE conversations (
+        conversation_id SERIAL PRIMARY KEY,
+        sender_id INT REFERENCES users(user_id) ON DELETE CASCADE,
+        recipient_id INT REFERENCES users(user_id) ON DELETE CASCADE,
+        body JSON NOT NULL,
+        created_at TIMESTAMP DEFAULT NOW(),
+        UNIQUE (sender_id, recipient_id)
+        );
+    """
+    
+    insert_conversation_data = """
+        INSERT INTO conversations 
+        (sender_id, recipient_id, body, created_at)
+        VALUES 
+        (%s, %s, %s, %s);
+    """
+
     db_connection = None
     
     db_connection = get_connection()
     db_connection.autocommit = True
 
     cursor = db_connection.cursor()
+
+    cursor.execute(drop_conversations_table)
+    cursor.execute(create_conversations_table)
+    for conversation in conversation_values:
+        cursor.execute(insert_conversation_data, conversation)
     
     cursor.execute(drop_users_table)       
     cursor.execute(create_users_table)
