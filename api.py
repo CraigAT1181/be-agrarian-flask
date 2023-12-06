@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from flask_restful import Api
 from flask_cors import CORS, cross_origin
 from db.connection import get_connection
@@ -9,6 +9,7 @@ from endpoints.fetch_all_produce import fetch_all_produce
 from endpoints.fetch_all_users import fetch_all_users
 from endpoints.fetch_users_by_produce_name import fetch_users_by_produce_name
 from endpoints.fetch_conversations_by_user_id import fetch_conversations_by_user_id
+from endpoints.authenticate_user import authenticate_user
 
 load_dotenv()
 
@@ -42,14 +43,14 @@ def get_all_users():
     result = fetch_all_users(connection)
     return result
 
-# GET users_by_produce_name
+# GET users by produce name
 @app.route('/users/<produce_list>', methods=['GET'])
 @cross_origin()
 def get_users_by_produce_name(produce_list):
     result = fetch_users_by_produce_name(connection, produce_list.split(','))
     return result
 
-#GET conversations_by_user_id
+# GET conversations by user id
 @app.route('/users/<user_id>/conversations', methods=['GET'])
 @cross_origin()
 def get_conversations_by_user_id(user_id):
@@ -59,3 +60,10 @@ def get_conversations_by_user_id(user_id):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+# POST authenticate user
+@app.route("/authenticate", methods=["POST"])
+@cross_origin() 
+def check_authentication():
+    data = request.get_json()
+    return authenticate_user(connection, data)

@@ -103,3 +103,20 @@ def test_get_conversations_by_user_id(seed_db, api_session):
             pass
         else:
             raise ValueError(f'Missing required key for user: {conversation}')
+
+def test_authenticate_user(seed_db, api_session):
+    test_user_data = {
+        'username': 'John Doe',
+        'password': 'random_password_1'
+    }
+
+    endpoint = '/authenticate'
+    url = urljoin(path, endpoint)
+
+    response = api_session.post(url, json=test_user_data)
+    assert response.status_code == 200
+
+    user = response.json()
+    print(user)
+    required_keys = ["user_id", "user_name", "email", "postcode", "produce"]
+    assert all(key in user for key in required_keys)
