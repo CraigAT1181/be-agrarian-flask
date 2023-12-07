@@ -22,10 +22,10 @@ def add_new_user(data, connection):
                     "password": password,
                     "postcode": postcode,
                     "produce": []
-                }, 200
+                }
                 
             except connection.IntegrityError as e:
                 return {
                     "message": "email already registered.",
                     "status": 409,
-                }, 409
+                }

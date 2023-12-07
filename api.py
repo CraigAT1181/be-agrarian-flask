@@ -10,7 +10,7 @@ from endpoints.fetch_all_users import fetch_all_users
 from endpoints.fetch_users_by_produce_name import fetch_users_by_produce_name
 from endpoints.fetch_conversations_by_user_id import fetch_conversations_by_user_id
 from endpoints.authenticate_user import authenticate_user
-from endpoints.add_user import add_new_user
+from endpoints.add_new_user import add_new_user
 from endpoints.remove_user_by_user_id import remove_user_by_user_id
 
 load_dotenv()
