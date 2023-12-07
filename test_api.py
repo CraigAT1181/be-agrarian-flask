@@ -140,3 +140,11 @@ def test_add_new_user(seed_db, api_session):
     print(user)
     required_keys = ["user_id", "user_name", "email", "password", "postcode", "produce"]
     assert all(key in user[0] for key in required_keys)
+
+def test_delete_user_by_user_id(seed_db, api_session):
+    endpoint = '/users/10'
+    url = urljoin(path, endpoint)
+
+    response = api_session.delete(url)
+
+    assert response.status_code == 204

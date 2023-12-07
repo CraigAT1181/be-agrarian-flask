@@ -11,6 +11,7 @@ from endpoints.fetch_users_by_produce_name import fetch_users_by_produce_name
 from endpoints.fetch_conversations_by_user_id import fetch_conversations_by_user_id
 from endpoints.authenticate_user import authenticate_user
 from endpoints.add_user import add_new_user
+from endpoints.remove_user_by_user_id import remove_user_by_user_id
 
 load_dotenv()
 
@@ -76,3 +77,9 @@ def register_user():
     data = request.get_json()
     result = add_new_user(data, connection)
     return jsonify(result)
+
+# DELETE user by user id
+@app.route("/users/<user_id>", methods=["DELETE"])
+@cross_origin() 
+def delete_user_by_user_id(user_id):
+    return remove_user_by_user_id(user_id, connection)

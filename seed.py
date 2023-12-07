@@ -115,15 +115,15 @@ def seed_database():
 
     cursor = db_connection.cursor()
 
-    cursor.execute(drop_conversations_table)
-    cursor.execute(create_conversations_table)
-    for conversation in conversation_values:
-        cursor.execute(insert_conversation_data, conversation)
-    
     cursor.execute(drop_users_table)       
     cursor.execute(create_users_table)
     for user in user_values:     
         cursor.execute(insert_user_data, user)
+
+    cursor.execute(drop_conversations_table)
+    cursor.execute(create_conversations_table)
+    for conversation in conversation_values:
+        cursor.execute(insert_conversation_data, conversation)
 
     cursor.execute(drop_produce_table)
     cursor.execute(create_produce_table)
