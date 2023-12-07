@@ -42,5 +42,60 @@
         ]
       }
     ]
+  },
+  "GET /users/<user_id>/conversations": {
+    "description": "serves up a json of all conversations by user_id currently stored in the database",
+    "queries": [2],
+    "example response": [
+      {
+        "conversations": [
+          {
+            "body": [
+              {
+                "message": "Hey Eva, do you have any bell peppers?",
+                "name": "Jane Smith"
+              },
+              {
+                "message": "Yes, I have some fresh bell peppers available. How many do you need?",
+                "name": "Eva Martinez"
+              }
+            ],
+            "conversation_id": 2,
+            "created_at": "Sat, 25 Nov 2023 00:00:00 GMT",
+            "recipient_id": 5,
+            "sender_id": 2
+          }
+        ]
+      }
+    ]
+  },
+  "GET /users/<produce_list>": {
+    "description": "serves up a json of all users who currently have produce passed into the endpoint",
+    "queries": ["Apple, Carrot"],
+    "example response": [
+      {
+        "users": [
+          {
+            "postcode": "SW1A 1AA",
+            "produce": [
+              "Carrot",
+              "Tomato"
+            ],
+            "user_id": 1,
+            "user_name": "John Doe"
+          },
+          {
+            "postcode": "W1A 1AB",
+            "produce": [
+              "Lettuce",
+              "Broccoli",
+              "Apple"
+            ],
+            "user_id": 3,
+            "user_name": "Alice Johnson"
+          }
+        ]
+      }
+    ]
   }
 }
