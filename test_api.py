@@ -117,6 +117,26 @@ def test_authenticate_user(seed_db, api_session):
     assert response.status_code == 200
 
     user = response.json()
-    print(user)
+    print(user, "user")
     required_keys = ["user_id", "user_name", "email", "postcode", "produce"]
     assert all(key in user for key in required_keys)
+
+def test_add_new_user(seed_db, api_session):
+    new_user = {
+        'user_name': 'Craig Tipple',
+        'email': 'craig@e-mail.com',
+        'password': 'password123',
+        'postcode': 'TS245EE'
+    }
+
+    endpoint = '/users'
+    url = urljoin(path, endpoint)
+
+    response = api_session.post(url, json=new_user)
+    
+    assert response.status_code == 200
+
+    user = response.json()
+    print(user)
+    required_keys = ["user_id", "user_name", "email", "password", "postcode", "produce"]
+    assert all(key in user[0] for key in required_keys)

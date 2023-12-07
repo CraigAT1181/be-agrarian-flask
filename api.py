@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_restful import Api
 from flask_cors import CORS, cross_origin
 from db.connection import get_connection
@@ -10,6 +10,7 @@ from endpoints.fetch_all_users import fetch_all_users
 from endpoints.fetch_users_by_produce_name import fetch_users_by_produce_name
 from endpoints.fetch_conversations_by_user_id import fetch_conversations_by_user_id
 from endpoints.authenticate_user import authenticate_user
+from endpoints.add_user import add_new_user
 
 load_dotenv()
 
@@ -62,8 +63,16 @@ if __name__ == '__main__':
     app.run(debug=True)
 
 # POST authenticate user
-@app.route("/authenticate", methods=["POST"])
+@app.route('/authenticate', methods=["POST"])
 @cross_origin() 
 def check_authentication():
     data = request.get_json()
     return authenticate_user(connection, data)
+
+# POST register user
+@app.route('/users', methods=['POST'])
+@cross_origin()
+def register_user():
+    data = request.get_json()
+    result = add_new_user(data, connection)
+    return jsonify(result)
