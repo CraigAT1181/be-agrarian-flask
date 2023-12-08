@@ -12,6 +12,7 @@ from endpoints.fetch_conversations_by_user_id import fetch_conversations_by_user
 from endpoints.authenticate_user import authenticate_user
 from endpoints.add_new_user import add_new_user
 from endpoints.remove_user_by_user_id import remove_user_by_user_id
+from endpoints.patch_produce_by_user_id import patch_produce_by_user_id
 
 load_dotenv()
 
@@ -83,3 +84,11 @@ def register_user():
 @cross_origin() 
 def delete_user_by_user_id(user_id):
     return remove_user_by_user_id(user_id, connection)
+
+# PATCH produce by user id
+@app.route('/users/<user_id>', methods=["PATCH"])
+@cross_origin() 
+def patch_user_produce(user_id):
+    data = request.get_json()
+    produce = data if isinstance(data, list) else []
+    return patch_produce_by_user_id(connection, user_id, produce)

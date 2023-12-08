@@ -148,3 +148,12 @@ def test_delete_user_by_user_id(seed_db, api_session):
     response = api_session.delete(url)
 
     assert response.status_code == 204
+
+def test_patch_user_produce(seed_db, api_session):
+    endpoint = '/users/1'
+    url = urljoin(path, endpoint)
+    request = []
+
+    response = api_session.patch(url, json=request)
+
+    assert response.status_code == 200
