@@ -16,6 +16,7 @@ def load_db_config(filename='database.ini', section='postgresql'):
     # If DATABASE_URL is not available, load from INI file
     script_dir = os.path.dirname(__file__)
     filepath = os.path.join(script_dir, filename)
+    print(filepath)
 
     if os.path.exists(filepath):
         parser = ConfigParser()

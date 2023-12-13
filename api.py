@@ -20,8 +20,6 @@ app = Flask(__name__)
 api = Api(app)
 CORS(app)
 
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
-
 connection = get_connection()
 
 # GET all endpoints
@@ -61,9 +59,6 @@ def get_conversations_by_user_id(user_id):
     print(result)
     return result
 
-if __name__ == '__main__':
-    app.run(debug=True)
-
 # POST authenticate user
 @app.route('/authenticate', methods=["POST"])
 @cross_origin() 
@@ -92,3 +87,6 @@ def patch_user_produce(user_id):
     data = request.get_json()
     produce = data if isinstance(data, list) else []
     return patch_produce_by_user_id(connection, user_id, produce)
+
+if __name__ == '__main__':
+    app.run(debug=True)
