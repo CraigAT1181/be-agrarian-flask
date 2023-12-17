@@ -56,7 +56,6 @@ def get_users_by_produce_name(produce_list):
 @cross_origin()
 def get_conversations_by_user_id(user_id):
     result = fetch_conversations_by_user_id(connection, user_id)
-    print(result)
     return result
 
 # POST authenticate user

@@ -82,8 +82,8 @@ def seed_database():
     conversation_list = conversation_test_data['conversations']
     for conversation in conversation_list:
         conversation_values.append((
-            conversation["sender_id"],
-            conversation["recipient_id"],
+            conversation["user1_id"],
+            conversation["user2_id"],
             conversation["created_at"]
         ))
     
@@ -94,16 +94,16 @@ def seed_database():
     create_conversations_table = """
         CREATE TABLE conversations (
         conversation_id SERIAL PRIMARY KEY,
-        sender_id INT REFERENCES users(user_id) ON DELETE CASCADE,
-        recipient_id INT REFERENCES users(user_id) ON DELETE CASCADE,
+        user1_id INT REFERENCES users(user_id) ON DELETE CASCADE,
+        user2_id INT REFERENCES users(user_id) ON DELETE CASCADE,
         created_at TIMESTAMP DEFAULT NOW(),
-        UNIQUE (sender_id, recipient_id)
+        UNIQUE (user1_id, user2_id)
         );
     """
     
     insert_conversation_data = """
         INSERT INTO conversations 
-        (sender_id, recipient_id, created_at)
+        (user1_id, user2_id, created_at)
         VALUES 
         (%s, %s, %s);
     """
@@ -114,7 +114,7 @@ def seed_database():
         message_values.append((
             message["conversation_id"],
             message["sender_id"],
-            message["sender_id"],
+            message["recipient_id"],
             message["message"],
             message["created_at"]
         ))

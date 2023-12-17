@@ -93,11 +93,9 @@ def test_get_conversations_by_user_id(seed_db, api_session):
     assert len(conversation_list["conversations"]) == 2
     required_keys = [
         "conversation_id",
-        "sender_id",
-        "recipient_id",
-        "body",
+        "partner_name",
         "created_at"
-    ]
+        ]
     for conversation in conversation_list["conversations"]:
         if all(key in conversation for key in required_keys):
             pass
