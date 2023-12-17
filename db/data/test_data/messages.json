@@ -1,0 +1,168 @@
+{
+    "page": 1,
+    "messages": [
+      {
+        "message_id": 1,
+        "conversation_id": 1,
+        "sender_id": 1,
+        "recipient_id": 4,
+        "message": "Hi, do you have any tomatoes left?",
+        "created_at": "2023-11-24"
+      },
+      {
+        "message_id": 2,
+        "conversation_id": 1,
+        "sender_id": 4,
+        "recipient_id": 1,
+        "message": "No, sorry John, I just swapped the last box.",
+        "created_at": "2023-11-24"
+      },
+      {
+        "message_id": 3,
+        "conversation_id": 2,
+        "sender_id": 2,
+        "recipient_id": 5,
+        "message": "Hello! How are you?",
+        "created_at": "2023-11-25"
+      },
+      {
+        "message_id": 4,
+        "conversation_id": 2,
+        "sender_id": 5,
+        "recipient_id": 2,
+        "message": "I'm good, thanks! How about you?",
+        "created_at": "2023-11-25"
+      },
+      {
+        "message_id": 5,
+        "conversation_id": 3,
+        "sender_id": 3,
+        "recipient_id": 6,
+        "message": "Hey there! What's up?",
+        "created_at": "2023-11-26"
+      },
+      {
+        "message_id": 6,
+        "conversation_id": 3,
+        "sender_id": 6,
+        "recipient_id": 3,
+        "message": "Not much, just chilling. How about you?",
+        "created_at": "2023-11-26"
+      },
+      {
+        "message_id": 7,
+        "conversation_id": 4,
+        "sender_id": 4,
+        "recipient_id": 7,
+        "message": "Do you have any plans for the weekend?",
+        "created_at": "2023-11-27"
+      },
+      {
+        "message_id": 8,
+        "conversation_id": 4,
+        "sender_id": 7,
+        "recipient_id": 4,
+        "message": "Not really, just relaxing. You?",
+        "created_at": "2023-11-27"
+      },
+      {
+        "message_id": 9,
+        "conversation_id": 5,
+        "sender_id": 5,
+        "recipient_id": 8,
+        "message": "What's your favorite movie?",
+        "created_at": "2023-11-28"
+      },
+      {
+        "message_id": 10,
+        "conversation_id": 5,
+        "sender_id": 8,
+        "recipient_id": 5,
+        "message": "I love sci-fi movies! How about you?",
+        "created_at": "2023-11-28"
+      },
+      {
+        "message_id": 11,
+        "conversation_id": 6,
+        "sender_id": 6,
+        "recipient_id": 9,
+        "message": "Hey, did you watch the latest episode of that show?",
+        "created_at": "2023-11-29"
+      },
+      {
+        "message_id": 12,
+        "conversation_id": 6,
+        "sender_id": 9,
+        "recipient_id": 6,
+        "message": "Yes! It was amazing! What did you think?",
+        "created_at": "2023-11-29"
+      },
+      {
+        "message_id": 13,
+        "conversation_id": 7,
+        "sender_id": 7,
+        "recipient_id": 10,
+        "message": "Good morning! How's your day going?",
+        "created_at": "2023-11-30"
+      },
+      {
+        "message_id": 14,
+        "conversation_id": 7,
+        "sender_id": 10,
+        "recipient_id": 7,
+        "message": "Morning! It's going well. What about yours?",
+        "created_at": "2023-11-30"
+      },
+      {
+        "message_id": 15,
+        "conversation_id": 8,
+        "sender_id": 1,
+        "recipient_id": 8,
+        "message": "Hey! Long time no talk. How have you been?",
+        "created_at": "2023-12-01"
+      },
+      {
+        "message_id": 16,
+        "conversation_id": 8,
+        "sender_id": 8,
+        "recipient_id": 1,
+        "message": "I've been good! Busy with work. How about you?",
+        "created_at": "2023-12-01"
+      },
+      {
+        "message_id": 17,
+        "conversation_id": 9,
+        "sender_id": 9,
+        "recipient_id": 2,
+        "message": "Hey, do you have any plans for the weekend?",
+        "created_at": "2023-12-02"
+      },
+      {
+        "message_id": 18,
+        "conversation_id": 9,
+        "sender_id": 2,
+        "recipient_id": 9,
+        "message": "Not yet. Thinking of going hiking. You?",
+        "created_at": "2023-12-02"
+      },
+      {
+        "message_id": 19,
+        "conversation_id": 10,
+        "sender_id": 3,
+        "recipient_id": 10,
+        "message": "Happy Sunday! Any exciting plans for the day?",
+        "created_at": "2023-12-03"
+      },
+      {
+        "message_id": 20,
+        "conversation_id": 10,
+        "sender_id": 10,
+        "recipient_id": 3,
+        "message": "Just relaxing at home. What about you?",
+        "created_at": "2023-12-03"
+      }
+    ],
+    "total_pages": 1,
+    "total_results": 20
+  }
+  

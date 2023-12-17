@@ -5,161 +5,60 @@
       "conversation_id": 1,
       "sender_id": 1,
       "recipient_id": 4,
-      "body": [
-        { "name": "John Doe", "message": "Hi, do you have any tomatoes left?" },
-        {
-          "name": "Bob Williams",
-          "message": "No, sorry John, I just swapped the last box."
-        }
-      ],
       "created_at": "2023-11-24"
     },
     {
       "conversation_id": 2,
       "sender_id": 2,
       "recipient_id": 5,
-      "body": [
-        {
-          "name": "Jane Smith",
-          "message": "Hey Eva, do you have any bell peppers?"
-        },
-        {
-          "name": "Eva Martinez",
-          "message": "Yes, I have some fresh bell peppers available. How many do you need?"
-        }
-      ],
       "created_at": "2023-11-25"
     },
     {
       "conversation_id": 3,
       "sender_id": 3,
       "recipient_id": 6,
-      "body": [
-        {
-          "name": "Alice Johnson",
-          "message": "Hi Michael, I'm looking for sweetcorn. Do you have any?"
-        },
-        {
-          "name": "Michael Lee",
-          "message": "Certainly, Alice! I have some sweetcorn. How much do you need?"
-        }
-      ],
       "created_at": "2023-11-26"
     },
     {
       "conversation_id": 4,
       "sender_id": 4,
       "recipient_id": 7,
-      "body": [
-        {
-          "name": "Bob Williams",
-          "message": "Sara, I heard you're interested in broccoli. I have some fresh ones."
-        },
-        {
-          "name": "Sara Brown",
-          "message": "That's great! I'd love to get some broccoli. When can we arrange the swap?"
-        }
-      ],
       "created_at": "2023-11-27"
     },
     {
       "conversation_id": 5,
       "sender_id": 5,
       "recipient_id": 8,
-      "body": [
-        {
-          "name": "Eva Martinez",
-          "message": "Daniel, I have some extra pears. Interested?"
-        },
-        {
-          "name": "Daniel Chen",
-          "message": "Sure, Eva! Pears sound great. Let's coordinate the swap."
-        }
-      ],
       "created_at": "2023-11-28"
     },
     {
       "conversation_id": 6,
       "sender_id": 6,
       "recipient_id": 9,
-      "body": [
-        {
-          "name": "Michael Lee",
-          "message": "Olivia, I have sweetcorn available. Need any?"
-        },
-        {
-          "name": "Olivia Kim",
-          "message": "Absolutely! Sweetcorn is on my list. Let's arrange the swap."
-        }
-      ],
       "created_at": "2023-11-29"
     },
     {
       "conversation_id": 7,
       "sender_id": 7,
       "recipient_id": 10,
-      "body": [
-        {
-          "name": "Sara Brown",
-          "message": "William, I heard you're interested in cauliflower. I have some fresh ones."
-        },
-        {
-          "name": "William Wilson",
-          "message": "Fantastic! Cauliflower is exactly what I need. Let's make the swap happen."
-        }
-      ],
       "created_at": "2023-11-30"
     },
     {
       "conversation_id": 8,
       "sender_id": 1,
       "recipient_id": 8,
-      "body": [
-        {
-          "name": "John Doe",
-          "message": "Daniel, do you have any carrots available?"
-        },
-        {
-          "name": "Daniel Chen",
-          "message": "Yes, John! I would love some carrots. Let's arrange the swap."
-        }
-      ],
       "created_at": "2023-12-01"
     },
     {
       "conversation_id": 9,
       "sender_id": 9,
       "recipient_id": 2,
-      "body": [
-        {
-          "name": "Olivia Kim",
-          "message": "Jane, I'm interested in tomatoes. Do you have any left?"
-        },
-        {
-          "name": "Jane Smith",
-          "message": "Sorry, Olivia, I just ran out of tomatoes. Let me know if you need anything else."
-        }
-      ],
       "created_at": "2023-12-02"
     },
     {
       "conversation_id": 10,
       "sender_id": 3,
       "recipient_id": 10,
-      "body": [
-        {
-          "name": "Alice Johnson",
-          "message": "William, I have fresh apples available. Interested?"
-        },
-        {
-          "name": "William Wilson",
-          "message": "Absolutely, Alice! Apples are perfect. Let's arrange the swap."
-        },
-        {
-          "name": "Alice Johnson",
-          "message": "Great! I'll bring them to you soon."
-        }
-      ],
       "created_at": "2023-12-03"
     }
   ],

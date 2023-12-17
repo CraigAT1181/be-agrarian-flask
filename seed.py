@@ -13,6 +13,9 @@ def seed_database():
     with open('./db/data/test_data/conversations.json', 'r') as json_file:
         conversation_test_data = json.load(json_file)
 
+    with open('./db/data/test_data/messages.json', 'r') as json_file:
+        message_test_data = json.load(json_file)
+
     user_values = []
     user_list = user_test_data['users']
     for user in user_list:
@@ -78,11 +81,9 @@ def seed_database():
     conversation_values = []
     conversation_list = conversation_test_data['conversations']
     for conversation in conversation_list:
-        conversation["body"] = json.dumps(conversation["body"])
         conversation_values.append((
             conversation["sender_id"],
             conversation["recipient_id"],
-            conversation["body"],
             conversation["created_at"]
         ))
     
@@ -95,7 +96,6 @@ def seed_database():
         conversation_id SERIAL PRIMARY KEY,
         sender_id INT REFERENCES users(user_id) ON DELETE CASCADE,
         recipient_id INT REFERENCES users(user_id) ON DELETE CASCADE,
-        body JSON NOT NULL,
         created_at TIMESTAMP DEFAULT NOW(),
         UNIQUE (sender_id, recipient_id)
         );
@@ -103,9 +103,43 @@ def seed_database():
     
     insert_conversation_data = """
         INSERT INTO conversations 
-        (sender_id, recipient_id, body, created_at)
+        (sender_id, recipient_id, created_at)
         VALUES 
-        (%s, %s, %s, %s);
+        (%s, %s, %s);
+    """
+
+    message_values = []
+    message_list = message_test_data['messages']
+    for message in message_list:
+        message_values.append((
+            message["conversation_id"],
+            message["sender_id"],
+            message["sender_id"],
+            message["message"],
+            message["created_at"]
+        ))
+    
+    drop_messages_table = """
+        DROP TABLE IF EXISTS messages;
+    """
+    
+    create_messages_table = """
+        CREATE TABLE messages (
+        message_id SERIAL PRIMARY KEY,
+        conversation_id REFERENCES conversations(conversation_id) ON DELETE CASCADE,
+        sender_id INT REFERENCES users(user_id) ON DELETE CASCADE,
+        recipient_id INT REFERENCES users(user_id) ON DELETE CASCADE,
+        message VARCHAR(255) NOT NULL,
+        created_at TIMESTAMP DEFAULT NOW(),
+        UNIQUE (sender_id, recipient_id)
+        );
+    """
+    
+    insert_message_data = """
+        INSERT INTO messages 
+        (conversation_id, sender_id, recipient_id, message, created_at)
+        VALUES 
+        (%s, %s, %s, %s, %s);
     """
 
     db_connection = None
@@ -124,6 +158,11 @@ def seed_database():
     cursor.execute(create_conversations_table)
     for conversation in conversation_values:
         cursor.execute(insert_conversation_data, conversation)
+
+    cursor.execute(drop_messages_table)
+    cursor.execute(create_messages_table)
+    for message in message_values:
+        cursor.execute(insert_message_data, message)
 
     cursor.execute(drop_produce_table)
     cursor.execute(create_produce_table)
