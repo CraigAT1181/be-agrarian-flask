@@ -126,12 +126,11 @@ def seed_database():
     create_messages_table = """
         CREATE TABLE messages (
         message_id SERIAL PRIMARY KEY,
-        conversation_id REFERENCES conversations(conversation_id) ON DELETE CASCADE,
+        conversation_id INT REFERENCES conversations(conversation_id) ON DELETE CASCADE,
         sender_id INT REFERENCES users(user_id) ON DELETE CASCADE,
         recipient_id INT REFERENCES users(user_id) ON DELETE CASCADE,
         message VARCHAR(255) NOT NULL,
-        created_at TIMESTAMP DEFAULT NOW(),
-        UNIQUE (sender_id, recipient_id)
+        created_at TIMESTAMP DEFAULT NOW()
         );
     """
     
@@ -149,25 +148,26 @@ def seed_database():
 
     cursor = db_connection.cursor()
 
-    cursor.execute(drop_users_table)       
+    cursor.execute(drop_produce_table)
+    cursor.execute(drop_users_table)
+    cursor.execute(drop_messages_table)
+    cursor.execute(drop_conversations_table)
+
+    cursor.execute(create_produce_table)
+    for item in produce_values:
+        cursor.execute(insert_produce_data, item)
+
     cursor.execute(create_users_table)
     for user in user_values:     
         cursor.execute(insert_user_data, user)
 
-    cursor.execute(drop_conversations_table)
     cursor.execute(create_conversations_table)
     for conversation in conversation_values:
         cursor.execute(insert_conversation_data, conversation)
 
-    cursor.execute(drop_messages_table)
     cursor.execute(create_messages_table)
     for message in message_values:
         cursor.execute(insert_message_data, message)
-
-    cursor.execute(drop_produce_table)
-    cursor.execute(create_produce_table)
-    for item in produce_values:
-        cursor.execute(insert_produce_data, item)
 
     db_connection.close()
 
