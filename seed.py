@@ -15,6 +15,9 @@ def seed_database():
 
     with open('./db/data/test_data/messages.json', 'r') as json_file:
         message_test_data = json.load(json_file)
+    
+    with open('./db/data/test_data/posts.json', 'r') as json_file:
+        post_test_data = json.load(json_file)
 
     user_values = []
     user_list = user_test_data['users']
@@ -141,6 +144,43 @@ def seed_database():
         (%s, %s, %s, %s, %s);
     """
 
+    post_values = []
+    post_list = post_test_data['posts']
+    for post in post_list:
+        post_values.append((
+            post["user_id"],
+            post["status"],
+            post["type"],
+            post["item"],
+            post["image"],
+            post["body"],
+            post["created_at"]
+        ))
+    
+    drop_posts_table = """
+        DROP TABLE IF EXISTS posts CASCADE;
+    """
+    
+    create_posts_table = """
+        CREATE TABLE posts (
+        post_id SERIAL PRIMARY KEY,
+        user_id INT REFERENCES users(user_id) ON DELETE CASCADE,
+        status VARCHAR(255) NOT NULL,
+        type VARCHAR(255) NOT NULL,
+        item VARCHAR(255) NOT NULL,
+        image VARCHAR(255),
+        body VARCHAR(255),
+        created_at TIMESTAMP DEFAULT NOW()
+        );
+    """
+    
+    insert_post_data = """
+        INSERT INTO posts 
+        (user_id, status, type, item, image, body, created_at)
+        VALUES 
+        (%s, %s, %s, %s, %s, %s, %s);
+    """
+
     db_connection = None
     
     db_connection = get_connection()
@@ -152,6 +192,7 @@ def seed_database():
     cursor.execute(drop_users_table)
     cursor.execute(drop_messages_table)
     cursor.execute(drop_conversations_table)
+    cursor.execute(drop_posts_table)
 
     cursor.execute(create_produce_table)
     for item in produce_values:
@@ -168,6 +209,10 @@ def seed_database():
     cursor.execute(create_messages_table)
     for message in message_values:
         cursor.execute(insert_message_data, message)
+    
+    cursor.execute(create_posts_table)
+    for post in post_values:
+        cursor.execute(insert_post_data, post)
 
     db_connection.close()
 
