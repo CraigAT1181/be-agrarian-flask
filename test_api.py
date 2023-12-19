@@ -165,7 +165,7 @@ def test_get_all_posts(seed_db, api_session):
     assert response.status_code == 200
     post_list = response.json()
     assert len(post_list["posts"]) == 10
-    required_keys = [{
+    required_keys = [
         "post_id",
         "user_id",
         "status",
@@ -175,7 +175,7 @@ def test_get_all_posts(seed_db, api_session):
         "created_at",
         "postcode",
         "posted_by"
-    }]
+    ]
     for post in post_list["posts"]:
         if not all(key in post for key in required_keys):
             raise ValueError(f'Missing required key for post: {post}')
