@@ -14,6 +14,7 @@ from endpoints.authenticate_user import authenticate_user
 from endpoints.add_new_user import add_new_user
 from endpoints.remove_user_by_user_id import remove_user_by_user_id
 from endpoints.patch_produce_by_user_id import patch_produce_by_user_id
+from endpoints.fetch_all_posts import fetch_all_posts
 
 load_dotenv()
 
@@ -59,6 +60,7 @@ def get_conversations_by_user_id(user_id):
     result = fetch_conversations_by_user_id(connection, user_id)
     return result
 
+# GET messages by conversation id
 @app.route('/conversations/<conversation_id>/messages', methods=['GET'])
 @cross_origin()
 def get_messages_by_conversation_id(conversation_id):
@@ -93,6 +95,13 @@ def patch_user_produce(user_id):
     data = request.get_json()
     produce = data if isinstance(data, list) else []
     return patch_produce_by_user_id(connection, user_id, produce)
+
+# GET all posts
+@app.route('/posts', methods=['GET'])
+@cross_origin()
+def get_all_posts():
+    result = fetch_all_posts(connection)
+    return result
 
 if __name__ == '__main__':
     app.run(debug=True)

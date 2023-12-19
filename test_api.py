@@ -155,3 +155,27 @@ def test_patch_user_produce(seed_db, api_session):
     response = api_session.patch(url, json=request)
 
     assert response.status_code == 200
+
+def test_get_all_posts(seed_db, api_session):
+    endpoint = '/posts'
+    url = urljoin(path, endpoint)
+
+    response=api_session.get(url)
+    print(response)
+    assert response.status_code == 200
+    post_list = response.json()
+    assert len(post_list["posts"]) == 10
+    required_keys = [{
+        "post_id",
+        "user_id",
+        "status",
+        "type",
+        "image",
+        "body",
+        "created_at",
+        "postcode",
+        "posted_by"
+    }]
+    for post in post_list["posts"]:
+        if not all(key in post for key in required_keys):
+            raise ValueError(f'Missing required key for post: {post}')
