@@ -36,9 +36,7 @@ def test_get_all_produce(seed_db, api_session):
         "produce_icon"
         ]
     for item in produce_list["produce"]:
-        if all(key in item for key in required_keys):
-            pass
-        else:
+        if not all(key in item for key in required_keys):
             raise ValueError(f'Missing required key for produce: {item}')
 
 def test_get_all_users(seed_db, api_session):
@@ -56,9 +54,7 @@ def test_get_all_users(seed_db, api_session):
         "produce"
         ]
     for user in user_list["users"]:
-        if all(key in user for key in required_keys):
-            pass
-        else:
+        if not all(key in user for key in required_keys):
             raise ValueError(f'Missing required key for user: {user}')
         
 def test_get_users_by_produce_name(seed_db, api_session):
@@ -77,9 +73,7 @@ def test_get_users_by_produce_name(seed_db, api_session):
         "produce"
         ]
     for user in user_list["users"]:
-        if all(key in user for key in required_keys):
-            pass
-        else:
+        if not all(key in user for key in required_keys):
             raise ValueError(f'Missing required key for user: {user}')
 
 def test_get_conversations_by_user_id(seed_db, api_session):
@@ -97,10 +91,16 @@ def test_get_conversations_by_user_id(seed_db, api_session):
         "created_at"
         ]
     for conversation in conversation_list["conversations"]:
-        if all(key in conversation for key in required_keys):
-            pass
-        else:
+        if not all(key in conversation for key in required_keys):
             raise ValueError(f'Missing required key for user: {conversation}')
+
+def test_get_messages_by_conversation_id(seed_db, api_session):
+    conversation_id = 1
+    endpoint = f'/conversations/{conversation_id}/messages'
+    url = urljoin(path, endpoint)
+
+    response=api_session.get(url)
+    assert response.status_code == 200
 
 def test_authenticate_user(seed_db, api_session):
     test_user_data = {
@@ -115,7 +115,7 @@ def test_authenticate_user(seed_db, api_session):
     assert response.status_code == 200
 
     user = response.json()
-    print(user, "user")
+    
     required_keys = ["user_id", "user_name", "email", "postcode", "produce"]
     assert all(key in user for key in required_keys)
 
@@ -135,7 +135,7 @@ def test_add_new_user(seed_db, api_session):
     assert response.status_code == 200
 
     user = response.json()
-    print(user)
+    
     required_keys = ["user_id", "user_name", "email", "password", "postcode", "produce"]
     assert all(key in user for key in required_keys)
 
@@ -150,7 +150,7 @@ def test_delete_user_by_user_id(seed_db, api_session):
 def test_patch_user_produce(seed_db, api_session):
     endpoint = '/users/1'
     url = urljoin(path, endpoint)
-    request = []
+    request = ["Apple"]
 
     response = api_session.patch(url, json=request)
 

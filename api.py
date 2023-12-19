@@ -9,6 +9,7 @@ from endpoints.fetch_all_produce import fetch_all_produce
 from endpoints.fetch_all_users import fetch_all_users
 from endpoints.fetch_users_by_produce_name import fetch_users_by_produce_name
 from endpoints.fetch_conversations_by_user_id import fetch_conversations_by_user_id
+from endpoints.fetch_messages_by_conversation_id import fetch_messages_by_conversation_id
 from endpoints.authenticate_user import authenticate_user
 from endpoints.add_new_user import add_new_user
 from endpoints.remove_user_by_user_id import remove_user_by_user_id
@@ -56,6 +57,12 @@ def get_users_by_produce_name(produce_list):
 @cross_origin()
 def get_conversations_by_user_id(user_id):
     result = fetch_conversations_by_user_id(connection, user_id)
+    return result
+
+@app.route('/conversations/<conversation_id>/messages', methods=['GET'])
+@cross_origin()
+def get_messages_by_conversation_id(conversation_id):
+    result = fetch_messages_by_conversation_id(connection, conversation_id)
     return result
 
 # POST authenticate user
