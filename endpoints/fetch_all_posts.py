@@ -19,12 +19,12 @@ def fetch_all_posts(connection):
                 "post_id": post[0],
                 "user_id": post[1],
                 "status": post[2],
-                "type": post[4],
-                "image": post[5],
-                "body": post[6],
-                "created_at": post[7],
-                "postcode": post[8],
-                "posted_by":  post[9]
+                "type": post[3],
+                "image": post[4],
+                "body": post[5],
+                "created_at": post[6],
+                "postcode": post[7],
+                "posted_by":  post[8]
             })
         
         return jsonify({"posts": result}), 200
