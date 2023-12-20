@@ -27,7 +27,6 @@ def fetch_all_posts(connection):
                 "postcode": post[8],
                 "posted_by":  post[9]
             })
-        print(result)
         return jsonify({"posts": result}), 200
 
 
