@@ -1,7 +1,6 @@
 from flask import jsonify, abort
 
 def patch_produce_by_user_id(connection, user_id, produce):
-    print(user_id, produce)
     try:
         with connection:
             with connection.cursor() as cursor:
@@ -16,7 +15,6 @@ def patch_produce_by_user_id(connection, user_id, produce):
                 updated_user = cursor.fetchone()
 
                 if updated_user:
-                    print(updated_user)
                     response_data = {
                         "user_id": updated_user[0],
                         "user_name": updated_user[1],
@@ -26,8 +24,7 @@ def patch_produce_by_user_id(connection, user_id, produce):
                         "produce": updated_user[5]
                     }
                     return jsonify(response_data), 200
-                else:
-                    
+                else:                   
                     abort(404, description="User not found")
 
     except Exception as e:

@@ -16,15 +16,15 @@ def fetch_all_posts(connection):
         result = []
         for post in posts:
             result.append({
-                "post_id": post[3],
-                "user_id": post[8],
-                "status": post[6],
-                "type": post[7],
-                "image": post[2],
-                "body": post[0],
-                "created_at": post[1],
-                "postcode": post[4],
-                "posted_by":  post[5]
+                "post_id": post["post_id"],
+                "user_id": post["user_id"],
+                "status": post["status"],
+                "type": post["type"],
+                "image": post["image"],
+                "body": post["body"],
+                "created_at": post["created_at"],
+                "postcode": post["postcode"],
+                "posted_by":  post["posted_by"]
             })
         
         return jsonify({"posts": result}), 200

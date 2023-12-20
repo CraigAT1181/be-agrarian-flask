@@ -161,7 +161,6 @@ def test_get_all_posts(seed_db, api_session):
     url = urljoin(path, endpoint)
 
     response=api_session.get(url)
-    print(response)
     assert response.status_code == 200
     post_list = response.json()
     assert len(post_list["posts"]) == 10

@@ -24,5 +24,4 @@ def fetch_conversations_by_user_id(connection, user_id):
                 "partner_name": conversation[1],
                 "created_at": conversation[2]
             })
-        print(result)
         return jsonify({"conversations": result}), 200
