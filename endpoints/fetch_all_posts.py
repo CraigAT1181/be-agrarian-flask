@@ -25,6 +25,28 @@ def fetch_all_posts(connection):
         
         if search_query:
             cursor.execute(query, ('%' + search_query + '%',))
+
+            posts = cursor.fetchall()
+
+            if not posts:
+                 return {"message": "Sorry, we couldn't find what you were looking for."}
+        
+            result = []
+            for post in posts:
+                result.append({
+                    "post_id": post[0],
+                    "user_id": post[1],
+                    "status": post[2],
+                    "item": post[3],
+                    "type": post[4],
+                    "image": post[5],
+                    "body": post[6],
+                    "created_at": post[7],
+                    "postcode": post[8],
+                    "posted_by":  post[9]
+                })
+            return jsonify({"posts": result}), 200
+        
         else:
              cursor.execute(query)
              
