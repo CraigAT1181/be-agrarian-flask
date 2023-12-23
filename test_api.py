@@ -178,3 +178,25 @@ def test_get_all_posts(seed_db, api_session):
     for post in post_list["posts"]:
         if not all(key in post for key in required_keys):
             raise ValueError(f'Missing required key for post: {post}')
+
+def test_get_all_posts_from_search(seed_db, api_session):
+    endpoint = '/posts?item=apple'
+    url = urljoin(path, endpoint)
+
+    response=api_session.get(url)
+    assert response.status_code == 200
+    post_list = response.json()
+    required_keys = [
+        "post_id",
+        "user_id",
+        "status",
+        "type",
+        "image",
+        "body",
+        "created_at",
+        "postcode",
+        "posted_by"
+    ]
+    for post in post_list["posts"]:
+        if not all(key in post for key in required_keys):
+            raise ValueError(f'Missing required key for post: {post}')

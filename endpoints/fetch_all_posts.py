@@ -1,17 +1,33 @@
-from flask import jsonify
+from flask import jsonify, request
 
 def fetch_all_posts(connection):
-    
-    query = """
-    SELECT p.post_id, p.user_id, p.status, p.item, p.type, p.image, p.body, p.created_at, u.postcode, u.user_name AS posted_by
-    FROM posts p
-    JOIN users u ON p.user_id = u.user_id
-    ORDER BY p.created_at DESC;
-    """
+
+    search_query = request.args.get('item')
+
+    if search_query:
+            query = """
+            SELECT p.post_id, p.user_id, p.status, p.item, p.type, p.image, p.body, p.created_at, u.postcode, u.user_name AS posted_by
+            FROM posts p
+            JOIN users u ON p.user_id = u.user_id
+            WHERE p.body ILIKE %s
+            ORDER BY p.created_at DESC;
+            """
+    else:
+        query = """
+        SELECT p.post_id, p.user_id, p.status, p.item, p.type, p.image, p.body, p.created_at, u.postcode, u.user_name AS posted_by
+        FROM posts p
+        JOIN users u ON p.user_id = u.user_id
+        ORDER BY p.created_at DESC;
+        """
 
     with connection:
         cursor = connection.cursor()
-        cursor.execute(query)
+        
+        if search_query:
+            cursor.execute(query, ('%' + search_query + '%',))
+        else:
+             cursor.execute(query)
+             
         posts = cursor.fetchall()
         result = []
         for post in posts:

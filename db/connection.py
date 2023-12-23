@@ -8,7 +8,7 @@ db_config = load_db_config()
 # Create a database connection pool
 _pool = pool.SimpleConnectionPool(
     minconn=1,
-    maxconn=12,
+    maxconn=20,
     **db_config
 )
 
