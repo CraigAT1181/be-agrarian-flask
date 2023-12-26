@@ -221,3 +221,11 @@ def test_create_post(seed_db, api_session):
     
     required_keys = ["post_id", "user_id", "status", "type", "item", "body", "created_at"]
     assert all(key in post for key in required_keys)
+
+def test_delete_post_by_post_id(seed_db, api_session):
+    endpoint = '/posts/1'
+    url = urljoin(path, endpoint)
+
+    response = api_session.delete(url)
+
+    assert response.status_code == 204

@@ -107,10 +107,16 @@ def get_all_posts():
 if __name__ == '__main__':
     app.run(debug=True)
 
-# POST new post
+# POST new post by user id
 @app.route('/posts/<user_id>', methods=['POST'])
 @cross_origin()
 def create_post(user_id):
     data = request.get_json()
     result = add_new_post(data, user_id, connection)
     return jsonify(result)
+
+# DELETE post by post id
+@app.route("/posts/<post_id>", methods=["DELETE"])
+@cross_origin() 
+def delete_post_by_post_id(post_id):
+    return remove_user_by_user_id(post_id, connection)

@@ -6,7 +6,7 @@ def add_new_post(data, user_id, connection):
     image = data["image"]
     body = data["body"]
 
-    Insert_post = """
+    insert_post = """
     INSERT INTO POSTS
     (user_id, status, type, item, image, body)
     VALUES (%s, %s, %s, %s, %s, %s)
@@ -16,7 +16,7 @@ def add_new_post(data, user_id, connection):
     with connection:
         with connection.cursor() as cursor:
             try:
-                cursor.execute(Insert_post, (user_id, status, type, item, image, body))
+                cursor.execute(insert_post, (user_id, status, type, item, image, body))
                 new_post = cursor.fetchone()
                 
                 return {
