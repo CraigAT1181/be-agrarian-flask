@@ -200,3 +200,24 @@ def test_get_all_posts_from_search(seed_db, api_session):
     for post in post_list["posts"]:
         if not all(key in post for key in required_keys):
             raise ValueError(f'Missing required key for post: {post}')
+    
+def test_create_post(seed_db, api_session):
+    new_post = {
+        'status': 'Wanted',
+        'type': 'Produce',
+        'item': 'Pumpkin',
+        'image': '',
+        'body': 'If anyone has any pumpkins, please get in touch.',
+    }
+
+    endpoint = '/posts/6'
+    url = urljoin(path, endpoint)
+
+    response = api_session.post(url, json=new_post)
+    
+    assert response.status_code == 200
+
+    post = response.json()
+    
+    required_keys = ["post_id", "user_id", "status", "type", "item", "body", "created_at"]
+    assert all(key in post for key in required_keys)
