@@ -16,6 +16,7 @@ from endpoints.remove_user_by_user_id import remove_user_by_user_id
 from endpoints.patch_produce_by_user_id import patch_produce_by_user_id
 from endpoints.fetch_all_posts import fetch_all_posts
 from endpoints.add_post import add_new_post
+from endpoints.remove_post_by_post_id import remove_post_by_post_id
 
 load_dotenv()
 
@@ -119,4 +120,4 @@ def create_post(user_id):
 @app.route("/posts/<post_id>", methods=["DELETE"])
 @cross_origin() 
 def delete_post_by_post_id(post_id):
-    return remove_user_by_user_id(post_id, connection)
+    return remove_post_by_post_id(post_id, connection)
