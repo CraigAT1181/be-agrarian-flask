@@ -87,7 +87,8 @@ def test_get_conversations_by_user_id(seed_db, api_session):
     assert len(conversation_list["conversations"]) == 2
     required_keys = [
         "conversation_id",
-        "partner_name",
+        "curr_user",
+        "other_user",
         "created_at"
         ]
     for conversation in conversation_list["conversations"]:

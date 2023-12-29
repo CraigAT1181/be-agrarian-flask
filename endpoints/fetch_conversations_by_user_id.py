@@ -6,7 +6,7 @@ def fetch_conversations_by_user_id(connection, user_id):
         return jsonify({"message": "No user_id received."}), 400
 
     query = """
-    SELECT c.conversation_id, u.user_name AS partner_name, c.created_at
+    SELECT c.conversation_id, c.user1_ud AS curr_user, c.user2_id AS other_user, c.created_at
     FROM conversations c
     JOIN users u ON (c.user1_id = u.user_id OR c.user2_id = u.user_id)
     WHERE u.user_id = %s;
@@ -21,7 +21,8 @@ def fetch_conversations_by_user_id(connection, user_id):
         for conversation in conversations:
             result.append({
                 "conversation_id": conversation[0],
-                "partner_name": conversation[1],
-                "created_at": conversation[2]
+                "curr_user": conversation[1],
+                "other_user": conversation[2],
+                "created_at": conversation[3]
             })
         return jsonify({"conversations": result}), 200
