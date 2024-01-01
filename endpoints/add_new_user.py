@@ -1,8 +1,30 @@
-
+import re 
 
 INSERT_USER = "INSERT INTO users (user_name, email, password, postcode, produce) VALUES (%s, %s, %s, %s, %s) RETURNING user_id;"
 
 def add_new_user(data, hashed_password, connection):
+
+    required_fields = ["user_name", "email", "postcode"]
+
+    for field in required_fields:
+        if not data.get(field):
+            return {
+                "message": f"{field} is required.",
+                "status": 400
+            }
+        
+    if not hashed_password:
+        return {
+            "message": "Password required.",
+            "status": 400
+        }
+    
+    email_pattern = r'^\S+@\S+\.\S+$'
+    if not re.match(email_pattern, data["email"]):
+        return {
+            "message": "Your e-mail doesn't look correct, please check it.",
+            "status": 400
+        }
 
     user_name = data["user_name"]
     email = data["email"]
@@ -29,6 +51,6 @@ def add_new_user(data, hashed_password, connection):
                 
             except connection.IntegrityError as e:
                 return {
-                    "message": "email already registered.",
+                    "message": "Email already registered.",
                     "status": 409,
                 }
