@@ -6,6 +6,7 @@ configparser
 Flask
 Flask-Cors
 Flask-RESTful
+Flask_bcrypt
 gunicorn
 iniconfig
 psycopg2-binary
