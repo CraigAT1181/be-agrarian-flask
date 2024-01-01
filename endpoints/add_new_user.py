@@ -1,16 +1,19 @@
+
+
 INSERT_USER = "INSERT INTO users (user_name, email, password, postcode, produce) VALUES (%s, %s, %s, %s, %s) RETURNING user_id;"
 
-def add_new_user(data, connection):
+def add_new_user(data, hashed_password, connection):
+
     user_name = data["user_name"]
     email = data["email"]
-    password = data["password"]
+    hashed_password
     postcode = data["postcode"]
     produce = []
 
     with connection:
         with connection.cursor() as cursor:
             try:
-                cursor.execute(INSERT_USER, (user_name, email, password, postcode, produce))
+                cursor.execute(INSERT_USER, (user_name, email, hashed_password, postcode, produce))
                 new_user = cursor.fetchone()
                 
                 return {
@@ -19,7 +22,7 @@ def add_new_user(data, connection):
                     "user_id": new_user[0],
                     "user_name": user_name,
                     "email": email,
-                    "password": password,
+                    "password": hashed_password,
                     "postcode": postcode,
                     "produce": []
                 }

@@ -19,6 +19,7 @@ def authenticate_user(connection, data):
         return jsonify({"loggedIn": False, "message": "User not found"}), 401
 
     stored_password = user_data[username]['password']
+    
     if password == stored_password:
         return jsonify({"loggedIn": True, "user_name": username, "user_id": user_data[username]['user_id'], "postcode": user_data[username]["postcode"], "produce": user_data[username]["produce"], "email": user_data[username]["email"]}), 200
     else:
