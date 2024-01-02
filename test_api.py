@@ -49,7 +49,7 @@ def test_get_all_users(seed_db, api_session):
     assert len(user_list["users"]) == 10
     required_keys = [
         "user_id",
-        "user_name",
+        "username",
         "postcode",
         "produce"
         ]
@@ -68,7 +68,7 @@ def test_get_users_by_produce_name(seed_db, api_session):
     assert len(user_list["users"]) == 3
     required_keys = [
         "user_id",
-        "user_name",
+        "username",
         "postcode",
         "produce"
         ]
@@ -119,12 +119,12 @@ def test_authenticate_user(seed_db, api_session):
 
     user = response.json()
     
-    required_keys = ["user_id", "user_name", "email", "postcode", "produce"]
+    required_keys = ["user_id", "username", "email", "postcode", "produce"]
     assert all(key in user for key in required_keys)
 
 def test_add_new_user(seed_db, api_session):
     new_user = {
-        'user_name': 'Craig Tipple',
+        'username': 'Craig Tipple',
         'email': 'craig@e-mail.com',
         'password': 'password123',
         'postcode': 'TS245EE'
@@ -139,7 +139,7 @@ def test_add_new_user(seed_db, api_session):
 
     user = response.json()
     
-    required_keys = ["user_id", "user_name", "email", "password", "postcode", "produce"]
+    required_keys = ["user_id", "username", "email", "password", "postcode", "produce"]
     assert all(key in user for key in required_keys)
 
 def test_delete_user_by_user_id(seed_db, api_session):

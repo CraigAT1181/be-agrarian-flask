@@ -6,7 +6,7 @@ def fetch_messages_by_conversation_id(connection, conversation_id):
         return jsonify({"message": "Conversation ID not found."}), 400
 
     query = """
-    SELECT m.message_id, m.sender_id, u.user_name AS sender_name, m.message, m.created_at
+    SELECT m.message_id, m.sender_id, u.username AS sender_name, m.message, m.created_at
     FROM messages m
     JOIN users u ON m.sender_id = u.user_id
     WHERE m.conversation_id = %s

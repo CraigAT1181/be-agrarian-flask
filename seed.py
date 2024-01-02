@@ -23,7 +23,7 @@ def seed_database():
     user_list = user_test_data['users']
     for user in user_list:
         user_values.append((
-            user["user_name"],
+            user["username"],
             user["email"],
             user["password"],
             user["postcode"],
@@ -37,7 +37,7 @@ def seed_database():
     create_users_table = """
         CREATE TABLE users (
         user_id SERIAL PRIMARY KEY,
-        user_name VARCHAR(255) UNIQUE NOT NULL,
+        username VARCHAR(255) UNIQUE NOT NULL,
         email VARCHAR(255) UNIQUE NOT NULL,
         password VARCHAR(255) NOT NULL,
         postcode VARCHAR(255) NOT NULL,
@@ -47,7 +47,7 @@ def seed_database():
     
     insert_user_data = """
         INSERT INTO users 
-        (user_name, email, password, postcode, produce)
+        (username, email, password, postcode, produce)
         VALUES 
         (%s, %s, %s, %s, %s);
     """    

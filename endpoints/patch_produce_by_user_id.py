@@ -17,7 +17,7 @@ def patch_produce_by_user_id(connection, user_id, produce):
                 if updated_user:
                     response_data = {
                         "user_id": updated_user[0],
-                        "user_name": updated_user[1],
+                        "username": updated_user[1],
                         "email": updated_user[2],
                         "password": updated_user[3],
                         "postcode": updated_user[4],

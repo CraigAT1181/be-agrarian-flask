@@ -6,7 +6,7 @@ def fetch_all_posts(connection):
 
     if search_query:
             query = """
-            SELECT p.post_id, p.user_id, p.status, p.item, p.type, p.image, p.body, p.created_at, u.postcode, u.user_name AS posted_by
+            SELECT p.post_id, p.user_id, p.status, p.item, p.type, p.image, p.body, p.created_at, u.postcode, u.username AS posted_by
             FROM posts p
             JOIN users u ON p.user_id = u.user_id
             WHERE p.body ILIKE %s
@@ -14,7 +14,7 @@ def fetch_all_posts(connection):
             """
     else:
         query = """
-        SELECT p.post_id, p.user_id, p.status, p.item, p.type, p.image, p.body, p.created_at, u.postcode, u.user_name AS posted_by
+        SELECT p.post_id, p.user_id, p.status, p.item, p.type, p.image, p.body, p.created_at, u.postcode, u.username AS posted_by
         FROM posts p
         JOIN users u ON p.user_id = u.user_id
         ORDER BY p.created_at DESC;

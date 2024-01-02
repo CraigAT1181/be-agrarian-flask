@@ -8,9 +8,9 @@ def fetch_conversations_by_user_id(connection, user_id):
     query = """
         SELECT c.conversation_id, 
             c.user1_id AS user1_id, 
-            u1.user_name AS user1_username,
+            u1.username AS user1_username,
             c.user2_id AS user2_id, 
-            u2.user_name AS user2_username,
+            u2.username AS user2_username,
             c.created_at
         FROM conversations c
         JOIN users u1 ON c.user1_id = u1.user_id
