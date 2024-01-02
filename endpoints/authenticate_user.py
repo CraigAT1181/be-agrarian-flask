@@ -21,6 +21,6 @@ def authenticate_user(connection, data):
     stored_password = user_data[username]['password']
     
     if password == stored_password:
-        return jsonify({"loggedIn": True, "user_name": username, "user_id": user_data[username]['user_id'], "postcode": user_data[username]["postcode"], "produce": user_data[username]["produce"], "email": user_data[username]["email"]}), 200
+        return jsonify({"loggedIn": True, "username": username, "user_id": user_data[username]['user_id'], "postcode": user_data[username]["postcode"], "produce": user_data[username]["produce"], "email": user_data[username]["email"]}), 200
     else:
         return jsonify({"loggedIn": False, "message": "Invalid password"}), 401

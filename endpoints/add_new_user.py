@@ -1,10 +1,10 @@
 import re 
 
-INSERT_USER = "INSERT INTO users (user_name, email, password, postcode, produce) VALUES (%s, %s, %s, %s, %s) RETURNING user_id;"
+INSERT_USER = "INSERT INTO users (username, email, password, postcode, produce) VALUES (%s, %s, %s, %s, %s) RETURNING user_id;"
 
 def add_new_user(data, connection):
 
-    required_fields = ["user_name", "password", "email", "postcode"]
+    required_fields = ["username", "password", "email", "postcode"]
 
     for field in required_fields:
         if not data.get(field):
@@ -20,7 +20,7 @@ def add_new_user(data, connection):
             "status": 400
         }
 
-    user_name = data["user_name"]
+    username = data["username"]
     email = data["email"]
     password = data["password"]
     postcode = data["postcode"]
@@ -29,14 +29,14 @@ def add_new_user(data, connection):
     with connection:
         with connection.cursor() as cursor:
             try:
-                cursor.execute(INSERT_USER, (user_name, email, password, postcode, produce))
+                cursor.execute(INSERT_USER, (username, email, password, postcode, produce))
                 new_user = cursor.fetchone()
                 
                 return {
                     "message": "New user registered.",
                     "status": 200,
                     "user_id": new_user[0],
-                    "user_name": user_name,
+                    "username": username,
                     "email": email,
                     "password": password,
                     "postcode": postcode,
