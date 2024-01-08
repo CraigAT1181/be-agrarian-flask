@@ -45,6 +45,7 @@ def fetch_all_posts(connection):
                     "postcode": post[8],
                     "posted_by":  post[9]
                 })
+
             return jsonify({"posts": result}), 200
         
         else:
@@ -52,6 +53,7 @@ def fetch_all_posts(connection):
              
         posts = cursor.fetchall()
         result = []
+        
         for post in posts:
             result.append({
                 "post_id": post[0],
@@ -65,6 +67,7 @@ def fetch_all_posts(connection):
                 "postcode": post[8],
                 "posted_by":  post[9]
             })
+
         return jsonify({"posts": result}), 200
 
 

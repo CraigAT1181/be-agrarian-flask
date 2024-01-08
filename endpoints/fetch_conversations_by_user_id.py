@@ -17,7 +17,6 @@ def fetch_conversations_by_user_id(connection, user_id):
         JOIN users u2 ON c.user2_id = u2.user_id
         WHERE u1.user_id = %s OR u2.user_id = %s;
     """
-
     
     with connection:
         cursor = connection.cursor()
@@ -33,4 +32,5 @@ def fetch_conversations_by_user_id(connection, user_id):
                 "user2_username": conversation[4],
                 "created_at": conversation[5]
             })
+            
         return jsonify({"conversations": result}), 200

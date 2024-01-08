@@ -11,6 +11,7 @@ def fetch_all_users(connection):
         cursor.execute(query)
         users = cursor.fetchall()
         result = []
+        
         for user in users:
             result.append({
                 "user_id": user[0],
@@ -18,6 +19,7 @@ def fetch_all_users(connection):
                 "postcode": user[4],
                 "produce": user[5]
             })
+
         return jsonify({"users": result}), 200
 
 

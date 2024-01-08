@@ -9,8 +9,10 @@ def fetch_all_produce(connection):
         cursor = connection.cursor()
         cursor.execute(query)
         produce = cursor.fetchall()
+
         if produce:
             result = []
+            
             for item in produce:
                 result.append({
                     "produce_id": item[0],
