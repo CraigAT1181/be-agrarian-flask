@@ -105,6 +105,24 @@ def test_get_messages_by_conversation_id(seed_db, api_session):
     response=api_session.get(url)
     assert response.status_code == 200
 
+def test_add_message_by_conversation_id(seed_db, api_session):
+    new_message = {
+        'sender_id': '1',
+        'message': 'Testing new message.'
+    }
+
+    endpoint = '/conversations/1/messages'
+    url = urljoin(path, endpoint)
+
+    response = api_session.post(url, json=new_message)
+    
+    assert response.status_code == 200
+
+    message = response.json()
+    
+    required_keys = ["message_id", "conversation_id", "sender_id", "message", "created_at"]
+    assert all(key in message for key in required_keys)
+
 def test_authenticate_user(seed_db, api_session):
     test_user_data = {
         'username': 'John Doe',

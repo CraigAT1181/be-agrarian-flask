@@ -17,6 +17,7 @@ from endpoints.patch_produce_by_user_id import patch_produce_by_user_id
 from endpoints.fetch_all_posts import fetch_all_posts
 from endpoints.add_post import add_new_post
 from endpoints.remove_post_by_post_id import remove_post_by_post_id
+from endpoints.add_message import add_message
 
 load_dotenv()
 
@@ -68,6 +69,13 @@ def get_conversations_by_user_id(user_id):
 def get_messages_by_conversation_id(conversation_id):
     result = fetch_messages_by_conversation_id(connection, conversation_id)
     return result
+
+# POST message by conversation id
+@app.route('/conversations/<conversation_id>/messages', methods=["POST"])
+@cross_origin() 
+def add_message_by_conversation_id(conversation_id):
+    data = request.get_json()
+    return add_message(data, conversation_id, connection)
 
 # POST authenticate user
 @app.route('/authenticate', methods=["POST"])
