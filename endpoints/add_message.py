@@ -20,7 +20,7 @@ def add_message(data, conversation_id, connection):
                     "message": "Message sent.",
                     "status": 200,
                     "message_id": new_message[0],
-                    "conversation_id": conversation_id,
+                    "conversation_id": conversation_id[0],
                     "sender_id": sender_id,
                     "message": message,
                     "created_at": new_message[4]
