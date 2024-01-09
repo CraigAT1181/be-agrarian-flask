@@ -17,7 +17,7 @@ def add_message(data, conversation_id, connection):
                 new_message = cursor.fetchone()
                 
                 return {
-                    "message": "Message sent.",
+                    "response": "Message sent.",
                     "status": 200,
                     "message_id": new_message[0],
                     "conversation_id": conversation_id[0],
