@@ -117,7 +117,6 @@ def seed_database():
         message_values.append((
             message["conversation_id"],
             message["sender_id"],
-            message["recipient_id"],
             message["message"],
             message["created_at"]
         ))
@@ -131,7 +130,6 @@ def seed_database():
         message_id SERIAL PRIMARY KEY,
         conversation_id INT REFERENCES conversations(conversation_id) ON DELETE CASCADE,
         sender_id INT REFERENCES users(user_id) ON DELETE CASCADE,
-        recipient_id INT REFERENCES users(user_id) ON DELETE CASCADE,
         message VARCHAR(255) NOT NULL,
         created_at TIMESTAMP DEFAULT NOW()
         );
@@ -139,9 +137,9 @@ def seed_database():
     
     insert_message_data = """
         INSERT INTO messages 
-        (conversation_id, sender_id, recipient_id, message, created_at)
+        (conversation_id, sender_id, message, created_at)
         VALUES 
-        (%s, %s, %s, %s, %s);
+        (%s, %s, %s, %s);
     """
 
     post_values = []
