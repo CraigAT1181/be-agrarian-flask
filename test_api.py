@@ -96,6 +96,23 @@ def test_get_conversations_by_user_id(seed_db, api_session):
     for conversation in conversation_list["conversations"]:
         if not all(key in conversation for key in required_keys):
             raise ValueError(f'Missing required key for user: {conversation}')
+        
+def test_add_conversation_by_user_id(seed_db, api_session):
+    new_conversation = {
+        'user2_id': '5'
+    }
+
+    endpoint = '/users/3/conversations'
+    url = urljoin(path, endpoint)
+
+    response = api_session.post(url, json=new_conversation)
+    
+    assert response.status_code == 200
+
+    conversation = response.json()
+    
+    required_keys = ["conversation_id", "user1_id", "user2_id", "created_at"]
+    assert all(key in conversation for key in required_keys)
 
 def test_get_messages_by_conversation_id(seed_db, api_session):
     conversation_id = 1

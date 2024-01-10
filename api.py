@@ -18,6 +18,7 @@ from endpoints.fetch_all_posts import fetch_all_posts
 from endpoints.add_post import add_new_post
 from endpoints.remove_post_by_post_id import remove_post_by_post_id
 from endpoints.add_message import add_message
+from endpoints.add_conversation import add_conversation
 
 load_dotenv()
 
@@ -62,6 +63,14 @@ def get_users_by_produce_name(produce_list):
 def get_conversations_by_user_id(user_id):
     result = fetch_conversations_by_user_id(connection, user_id)
     return result
+
+# POST conversation by user id
+@app.route('/users/<user_id>/conversations', methods=['POST'])
+@cross_origin()
+def add_conversation_by_user_id(user_id):
+    data = request.get_json()
+    return add_conversation(user_id, data, connection)
+    
 
 # GET messages by conversation id
 @app.route('/conversations/<conversation_id>/messages', methods=['GET'])
