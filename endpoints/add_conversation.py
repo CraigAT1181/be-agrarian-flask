@@ -1,5 +1,5 @@
 def add_conversation(user_id, data, connection):
-    user1_id = user_id,
+    user1_id = user_id
     user2_id = data["user2_id"]
 
     insert_conversation = """
