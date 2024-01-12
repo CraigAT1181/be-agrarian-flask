@@ -19,9 +19,6 @@ def fetch_messages_by_conversation_id(connection, conversation_id):
             cursor.execute(query, (conversation_id,))
             messages = cursor.fetchall()
 
-            if not messages:
-                return jsonify({"error": "No messages found."}), 404
-
             result = []
             for message in messages:
                 result.append({
