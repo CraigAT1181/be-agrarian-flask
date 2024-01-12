@@ -3,7 +3,7 @@ from flask import jsonify
 def fetch_messages_by_conversation_id(connection, conversation_id):
 
     if not conversation_id:
-        return jsonify({"message": "Conversation ID not found."}), 400
+        return jsonify({"error": "Conversation ID not found."}), 400
 
     query = """
     SELECT m.message_id, m.conversation_id, m.sender_id, u.username AS sender_name, m.message, m.created_at
@@ -13,20 +13,28 @@ def fetch_messages_by_conversation_id(connection, conversation_id):
     WHERE m.conversation_id = %s
     ORDER BY m.created_at;
     """
+    try:
+        with connection:
+            cursor = connection.cursor()
+            cursor.execute(query, (conversation_id,))
+            messages = cursor.fetchall()
+
+            if not messages:
+                return jsonify({"error": "No messages found."}), 404
+
+            result = []
+            for message in messages:
+                result.append({
+                    "message_id": message[0],
+                    "conversation_id": message[1],
+                    "sender_id": message[2],
+                    "sender_name": message[3],
+                    "message": message[4],
+                    "created_at": message[5]
+                })
+            
+            return jsonify({"messages": result}), 200
     
-    with connection:
-        cursor = connection.cursor()
-        cursor.execute(query, (conversation_id))
-        messages = cursor.fetchall()
-        result = []
-        for message in messages:
-            result.append({
-                "message_id": message[0],
-                "conversation_id": message[1],
-                "sender_id": message[2],
-                "sender_name": message[3],
-                "message": message[4],
-                "created_at": message[5]
-            })
-        
-        return jsonify({"messages": result}), 200
+    except Exception as e:
+        print(f"Error fetching messages: {e}")
+        return jsonify({"error": "Internal server error"}), 500

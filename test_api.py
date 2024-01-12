@@ -115,8 +115,7 @@ def test_add_conversation_by_user_id(seed_db, api_session):
     assert all(key in conversation for key in required_keys)
 
 def test_get_messages_by_conversation_id(seed_db, api_session):
-    conversation_id = 1
-    endpoint = f'/conversations/{conversation_id}/messages'
+    endpoint = '/conversations/1/messages'
     url = urljoin(path, endpoint)
 
     response=api_session.get(url)
