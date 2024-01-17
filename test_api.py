@@ -173,7 +173,7 @@ def test_add_new_user(seed_db, api_session):
 
     user = response.json()
     
-    required_keys = ["user_id", "username", "email", "password", "postcode", "produce"]
+    required_keys = ["user_id", "username", "email", "postcode", "produce"]
     assert all(key in user for key in required_keys)
 
 def test_delete_user_by_user_id(seed_db, api_session):

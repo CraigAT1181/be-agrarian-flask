@@ -1,6 +1,5 @@
 from flask import request, jsonify
-
-GET_USERS = 'SELECT * FROM users;'
+from flask_bcrypt import Bcrypt
 
 def authenticate_user(connection, data):
     user = data
@@ -8,19 +7,32 @@ def authenticate_user(connection, data):
     username = user.get('username')
     password = user.get('password')
 
+    GET_USER = 'SELECT * FROM users WHERE username = %s;'
+
     with connection:
         with connection.cursor() as cursor:
-            cursor.execute(GET_USERS)
-            users = cursor.fetchall() 
-
-    user_data = {user[1]: {'user_id': user[0], 'password': user[3], 'postcode': user[4], 'produce': user[5], 'email': user[2]} for user in users}
+            cursor.execute(GET_USER, (username,))
+            fetched_user = cursor.fetchone()
     
-    if username not in user_data:
+    if fetched_user is None:
         return jsonify({"loggedIn": False, "message": "User not found"}), 401
 
-    stored_password = user_data[username]['password']
+    stored_password = fetched_user[3]
+
+    is_hashed = stored_password.startswith("$2b$")
+
+    bcrypt = Bcrypt()
+
+    if is_hashed:
+        
+        if bcrypt.check_password_hash(stored_password, password):
+            return jsonify({"loggedIn": True, "username": username, "user_id": fetched_user[0], "postcode": fetched_user[4], "produce": fetched_user[5], "email": fetched_user[2]}), 200
+        else:
+            return jsonify({"loggedIn": False, "message": "Invalid password"}), 401
     
-    if password == stored_password:
-        return jsonify({"loggedIn": True, "username": username, "user_id": user_data[username]['user_id'], "postcode": user_data[username]["postcode"], "produce": user_data[username]["produce"], "email": user_data[username]["email"]}), 200
     else:
-        return jsonify({"loggedIn": False, "message": "Invalid password"}), 401
+
+        if stored_password == password:
+            return jsonify({"loggedIn": True, "username": username, "user_id": fetched_user[0], "postcode": fetched_user[4], "produce": fetched_user[5], "email": fetched_user[2]}), 200
+        else:
+            return jsonify({"loggedIn": False, "message": "Invalid password"}), 401

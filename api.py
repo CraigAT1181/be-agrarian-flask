@@ -100,9 +100,7 @@ def check_authentication():
 @cross_origin()
 def register_user():
     data = request.get_json()
-    password = data.get('password')
-    hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
-    result = add_new_user(data, hashed_password, connection)
+    result = add_new_user(data, connection)
     return jsonify(result)
 
 # DELETE user by user id
