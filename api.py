@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_bcrypt import Bcrypt
 from flask_restful import Api
 from flask_cors import CORS, cross_origin
 from db.connection import get_connection
@@ -24,6 +25,7 @@ load_dotenv()
 
 app = Flask(__name__)
 api = Api(app)
+bcrypt = Bcrypt(app)
 CORS(app)
 
 connection = get_connection()
@@ -98,7 +100,9 @@ def check_authentication():
 @cross_origin()
 def register_user():
     data = request.get_json()
-    result = add_new_user(data, connection)
+    password = data.get('password')
+    hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+    result = add_new_user(data, hashed_password, connection)
     return jsonify(result)
 
 # DELETE user by user id

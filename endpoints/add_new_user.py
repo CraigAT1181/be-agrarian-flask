@@ -2,8 +2,8 @@ import re
 
 INSERT_USER = "INSERT INTO users (username, email, password, postcode, produce) VALUES (%s, %s, %s, %s, %s) RETURNING user_id;"
 
-def add_new_user(data, connection):
-
+def add_new_user(data, hashed_password, connection):
+    
     required_fields = ["username", "password", "email", "postcode"]
 
     for field in required_fields:
@@ -22,7 +22,7 @@ def add_new_user(data, connection):
 
     username = data["username"]
     email = data["email"]
-    password = data["password"]
+    password = hashed_password
     postcode = data["postcode"]
     produce = []
 
