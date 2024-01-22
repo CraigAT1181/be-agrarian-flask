@@ -20,6 +20,7 @@ from endpoints.add_post import add_new_post
 from endpoints.remove_post_by_post_id import remove_post_by_post_id
 from endpoints.add_message import add_message
 from endpoints.add_conversation import add_conversation
+from endpoints.remove_conversation_by_conversation_id import remove_conversation_by_conversation_id
 
 load_dotenv()
 
@@ -72,7 +73,12 @@ def get_conversations_by_user_id(user_id):
 def add_conversation_by_user_id(user_id):
     data = request.get_json()
     return add_conversation(user_id, data, connection)
-    
+
+# DELETE conversation by conversation id
+@app.route("/conversations/<conversation_id>", methods=["DELETE"])
+@cross_origin() 
+def delete_conversation_by_conversation_id(conversation_id):
+    return remove_conversation_by_conversation_id(conversation_id, connection)
 
 # GET messages by conversation id
 @app.route('/conversations/<conversation_id>/messages', methods=['GET'])
