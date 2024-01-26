@@ -13,6 +13,7 @@ def load_db_config(filename='database.ini', section='postgresql'):
     db_url = os.getenv('DATABASE_URL')
     if db_url:
         db_config['dsn'] = db_url
+        return db_config
     
     #Load other configurations from database.ini
     script_dir = os.path.dirname(__file__)
@@ -35,6 +36,12 @@ def load_db_config(filename='database.ini', section='postgresql'):
 
 def load_jwt_config(filename='database.ini', section='jwt'):
     jwt_config = {}
+
+    #Load DATABASE_URL if present in environment variable (eg .env)
+    key = os.getenv('SECRET_KEY')
+    if key:
+        jwt_config['SECRET_KEY'] = key
+        return jwt_config
 
     script_dir = os.path.dirname(__file__)
     filepath = os.path.join(script_dir, filename)
