@@ -1,9 +1,10 @@
-import re 
+import re
+from flask_bcrypt import Bcrypt
 
 INSERT_USER = "INSERT INTO users (username, email, password, postcode, produce) VALUES (%s, %s, %s, %s, %s) RETURNING user_id;"
 
 def add_new_user(data, connection):
-
+    
     required_fields = ["username", "password", "email", "postcode"]
 
     for field in required_fields:
@@ -19,10 +20,12 @@ def add_new_user(data, connection):
             "message": "Your e-mail doesn't look correct, please check it.",
             "status": 400
         }
+    
+    bcrypt = Bcrypt()
 
     username = data["username"]
     email = data["email"]
-    password = data["password"]
+    password = bcrypt.generate_password_hash(data["password"]).decode('utf-8')
     postcode = data["postcode"]
     produce = []
 
@@ -38,7 +41,6 @@ def add_new_user(data, connection):
                     "user_id": new_user[0],
                     "username": username,
                     "email": email,
-                    "password": password,
                     "postcode": postcode,
                     "produce": []
                 }
