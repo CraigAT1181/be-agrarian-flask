@@ -17,6 +17,7 @@ def get_connection():
         logging.info("Connection acquired from the pool.")
 
         return connection
+    
     except Exception as e:
         logging.error(f"Error acquiring connection from the pool: {e}")
         raise
