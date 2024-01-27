@@ -26,16 +26,41 @@ def authenticate_user(connection, data):
 
     if is_hashed:
         
+        
         if bcrypt.check_password_hash(stored_password, password):
-            access_token = create_access_token(identity=username)
-            return jsonify({"loggedIn": True, "username": username, "user_id": fetched_user[0], "postcode": fetched_user[4], "produce": fetched_user[5], "email": fetched_user[2], "access_token": access_token}), 200
+
+            additional_claims = {
+                "user_id": fetched_user[0],
+                "username": fetched_user[1],
+                "postcode": fetched_user[4],
+                "produce": fetched_user[5],
+                "email": fetched_user[2],
+            }
+    
+            access_token = create_access_token(identity=username, additional_claims=additional_claims)
+            return jsonify({
+                "loggedIn": True,
+                "access_token": access_token}), 200
         else:
             return jsonify({"loggedIn": False, "message": "Invalid password"}), 401
     
     else:
 
         if stored_password == password:
-            access_token = create_access_token(identity=username)
-            return jsonify({"loggedIn": True, "username": username, "user_id": fetched_user[0], "postcode": fetched_user[4], "produce": fetched_user[5], "email": fetched_user[2], "access_token": access_token}), 200
+
+            additional_claims = {
+                "user_id": fetched_user[0],
+                "username": fetched_user[1],
+                "postcode": fetched_user[4],
+                "produce": fetched_user[5],
+                "email": fetched_user[2],
+            }
+    
+            access_token = create_access_token(identity=username, additional_claims=additional_claims)
+            
+            return jsonify({
+                "loggedIn": True,
+                "access_token": access_token}), 200
+        
         else:
             return jsonify({"loggedIn": False, "message": "Invalid password"}), 401
