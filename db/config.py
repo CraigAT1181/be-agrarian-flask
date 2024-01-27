@@ -14,8 +14,9 @@ def load_db_config(filename='database.ini', section='postgresql'):
     
     if db_url:
         db_config['dsn'] = db_url
-
-    # Load other configurations from database.ini
+        return db_config
+    
+    #Load other configurations from database.ini
     script_dir = os.path.dirname(__file__)
     filepath = os.path.join(script_dir, filename)
 
@@ -27,15 +28,23 @@ def load_db_config(filename='database.ini', section='postgresql'):
             params = parser.items(section)
             for param in params:
                 db_config[param[0]] = param[1]
+            
+            return db_config
+    
         else:
             raise Exception('Section {0} not found in the {1} file'.format(section, filename))
     else:
         raise Exception('No database configuration found in either environment variables or {0}'.format(filename))
     
-    return db_config
 
 def load_jwt_config(filename='database.ini', section='jwt'):
     jwt_config = {}
+
+    #Load DATABASE_URL if present in environment variable (eg .env)
+    key = os.getenv('SECRET_KEY')
+    if key:
+        jwt_config['SECRET_KEY'] = key
+        return jwt_config
 
     script_dir = os.path.dirname(__file__)
     filepath = os.path.join(script_dir, filename)
@@ -48,7 +57,11 @@ def load_jwt_config(filename='database.ini', section='jwt'):
             params = parser.items(section)
             for param in params:
                 jwt_config[param[0]] = param[1]
+
+            return jwt_config
+        
         else:
             raise Exception('Section {0} not found in the {1} file'.format(section, filename))
-    
-    return jwt_config
+        
+    else:
+        raise Exception('No secret key found in either environment variables or {0}'.format(filename))
