@@ -159,10 +159,10 @@ def test_authenticate_user(seed_db, api_session):
     response = api_session.post(url, json=test_user_data)
     assert response.status_code == 200
 
-    user = response.json()
+    token = response.json()
     
-    required_keys = ["user_id", "username", "email", "postcode", "produce", "access_token"]
-    assert all(key in user for key in required_keys)
+    required_keys = ["loggedIn", "access_token"]
+    assert all(key in token for key in required_keys)
 
 def test_add_new_user(seed_db, api_session):
     new_user = {
