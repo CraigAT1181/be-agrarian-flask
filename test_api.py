@@ -161,7 +161,7 @@ def test_authenticate_user(seed_db, api_session):
 
     user = response.json()
     
-    required_keys = ["user_id", "username", "email", "postcode", "produce"]
+    required_keys = ["user_id", "username", "email", "postcode", "produce", "access_token"]
     assert all(key in user for key in required_keys)
 
 def test_add_new_user(seed_db, api_session):

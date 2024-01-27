@@ -2,6 +2,8 @@ from flask import Flask, request, jsonify
 from flask_bcrypt import Bcrypt
 from flask_restful import Api
 from flask_cors import CORS, cross_origin
+from flask_jwt_extended import JWTManager
+from db.config import load_jwt_config
 from db.connection import get_connection
 from dotenv import load_dotenv
 import json
@@ -28,6 +30,11 @@ app = Flask(__name__)
 api = Api(app)
 bcrypt = Bcrypt(app)
 CORS(app)
+
+jwt_config = load_jwt_config()
+print(jwt_config, "HERE!!!!")
+app.config['JWT_SECRET_KEY'] = jwt_config['secret_key']
+jwt = JWTManager(app)
 
 connection = get_connection()
 
@@ -130,9 +137,6 @@ def get_all_posts():
     result = fetch_all_posts(connection)
     return result
 
-if __name__ == '__main__':
-    app.run(debug=True)
-
 # POST new post by user id
 @app.route('/posts/<user_id>', methods=['POST'])
 @cross_origin()
@@ -146,3 +150,6 @@ def create_post(user_id):
 @cross_origin() 
 def delete_post_by_post_id(post_id):
     return remove_post_by_post_id(post_id, connection)
+
+if __name__ == '__main__':
+    app.run(debug=True)
