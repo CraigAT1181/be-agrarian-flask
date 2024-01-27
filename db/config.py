@@ -28,7 +28,6 @@ def load_db_config(filename='database.ini', section='postgresql'):
             params = parser.items(section)
             for param in params:
                 db_config[param[0]] = param[1]
-            
             return db_config
     
         else:
@@ -40,7 +39,7 @@ def load_db_config(filename='database.ini', section='postgresql'):
 def load_jwt_config(filename='database.ini', section='jwt'):
     jwt_config = {}
 
-    #Load DATABASE_URL if present in environment variable (eg .env)
+    #Obtain SECRET_KEY if present in environment variable (eg .env)
     key = os.getenv('SECRET_KEY')
     if key:
         jwt_config['SECRET_KEY'] = key
@@ -57,7 +56,6 @@ def load_jwt_config(filename='database.ini', section='jwt'):
             params = parser.items(section)
             for param in params:
                 jwt_config[param[0]] = param[1]
-
             return jwt_config
         
         else:
