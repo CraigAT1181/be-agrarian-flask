@@ -33,7 +33,7 @@ CORS(app)
 
 jwt_config = load_jwt_config()
 print(jwt_config, "HERE!!!!")
-app.config['JWT_SECRET_KEY'] = jwt_config['secret_key']
+app.config['JWT_SECRET_KEY'] = jwt_config['SECRET_KEY']
 jwt = JWTManager(app)
 
 connection = get_connection()
