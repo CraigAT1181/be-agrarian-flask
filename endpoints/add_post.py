@@ -1,5 +1,9 @@
 def add_new_post(data, user_id, connection):
     user_id = user_id,
+
+    if "status" not in data or not data["status"] or "type" not in data or not data["type"]:
+         raise ValueError("Ensure you've selected a Status and a Type (e.g. 'Wanted' 'Seeds')")
+
     status = data["status"]
     type = data["type"]
     item = data["item"]

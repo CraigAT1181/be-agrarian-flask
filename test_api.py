@@ -267,6 +267,24 @@ def test_create_post(seed_db, api_session):
     required_keys = ["post_id", "user_id", "status", "type", "item", "body", "created_at"]
     assert all(key in post for key in required_keys)
 
+def test_create_post_missing_information(seed_db, api_session):
+    # Empty 'status' and 'type'
+    new_post = {
+        'status': '',
+        'type': '',
+        'item': 'Pumpkin',
+        'image': '',
+        'body': 'If anyone has any pumpkins, please get in touch.',
+    }
+
+    endpoint = '/posts/6'
+    url = urljoin(path, endpoint)
+
+    response = api_session.post(url, json=new_post)
+
+    # Should not be OK
+    assert response.status_code != 200
+
 def test_delete_post_by_post_id(seed_db, api_session):
     endpoint = '/posts/1'
     url = urljoin(path, endpoint)
