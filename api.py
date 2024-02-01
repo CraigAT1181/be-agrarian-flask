@@ -3,6 +3,7 @@ from flask_bcrypt import Bcrypt
 from flask_restful import Api
 from flask_cors import CORS, cross_origin
 from flask_jwt_extended import JWTManager
+from flask_mail import Mail
 from db.config import load_jwt_config
 from db.connection import get_connection
 from dotenv import load_dotenv
@@ -32,9 +33,16 @@ bcrypt = Bcrypt(app)
 CORS(app)
 
 jwt_config = load_jwt_config()
-print(jwt_config, "HERE!!!!")
 app.config['JWT_SECRET_KEY'] = jwt_config['SECRET_KEY']
 jwt = JWTManager(app)
+
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'craigtipple81@gmail.com'
+app.config['MAIL_PASSWORD'] = 'thbl lpbw zoqn ndga'
+app.config['MAIL_DEFAULT_SENDER'] = 'craigtipple81@gmail.com'
+mail = Mail(app)
 
 connection = get_connection()
 
