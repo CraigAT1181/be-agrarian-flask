@@ -15,6 +15,7 @@ from endpoints.fetch_users_by_produce_name import fetch_users_by_produce_name
 from endpoints.fetch_conversations_by_user_id import fetch_conversations_by_user_id
 from endpoints.fetch_messages_by_conversation_id import fetch_messages_by_conversation_id
 from endpoints.authenticate_user import authenticate_user
+from endpoints.password_reset_request import password_reset_request
 from endpoints.add_new_user import add_new_user
 from endpoints.remove_user_by_user_id import remove_user_by_user_id
 from endpoints.patch_produce_by_user_id import patch_produce_by_user_id
@@ -115,6 +116,13 @@ def add_message_by_conversation_id(conversation_id):
 def check_authentication():
     data = request.get_json()
     return authenticate_user(connection, data)
+
+# POST initiate password reset
+@app.route('/password_reset/<token>', methods=['POST'])
+@cross_origin()
+def initiate_password_reset(token):
+    data = request.get_json()
+    return password_reset_request(token, data, connection)
 
 # POST register user
 @app.route('/users', methods=['POST'])

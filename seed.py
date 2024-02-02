@@ -50,7 +50,24 @@ def seed_database():
         (username, email, password, postcode, produce)
         VALUES 
         (%s, %s, %s, %s, %s);
-    """    
+    """
+
+    drop_verifications_table = """
+        DROP TABLE IF EXISTS verifications;
+    """
+    
+    create_verifications_table = """
+        CREATE TABLE verifications (
+        verification_id SERIAL PRIMARY KEY,
+        user_id INT,
+        token VARCHAR(255) UNIQUE NOT NULL,
+        verification_type VARCHAR(255) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        expires_at TIMESTAMP NOT NULL,
+        is_used BOOLEAN DEFAULT FALSE,
+        FOREIGN KEY (user_id) REFERENCES users(user_id)
+        );
+    """
 
     produce_values = []
     produce_list = produce_test_data['produce']
@@ -188,6 +205,7 @@ def seed_database():
 
     cursor.execute(drop_produce_table)
     cursor.execute(drop_users_table)
+    cursor.execute(drop_verifications_table)
     cursor.execute(drop_messages_table)
     cursor.execute(drop_conversations_table)
     cursor.execute(drop_posts_table)
@@ -199,6 +217,8 @@ def seed_database():
     cursor.execute(create_users_table)
     for user in user_values:     
         cursor.execute(insert_user_data, user)
+
+    cursor.execute(create_verifications_table)
 
     cursor.execute(create_conversations_table)
     for conversation in conversation_values:
