@@ -16,6 +16,7 @@ from endpoints.fetch_conversations_by_user_id import fetch_conversations_by_user
 from endpoints.fetch_messages_by_conversation_id import fetch_messages_by_conversation_id
 from endpoints.authenticate_user import authenticate_user
 from endpoints.password_reset_request import password_reset_request
+from endpoints.set_new_password import set_new_password
 from endpoints.add_new_user import add_new_user
 from endpoints.remove_user_by_user_id import remove_user_by_user_id
 from endpoints.patch_produce_by_user_id import patch_produce_by_user_id
@@ -36,6 +37,8 @@ CORS(app)
 jwt_config = load_jwt_config()
 app.config['JWT_SECRET_KEY'] = jwt_config['SECRET_KEY']
 jwt = JWTManager(app)
+
+#app.config['SERVER_NAME'] = 'cookingpot.netlify.app'
 
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
@@ -118,11 +121,17 @@ def check_authentication():
     return authenticate_user(connection, data)
 
 # POST initiate password reset
-@app.route('/password_reset/<token>', methods=['POST'])
+@app.route('/reset-request', methods=['POST'])
 @cross_origin()
-def initiate_password_reset(token):
+def initiate_password_reset():
     data = request.get_json()
-    return password_reset_request(token, data, connection)
+    return password_reset_request(data, connection)
+
+# POST set new password
+@app.route('/set-new-password', methods=['POST'])
+@cross_origin()
+def complete_password_reset():
+    return set_new_password(connection)
 
 # POST register user
 @app.route('/users', methods=['POST'])

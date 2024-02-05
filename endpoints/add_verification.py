@@ -12,7 +12,6 @@ def add_verification(email, token, verification_type, connection):
             try:
                 cursor.execute(GET_USER_ID, (email,))
                 fetched_user_id = cursor.fetchone()
-                print(fetched_user_id, "<<<<<<<<")
 
                 if fetched_user_id is None:
                     return {
@@ -34,7 +33,7 @@ def add_verification(email, token, verification_type, connection):
             try:
                 cursor.execute(CREATE_VERIFICATION, (user_id, token, verification_type, expires_at))
                 new_entry = cursor.fetchone()
-                print(new_entry, "<<<<<")
+    
                 return {
                     "message": "New entry added to verifications.",
                     "verification_id": new_entry[0],
