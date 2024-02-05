@@ -8,6 +8,7 @@ Flask-Cors
 Flask-RESTful
 Flask_bcrypt
 flask_jwt_extended
+flask_mail
 gunicorn
 iniconfig
 psycopg2-binary
