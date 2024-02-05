@@ -131,7 +131,8 @@ def initiate_password_reset():
 @app.route('/set-new-password', methods=['POST'])
 @cross_origin()
 def complete_password_reset():
-    return set_new_password(connection)
+    data = request.get_json()
+    return set_new_password(data, connection)
 
 # POST register user
 @app.route('/users', methods=['POST'])
