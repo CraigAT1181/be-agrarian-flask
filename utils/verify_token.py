@@ -5,7 +5,7 @@ def verify_token(token, verification_type, connection):
     query = """
     SELECT * from verifications
     WHERE token = %s
-    AND type = %s;
+    AND verification_type = %s;
     """
 
     with connection:

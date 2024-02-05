@@ -8,7 +8,7 @@ def set_new_password(data, connection):
     new_password = data['new_password']
     token = data['token']
     
-    if not verify_token(token, 'password_reset'):
+    if not verify_token(token, 'password_reset', connection):
         return jsonify({"message": "Invalid or expired token."}), 400
     
     user_id = verify_token(token, 'password_reset', connection)['user_id']
