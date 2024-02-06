@@ -17,5 +17,5 @@ def set_new_password(data, connection):
 
     set_token_to_used(token, connection)
 
-    return jsonify({"message": "Password reset successful."}), 200
+    return jsonify({"message": "Password reset successfully."}), 200
     
