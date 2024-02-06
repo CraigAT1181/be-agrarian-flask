@@ -38,8 +38,6 @@ jwt_config = load_jwt_config()
 app.config['JWT_SECRET_KEY'] = jwt_config['SECRET_KEY']
 jwt = JWTManager(app)
 
-#app.config['SERVER_NAME'] = 'cookingpot.netlify.app'
-
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True

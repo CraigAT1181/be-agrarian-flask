@@ -4,25 +4,27 @@ import os
 
 load_dotenv()
 
-#load_dotenv('.env.production')
-
 def load_db_config(filename='database.ini', section='postgresql'):
     db_config = {}
 
-    # Load DATABASE_URL if available in an environment variable (.env, etc)
     db_url = os.getenv('DATABASE_URL')
     
     if db_url:
         db_config['dsn'] = db_url
         return db_config
     
-    #Load other configurations from database.ini
     script_dir = os.path.dirname(__file__)
     filepath = os.path.join(script_dir, filename)
 
     if os.path.exists(filepath):
         parser = ConfigParser()
         parser.read(filepath)
+
+        section = 'postgresql'
+        if os.getenv('FLASK_ENV') == 'production':
+            section = 'postgresql_production'
+        elif os.getenv('FLASK_ENV') == 'testing':
+            section = 'postgresql_testing'
 
         if parser.has_section(section):
             params = parser.items(section)
