@@ -19,3 +19,11 @@ def playground(ctx):
 @task
 def secret(ctx):
     ctx.run("python JWT.py")
+
+@task
+def production(ctx):
+    ctx.run("export FLASK_ENV=production")
+
+@task
+def development(ctx):
+    ctx.run("export FLASK_ENV=development")

@@ -48,6 +48,10 @@ mail = Mail(app)
 
 connection = get_connection()
 
+# Check which env Flask is running in
+flask_env = os.getenv('FLASK_ENV')
+print(f"FLASK_ENV value: {flask_env}")
+
 # GET all endpoints
 @app.route('/', methods=['GET'])
 @cross_origin()

@@ -10,7 +10,9 @@ def load_db_config(filename='database.ini', section='postgresql'):
     db_url = os.getenv('DATABASE_URL')
     
     if db_url:
+        print(db_url, "DBURL<<<<<")
         db_config['dsn'] = db_url
+        print(db_config, "<<<<<<<<<")
         return db_config
     
     script_dir = os.path.dirname(__file__)
@@ -23,13 +25,14 @@ def load_db_config(filename='database.ini', section='postgresql'):
         section = 'postgresql'
         if os.getenv('FLASK_ENV') == 'production':
             section = 'postgresql_production'
-        elif os.getenv('FLASK_ENV') == 'testing':
-            section = 'postgresql_testing'
+        elif os.getenv('FLASK_ENV') == 'development':
+            section = 'postgresql_development'
 
         if parser.has_section(section):
             params = parser.items(section)
             for param in params:
                 db_config[param[0]] = param[1]
+            print(db_config, "<<<<<<<<<")
             return db_config
     
         else:
