@@ -20,7 +20,7 @@ def password_reset_request(data, connection):
 
     add_verification(email, token, verification_type, connection)
 
-    reset_link = f'https://cookingpot.netlify.app/set-new-password?token={token}'
+    reset_link = f'https://cookingpot.live/set-new-password?token={token}'
 
     subject = 'Password Reset Request'
     body = f'Click the following link to reset your password: {reset_link}'
