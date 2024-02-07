@@ -75,7 +75,8 @@ def seed_database():
         produce_values.append((
             item["produce_name"],
             item["produce_type"],
-            item["produce_icon"]
+            item["produce_icon"],
+            item["produce_item"]
         ))
 
     drop_produce_table = """
@@ -85,17 +86,18 @@ def seed_database():
     create_produce_table = """
         CREATE TABLE produce (
         produce_id SERIAL PRIMARY KEY,
-        produce_name VARCHAR(255) UNIQUE NOT NULL,
+        produce_name VARCHAR(255) NOT NULL,
         produce_type VARCHAR(255),
-        produce_icon VARCHAR(255)
+        produce_icon VARCHAR(255),
+        produce_item VARCHAR(255)
         );
     """
 
     insert_produce_data = """
         INSERT INTO produce
-        (produce_name, produce_type, produce_icon)
+        (produce_name, produce_type, produce_icon, produce_item)
         VALUES
-        (%s, %s, %s);
+        (%s, %s, %s, %s);
     """
 
     conversation_values = []

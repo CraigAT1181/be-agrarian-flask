@@ -5,8 +5,12 @@ def create(ctx):
     ctx.run("psql -f ./db/setup.sql")
 
 @task
-def seed(ctx):
-    ctx.run("python seed.py")
+def dseed(ctx):
+    ctx.run("python dev_seed.py")
+
+@task
+def pseed(ctx):
+    ctx.run("python prod_seed.py")
 
 @task
 def test(ctx):

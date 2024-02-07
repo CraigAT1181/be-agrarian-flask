@@ -1,6 +1,6 @@
 import requests
 import pytest
-from seed import seed_database
+from dev_seed import seed_database
 from urllib.parse import urljoin
 
 path = 'http://127.0.0.1:5000'
@@ -33,7 +33,8 @@ def test_get_all_produce(seed_db, api_session):
         "produce_id",
         "produce_name",
         "produce_type",
-        "produce_icon"
+        "produce_icon",
+        "produce_item"
         ]
     for item in produce_list["produce"]:
         if not all(key in item for key in required_keys):

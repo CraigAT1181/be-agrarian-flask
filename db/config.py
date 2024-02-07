@@ -4,7 +4,7 @@ import os
 
 load_dotenv()
 
-def load_db_config(filename='database.ini', section='postgresql'):
+def load_db_config(filename='database.ini', section='postgresql_development'):
     db_config = {}
 
     db_url = os.getenv('DATABASE_URL')
@@ -22,7 +22,7 @@ def load_db_config(filename='database.ini', section='postgresql'):
         parser = ConfigParser()
         parser.read(filepath)
 
-        section = 'postgresql'
+        
         if os.getenv('FLASK_ENV') == 'production':
             section = 'postgresql_production'
         elif os.getenv('FLASK_ENV') == 'development':
