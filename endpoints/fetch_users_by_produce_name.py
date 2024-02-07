@@ -22,6 +22,7 @@ def fetch_users_by_produce_name(connection, produce_list):
                 "postcode": user[4],
                 "produce": user[5]
             })
-        return jsonify({"users": result}), 200
-        
-        
+        if not result:
+            return jsonify({"message": "No one currently has this item available. Perhaps you could grow it!"}), 404
+        else:
+            return jsonify({"users": result}), 200
