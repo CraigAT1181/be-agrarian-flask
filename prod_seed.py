@@ -76,7 +76,7 @@ def seed_database():
             item["produce_name"],
             item["produce_type"],
             item["produce_icon"],
-            item["produce_item"]
+            item["produce_cat"]
         ))
 
     drop_produce_table = """
@@ -89,13 +89,13 @@ def seed_database():
         produce_name VARCHAR(255) NOT NULL,
         produce_type VARCHAR(255),
         produce_icon VARCHAR(255),
-        produce_item VARCHAR(255)
+        produce_cat VARCHAR(255)[]
         );
     """
 
     insert_produce_data = """
         INSERT INTO produce
-        (produce_name, produce_type, produce_icon, produce_item)
+        (produce_name, produce_type, produce_icon, produce_cat)
         VALUES
         (%s, %s, %s, %s);
     """

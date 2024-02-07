@@ -6,702 +6,352 @@
       "produce_name": "Carrot",
       "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "seed"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 2,
-      "produce_name": "Carrot",
-      "produce_type": "vegetable",
+      "produce_name": "Tomato",
+      "produce_type": "fruit",
       "produce_icon": "",
-      "produce_item": "produce"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 3,
-      "produce_name": "Tomato",
-      "produce_type": "fruit",
+      "produce_name": "Cucumber",
+      "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "seed"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 4,
-      "produce_name": "Tomato",
-      "produce_type": "fruit",
+      "produce_name": "Lettuce",
+      "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "produce"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 5,
-      "produce_name": "Cucumber",
+      "produce_name": "Broccoli",
       "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "seed"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 6,
-      "produce_name": "Cucumber",
-      "produce_type": "vegetable",
+      "produce_name": "Apple",
+      "produce_type": "fruit",
       "produce_icon": "",
-      "produce_item": "produce"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 7,
-      "produce_name": "Lettuce",
-      "produce_type": "vegetable",
+      "produce_name": "Pear",
+      "produce_type": "fruit",
       "produce_icon": "",
-      "produce_item": "seed"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 8,
-      "produce_name": "Lettuce",
-      "produce_type": "vegetable",
+      "produce_name": "Banana",
+      "produce_type": "fruit",
       "produce_icon": "",
-      "produce_item": "produce"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 9,
-      "produce_name": "Broccoli",
+      "produce_name": "Potato",
       "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "seed"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 10,
-      "produce_name": "Broccoli",
-      "produce_type": "vegetable",
+      "produce_name": "Strawberry",
+      "produce_type": "fruit",
       "produce_icon": "",
-      "produce_item": "produce"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 11,
-      "produce_name": "Apple",
+      "produce_name": "Raspberry",
       "produce_type": "fruit",
       "produce_icon": "",
-      "produce_item": "seed"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 12,
-      "produce_name": "Apple",
+      "produce_name": "Blueberry",
       "produce_type": "fruit",
       "produce_icon": "",
-      "produce_item": "produce"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 13,
-      "produce_name": "Pear",
+      "produce_name": "Blackberry",
       "produce_type": "fruit",
       "produce_icon": "",
-      "produce_item": "seed"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 14,
-      "produce_name": "Pear",
+      "produce_name": "Cherry",
       "produce_type": "fruit",
       "produce_icon": "",
-      "produce_item": "produce"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 15,
-      "produce_name": "Banana",
+      "produce_name": "Grape",
       "produce_type": "fruit",
       "produce_icon": "",
-      "produce_item": "seed"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 16,
-      "produce_name": "Banana",
+      "produce_name": "Orange",
       "produce_type": "fruit",
       "produce_icon": "",
-      "produce_item": "produce"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 17,
-      "produce_name": "Potato",
-      "produce_type": "vegetable",
+      "produce_name": "Peach",
+      "produce_type": "fruit",
       "produce_icon": "",
-      "produce_item": "seed"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 18,
-      "produce_name": "Potato",
-      "produce_type": "vegetable",
+      "produce_name": "Plum",
+      "produce_type": "fruit",
       "produce_icon": "",
-      "produce_item": "produce"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 19,
-      "produce_name": "Strawberry",
+      "produce_name": "Apricot",
       "produce_type": "fruit",
       "produce_icon": "",
-      "produce_item": "seed"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 20,
-      "produce_name": "Strawberry",
-      "produce_type": "fruit",
+      "produce_name": "Courgette",
+      "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "produce"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 21,
-      "produce_name": "Raspberry",
-      "produce_type": "fruit",
+      "produce_name": "Celery",
+      "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "seed"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 22,
-      "produce_name": "Raspberry",
-      "produce_type": "fruit",
+      "produce_name": "Onion",
+      "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "produce"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 23,
-      "produce_name": "Blueberry",
-      "produce_type": "fruit",
+      "produce_name": "Garlic",
+      "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "seed"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 24,
-      "produce_name": "Blueberry",
-      "produce_type": "fruit",
+      "produce_name": "Spinach",
+      "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "produce"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 25,
-      "produce_name": "Blackberry",
-      "produce_type": "fruit",
+      "produce_name": "Kale",
+      "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "seed"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 26,
-      "produce_name": "Blackberry",
-      "produce_type": "fruit",
+      "produce_name": "Swede",
+      "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "produce"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 27,
-      "produce_name": "Cherry",
-      "produce_type": "fruit",
+      "produce_name": "Turnip",
+      "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "seed"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 28,
-      "produce_name": "Cherry",
-      "produce_type": "fruit",
+      "produce_name": "Beetroot",
+      "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "produce"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 29,
-      "produce_name": "Grape",
-      "produce_type": "fruit",
+      "produce_name": "Parsnip",
+      "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "seed"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 30,
-      "produce_name": "Grape",
-      "produce_type": "fruit",
+      "produce_name": "Radish",
+      "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "produce"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 31,
-      "produce_name": "Orange",
-      "produce_type": "fruit",
+      "produce_name": "Artichoke",
+      "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "seed"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 32,
-      "produce_name": "Orange",
-      "produce_type": "fruit",
+      "produce_name": "Cabbage",
+      "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "produce"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 33,
-      "produce_name": "Peach",
-      "produce_type": "fruit",
+      "produce_name": "Leek",
+      "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "seed"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 34,
-      "produce_name": "Peach",
-      "produce_type": "fruit",
+      "produce_name": "Pea",
+      "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "produce"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 35,
-      "produce_name": "Plum",
-      "produce_type": "fruit",
+      "produce_name": "Broad Bean",
+      "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "seed"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 36,
-      "produce_name": "Plum",
-      "produce_type": "fruit",
+      "produce_name": "Runner Bean",
+      "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "produce"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 37,
-      "produce_name": "Apricot",
-      "produce_type": "fruit",
+      "produce_name": "Aubergine",
+      "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "seed"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 38,
-      "produce_name": "Apricot",
-      "produce_type": "fruit",
+      "produce_name": "Turnip",
+      "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "produce"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 39,
-      "produce_name": "Courgette",
+      "produce_name": "Sweet Potato",
       "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "seed"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 40,
-      "produce_name": "Courgette",
+      "produce_name": "Watercress",
       "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "produce"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 41,
-      "produce_name": "Celery",
+      "produce_name": "Jerusalem Artichoke",
       "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "seed"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 42,
-      "produce_name": "Celery",
+      "produce_name": "Rhubarb",
       "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "produce"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 43,
-      "produce_name": "Onion",
+      "produce_name": "Asparagus",
       "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "seed"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 44,
-      "produce_name": "Onion",
+      "produce_name": "Pumpkin",
       "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "produce"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 45,
-      "produce_name": "Garlic",
+      "produce_name": "Butternut Squash",
       "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "seed"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 46,
-      "produce_name": "Garlic",
+      "produce_name": "Mushroom",
       "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "produce"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 47,
-      "produce_name": "Spinach",
+      "produce_name": "Savoy Cabbage",
       "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "seed"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 48,
-      "produce_name": "Spinach",
+      "produce_name": "Chicory",
       "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "produce"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 49,
-      "produce_name": "Kale",
+      "produce_name": "Fennel",
       "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "seed"
+      "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 50,
-      "produce_name": "Kale",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "produce"
-    },
-    {
-      "produce_id": 51,
-      "produce_name": "Swede",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "seed"
-    },
-    {
-      "produce_id": 52,
-      "produce_name": "Swede",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "produce"
-    },
-    {
-      "produce_id": 53,
-      "produce_name": "Turnip",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "seed"
-    },
-    {
-      "produce_id": 54,
-      "produce_name": "Turnip",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "produce"
-    },
-    {
-      "produce_id": 55,
-      "produce_name": "Beetroot",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "seed"
-    },
-    {
-      "produce_id": 56,
-      "produce_name": "Beetroot",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "produce"
-    },
-    {
-      "produce_id": 57,
       "produce_name": "Parsnip",
       "produce_type": "vegetable",
       "produce_icon": "",
-      "produce_item": "seed"
-    },
-    {
-      "produce_id": 58,
-      "produce_name": "Parsnip",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "produce"
-    },
-    {
-      "produce_id": 59,
-      "produce_name": "Radish",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "seed"
-    },
-    {
-      "produce_id": 60,
-      "produce_name": "Radish",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "produce"
-    },
-    {
-      "produce_id": 61,
-      "produce_name": "Artichoke",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "seed"
-    },
-    {
-      "produce_id": 62,
-      "produce_name": "Artichoke",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "produce"
-    },
-    {
-      "produce_id": 63,
-      "produce_name": "Cabbage",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "seed"
-    },
-    {
-      "produce_id": 64,
-      "produce_name": "Cabbage",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "produce"
-    },
-    {
-      "produce_id": 65,
-      "produce_name": "Brussels Sprouts",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "seed"
-    },
-    {
-      "produce_id": 66,
-      "produce_name": "Brussels Sprouts",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "produce"
-    },
-    {
-      "produce_id": 67,
-      "produce_name": "Leek",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "seed"
-    },
-    {
-      "produce_id": 68,
-      "produce_name": "Leek",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "produce"
-    },
-    {
-      "produce_id": 69,
-      "produce_name": "Pea",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "seed"
-    },
-    {
-      "produce_id": 70,
-      "produce_name": "Pea",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "produce"
-    },
-    {
-      "produce_id": 71,
-      "produce_name": "Broad Bean",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "seed"
-    },
-    {
-      "produce_id": 72,
-      "produce_name": "Broad Bean",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "produce"
-    },
-    {
-      "produce_id": 73,
-      "produce_name": "Runner Bean",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "seed"
-    },
-    {
-      "produce_id": 74,
-      "produce_name": "Runner Bean",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "produce"
-    },
-    {
-      "produce_id": 75,
-      "produce_name": "Aubergine",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "seed"
-    },
-    {
-      "produce_id": 76,
-      "produce_name": "Aubergine",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "produce"
-    },
-    {
-      "produce_id": 77,
-      "produce_name": "Turnip",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "seed"
-    },
-    {
-      "produce_id": 78,
-      "produce_name": "Turnip",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "produce"
-    },
-    {
-      "produce_id": 79,
-      "produce_name": "Sweet Potato",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "seed"
-    },
-    {
-      "produce_id": 80,
-      "produce_name": "Sweet Potato",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "produce"
-    },
-    {
-      "produce_id": 81,
-      "produce_name": "Watercress",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "seed"
-    },
-    {
-      "produce_id": 82,
-      "produce_name": "Watercress",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "produce"
-    },
-    {
-      "produce_id": 83,
-      "produce_name": "Jerusalem Artichoke",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "seed"
-    },
-    {
-      "produce_id": 84,
-      "produce_name": "Jerusalem Artichoke",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "produce"
-    },
-    {
-      "produce_id": 85,
-      "produce_name": "Rhubarb",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "seed"
-    },
-    {
-      "produce_id": 86,
-      "produce_name": "Rhubarb",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "produce"
-    },
-    {
-      "produce_id": 87,
-      "produce_name": "Asparagus",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "seed"
-    },
-    {
-      "produce_id": 88,
-      "produce_name": "Asparagus",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "produce"
-    },
-    {
-      "produce_id": 89,
-      "produce_name": "Pumpkin",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "seed"
-    },
-    {
-      "produce_id": 90,
-      "produce_name": "Pumpkin",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "produce"
-    },
-    {
-      "produce_id": 91,
-      "produce_name": "Butternut Squash",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "seed"
-    },
-    {
-      "produce_id": 92,
-      "produce_name": "Butternut Squash",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "produce"
-    },
-    {
-      "produce_id": 93,
-      "produce_name": "Mushroom",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "seed"
-    },
-    {
-      "produce_id": 94,
-      "produce_name": "Mushroom",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "produce"
-    },
-    {
-      "produce_id": 95,
-      "produce_name": "Savoy Cabbage",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "seed"
-    },
-    {
-      "produce_id": 96,
-      "produce_name": "Savoy Cabbage",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "produce"
-    },
-    {
-      "produce_id": 97,
-      "produce_name": "Chicory",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "seed"
-    },
-    {
-      "produce_id": 98,
-      "produce_name": "Chicory",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "produce"
-    },
-    {
-      "produce_id": 99,
-      "produce_name": "Fennel",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "seed"
-    },
-    {
-      "produce_id": 100,
-      "produce_name": "Fennel",
-      "produce_type": "vegetable",
-      "produce_icon": "",
-      "produce_item": "produce"
+      "produce_cat": ["seed", "produce"]
     }
   ],
   "pages": 5,
-  "total_results": 100
+  "total_results": 50
 }
