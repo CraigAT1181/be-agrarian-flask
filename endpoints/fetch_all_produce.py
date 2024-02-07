@@ -18,7 +18,8 @@ def fetch_all_produce(connection):
                     "produce_id": item[0],
                     "produce_name": item[1],
                     "produce_type": item[2],
-                    "produce_icon": item[3]
+                    "produce_icon": item[3],
+                    "produce_cat": item[4]
                 })
             return jsonify({"produce": result}), 200
         else:
