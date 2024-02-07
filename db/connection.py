@@ -3,7 +3,6 @@ from db.config import load_db_config
 import logging
 
 db_config = load_db_config()
-print(db_config, "<<<<<<<<<<<<<<<")
 
 _pool = pool.SimpleConnectionPool(
     minconn=1,

@@ -27,7 +27,10 @@ from endpoints.add_message import add_message
 from endpoints.add_conversation import add_conversation
 from endpoints.remove_conversation_by_conversation_id import remove_conversation_by_conversation_id
 
-load_dotenv()
+if os.getenv('FLASK_ENV') == 'production':
+    load_dotenv('.env.production')
+else:
+    load_dotenv('.env.development')
 
 app = Flask(__name__)
 api = Api(app)
