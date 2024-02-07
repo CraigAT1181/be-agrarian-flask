@@ -39,7 +39,7 @@
       "email": "eva.martinez@example.com",
       "password": "random_password_5",
       "postcode": "SW1A 0AA",
-      "produce": ["Cucumber", "Bell Pepper"]
+      "produce": ["Cucumber", "Pepper"]
     },
     {
       "user_id": 6,
@@ -47,7 +47,7 @@
       "email": "michael.lee@example.com",
       "password": "random_password_6",
       "postcode": "SE1 7PB",
-      "produce": ["Bell Pepper", "Sweetcorn"]
+      "produce": ["Pepper", "Sweetcorn"]
     },
     {
       "user_id": 7,
