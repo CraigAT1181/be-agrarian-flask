@@ -60,7 +60,19 @@ def add_new_user(data, connection):
                 }
                 
             except connection.IntegrityError as e:
-                return {
-                    "message": "Email already registered.",
-                    "status": 409,
-                }
+                error_message = e.args[0]
+                if 'email' in error_message:
+                    return {
+                        "message": "Email already registered.",
+                        "status": 409,
+                    }
+                elif 'username' in error_message:
+                    return {
+                        "message": "Username already taken.",
+                        "status": 409,
+                    }
+                else:
+                    return {
+                        "message": "Error occurred while registering user.",
+                        "status": 500,  # Internal Server Error
+                    }
