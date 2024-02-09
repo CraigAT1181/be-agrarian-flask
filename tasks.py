@@ -23,3 +23,7 @@ def playground(ctx):
 @task
 def secret(ctx):
     ctx.run("python JWT.py")
+
+@task
+def env(ctx):
+    ctx.run("echo $FLASK_ENV")

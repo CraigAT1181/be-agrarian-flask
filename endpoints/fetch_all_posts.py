@@ -9,7 +9,7 @@ def fetch_all_posts(connection):
             SELECT p.post_id, p.user_id, p.status, p.item, p.type, p.image, p.body, p.created_at, u.postcode, u.username AS posted_by
             FROM posts p
             JOIN users u ON p.user_id = u.user_id
-            WHERE p.body ILIKE %s
+            WHERE p.body ILIKE %s OR p.item ILIKE %s
             ORDER BY p.created_at DESC;
             """
     else:
@@ -24,7 +24,7 @@ def fetch_all_posts(connection):
         cursor = connection.cursor()
         
         if search_query:
-            cursor.execute(query, ('%' + search_query + '%',))
+            cursor.execute(query, ('%' + search_query + '%', '%' + search_query + '%'))
 
             posts = cursor.fetchall()
 

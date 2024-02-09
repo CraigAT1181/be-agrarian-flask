@@ -2,7 +2,7 @@ import json
 import psycopg2
 from db.connection import get_connection
 
-def seed_database():
+def seed_prod_db():
 
     # with open('./db/data/prod_data/users.json', 'r') as json_file:
     #     user_test_data = json.load(json_file)
@@ -238,4 +238,4 @@ def seed_database():
 
     print("Data seeded successfully!")
            
-seed_database()
+seed_prod_db()

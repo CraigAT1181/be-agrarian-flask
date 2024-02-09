@@ -2,7 +2,12 @@ import json
 import psycopg2
 from db.connection import get_connection
 
-def seed_database():
+def seed_dev_db():
+
+    print("Connecting to database with the following settings:")
+    print("Host:", get_connection().get_dsn_parameters().get('host'))
+    print("Database:", get_connection().get_dsn_parameters().get('dbname'))
+    print("User:", get_connection().get_dsn_parameters().get('user'))
 
     with open('./db/data/test_data/users.json', 'r') as json_file:
         user_test_data = json.load(json_file)
@@ -201,6 +206,7 @@ def seed_database():
     db_connection = None
     
     db_connection = get_connection()
+    print(db_connection, "CONNECTION")
     db_connection.autocommit = True
 
     cursor = db_connection.cursor()
@@ -238,4 +244,4 @@ def seed_database():
 
     print("Data seeded successfully!")
            
-seed_database()
+seed_dev_db()
