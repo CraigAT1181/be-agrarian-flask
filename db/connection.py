@@ -3,7 +3,7 @@ from db.config import load_db_config
 import logging
 
 db_config = load_db_config()
-
+print(db_config, "DB CONFIG")
 _pool = pool.SimpleConnectionPool(
     minconn=1,
     maxconn=20,
@@ -16,6 +16,7 @@ def get_connection():
 
         logging.info("Connection acquired from the pool.")
 
+        print("RETURNING CONNECTION")
         return connection
     
     except Exception as e:

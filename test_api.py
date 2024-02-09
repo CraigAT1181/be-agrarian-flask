@@ -1,13 +1,14 @@
 import requests
 import pytest
-from dev_seed import seed_database
+from dev_seed import seed_dev_db
+from prod_seed import seed_prod_db
 from urllib.parse import urljoin
 
 path = 'http://127.0.0.1:5000'
 
 @pytest.fixture(autouse=True)
 def seed_db():
-    seed_database()
+    seed_dev_db()
     yield
 
 @pytest.fixture

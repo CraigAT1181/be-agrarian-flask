@@ -27,7 +27,6 @@ def fetch_all_posts(connection):
             cursor.execute(query, ('%' + search_query + '%', '%' + search_query + '%'))
 
             posts = cursor.fetchall()
-
         
             result = []
             for post in posts:
