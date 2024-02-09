@@ -28,8 +28,6 @@ def fetch_all_posts(connection):
 
             posts = cursor.fetchall()
 
-            if not posts:
-                 return {"message": "Sorry, we couldn't find what you were looking for."}
         
             result = []
             for post in posts:
