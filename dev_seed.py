@@ -111,6 +111,8 @@ def seed_dev_db():
         conversation_values.append((
             conversation["user1_id"],
             conversation["user2_id"],
+            conversation["user1_is_deleted"],
+            conversation["user2_is_deleted"],
             conversation["created_at"]
         ))
     
@@ -123,6 +125,8 @@ def seed_dev_db():
         conversation_id SERIAL PRIMARY KEY,
         user1_id INT REFERENCES users(user_id) ON DELETE CASCADE,
         user2_id INT REFERENCES users(user_id) ON DELETE CASCADE,
+        user1_is_deleted BOOLEAN DEFAULT FALSE,
+        user2_is_deleted BOOLEAN DEFAULT FALSE,
         created_at TIMESTAMP DEFAULT NOW(),
         UNIQUE (user1_id, user2_id)
         );
@@ -130,9 +134,9 @@ def seed_dev_db():
     
     insert_conversation_data = """
         INSERT INTO conversations 
-        (user1_id, user2_id, created_at)
+        (user1_id, user2_id, user1_is_deleted, user2_is_deleted, created_at)
         VALUES 
-        (%s, %s, %s);
+        (%s, %s, %s, %s, %s);
     """
 
     message_values = []

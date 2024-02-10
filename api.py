@@ -98,11 +98,12 @@ def add_conversation_by_user_id(user_id):
     data = request.get_json()
     return add_conversation(user_id, data, connection)
 
-# DELETE conversation by conversation id
-@app.route("/conversations/<conversation_id>", methods=["DELETE"])
+# PATCH conversation by conversation id
+@app.route("/conversations/<conversation_id>", methods=["PATCH"])
 @cross_origin() 
 def delete_conversation_by_conversation_id(conversation_id):
-    return remove_conversation_by_conversation_id(conversation_id, connection)
+    data = request.get_json()
+    return remove_conversation_by_conversation_id(data, conversation_id, connection)
 
 # GET messages by conversation id
 @app.route('/conversations/<conversation_id>/messages', methods=['GET'])
