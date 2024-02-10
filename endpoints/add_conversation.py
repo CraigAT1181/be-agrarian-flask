@@ -1,3 +1,5 @@
+import psycopg2
+
 def add_conversation(user_id, data, connection):
     user1_id = user_id
     user2_id = data["user2_id"]
@@ -21,10 +23,12 @@ def add_conversation(user_id, data, connection):
                     "conversation_id": new_conversation[0],
                     "user1_id": user1_id,
                     "user2_id": user2_id,
-                    "created_at": new_conversation[3]
+                    "user1_is_deleted": False,
+                    "user2_is_deleted": False,
+                    "created_at": new_conversation[5]
                 }
                 
-            except connection.IntegrityError as e:
+            except psycopg2.IntegrityError as e:
                 return {
                     "message": "Conversation already exists.",
                     "status": 409,

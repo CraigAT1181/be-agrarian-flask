@@ -3,7 +3,7 @@ import psycopg2
 
 def remove_conversation_by_conversation_id(data, conversation_id, connection):
 
-    user_id = data["user_id"]
+    user_id = data.get("user_id")
 
     soft_delete_conversation = """
     UPDATE conversations
