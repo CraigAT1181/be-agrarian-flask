@@ -155,7 +155,7 @@ def delete_user_by_user_id(user_id):
     return remove_user_by_user_id(user_id, connection)
 
 # PATCH produce by user id
-@app.route('/users/<user_id>', methods=["PATCH"])
+@app.route('/users/<user_id>/produce', methods=["PATCH"])
 @cross_origin() 
 def patch_user_produce(user_id):
     data = request.get_json()
