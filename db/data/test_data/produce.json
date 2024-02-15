@@ -5,353 +5,479 @@
       "produce_id": 1,
       "produce_name": "Carrot",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-carrot",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 2,
       "produce_name": "Tomato",
       "produce_type": "fruit",
-      "produce_icon": "",
+      "produce_icon": "fas fa-tomato",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 3,
       "produce_name": "Cucumber",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-cucumber",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 4,
       "produce_name": "Lettuce",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-leaf",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 5,
       "produce_name": "Broccoli",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-broccoli",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 6,
       "produce_name": "Apple",
       "produce_type": "fruit",
-      "produce_icon": "",
+      "produce_icon": "fas fa-apple",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 7,
       "produce_name": "Pear",
       "produce_type": "fruit",
-      "produce_icon": "",
+      "produce_icon": "fas fa-pear",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 8,
       "produce_name": "Banana",
       "produce_type": "fruit",
-      "produce_icon": "",
+      "produce_icon": "fas fa-banana",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 9,
       "produce_name": "Potato",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-potato",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 10,
       "produce_name": "Strawberry",
       "produce_type": "fruit",
-      "produce_icon": "",
+      "produce_icon": "fas fa-strawberry",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 11,
       "produce_name": "Raspberry",
       "produce_type": "fruit",
-      "produce_icon": "",
+      "produce_icon": "fas fa-raspberry",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 12,
       "produce_name": "Blueberry",
       "produce_type": "fruit",
-      "produce_icon": "",
+      "produce_icon": "fas fa-blueberry",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 13,
       "produce_name": "Blackberry",
       "produce_type": "fruit",
-      "produce_icon": "",
+      "produce_icon": "fas fa-blackberry",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 14,
       "produce_name": "Cherry",
       "produce_type": "fruit",
-      "produce_icon": "",
+      "produce_icon": "fas fa-cherry",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 15,
       "produce_name": "Grape",
       "produce_type": "fruit",
-      "produce_icon": "",
+      "produce_icon": "fas fa-grapes",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 16,
       "produce_name": "Orange",
       "produce_type": "fruit",
-      "produce_icon": "",
+      "produce_icon": "fas fa-orange",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 17,
       "produce_name": "Peach",
       "produce_type": "fruit",
-      "produce_icon": "",
+      "produce_icon": "fas fa-peach",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 18,
       "produce_name": "Plum",
       "produce_type": "fruit",
-      "produce_icon": "",
+      "produce_icon": "fas fa-plum",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 19,
       "produce_name": "Apricot",
       "produce_type": "fruit",
-      "produce_icon": "",
+      "produce_icon": "fas fa-apricot",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 20,
       "produce_name": "Courgette",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-courgette",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 21,
       "produce_name": "Celery",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-celery",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 22,
       "produce_name": "Onion",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-onion",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 23,
       "produce_name": "Garlic",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-garlic",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 24,
       "produce_name": "Spinach",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-spinach",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 25,
       "produce_name": "Kale",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-leaf",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 26,
       "produce_name": "Swede",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-swede",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 27,
       "produce_name": "Turnip",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-turnip",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 28,
       "produce_name": "Beetroot",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-beetroot",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 29,
       "produce_name": "Pepper",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-pepper-hot",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 30,
       "produce_name": "Radish",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-radish",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 31,
       "produce_name": "Artichoke",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-artichoke",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 32,
       "produce_name": "Cabbage",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-cabbage",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 33,
       "produce_name": "Leek",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-leek",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 34,
       "produce_name": "Pea",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-pea",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 35,
       "produce_name": "Broad Bean",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-bean",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 36,
       "produce_name": "Runner Bean",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-bean",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 37,
       "produce_name": "Aubergine",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-eggplant",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 38,
       "produce_name": "Okra",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-okra",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 39,
       "produce_name": "Sweet Potato",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-sweet-potato",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 40,
       "produce_name": "Watercress",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-water",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 41,
       "produce_name": "Jerusalem Artichoke",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-artichoke",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 42,
       "produce_name": "Rhubarb",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-rhubarb",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 43,
       "produce_name": "Asparagus",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-asparagus",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 44,
       "produce_name": "Pumpkin",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-pumpkin",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 45,
       "produce_name": "Butternut Squash",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-squash",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 46,
       "produce_name": "Mushroom",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-mushroom",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 47,
       "produce_name": "Savoy Cabbage",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-cabbage",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 48,
       "produce_name": "Chicory",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-chicory",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 49,
       "produce_name": "Fennel",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-fennel",
       "produce_cat": ["seed", "produce"]
     },
     {
       "produce_id": 50,
       "produce_name": "Parsnip",
       "produce_type": "vegetable",
-      "produce_icon": "",
+      "produce_icon": "fas fa-parsnip",
+      "produce_cat": ["seed", "produce"]
+    },
+    {
+      "produce_id": 51,
+      "produce_name": "Rosemary",
+      "produce_type": "herb",
+      "produce_icon": "fas fa-rosemary",
+      "produce_cat": ["seed", "produce"]
+    },
+    {
+      "produce_id": 52,
+      "produce_name": "Thyme",
+      "produce_type": "herb",
+      "produce_icon": "fas fa-thyme",
+      "produce_cat": ["seed", "produce"]
+    },
+    {
+      "produce_id": 53,
+      "produce_name": "Sage",
+      "produce_type": "herb",
+      "produce_icon": "fas fa-leaf",
+      "produce_cat": ["seed", "produce"]
+    },
+    {
+      "produce_id": 54,
+      "produce_name": "Mint",
+      "produce_type": "herb",
+      "produce_icon": "fas fa-mint",
+      "produce_cat": ["seed", "produce"]
+    },
+    {
+      "produce_id": 55,
+      "produce_name": "Parsley",
+      "produce_type": "herb",
+      "produce_icon": "fas fa-parsley",
+      "produce_cat": ["seed", "produce"]
+    },
+    {
+      "produce_id": 56,
+      "produce_name": "Coriander",
+      "produce_type": "herb",
+      "produce_icon": "fas fa-coriander",
+      "produce_cat": ["seed", "produce"]
+    },
+    {
+      "produce_id": 57,
+      "produce_name": "Basil",
+      "produce_type": "herb",
+      "produce_icon": "fas fa-basil",
+      "produce_cat": ["seed", "produce"]
+    },
+    {
+      "produce_id": 58,
+      "produce_name": "Chives",
+      "produce_type": "herb",
+      "produce_icon": "fas fa-chives",
+      "produce_cat": ["seed", "produce"]
+    },
+    {
+      "produce_id": 59,
+      "produce_name": "Dill",
+      "produce_type": "herb",
+      "produce_icon": "fas fa-dill",
+      "produce_cat": ["seed", "produce"]
+    },
+    {
+      "produce_id": 60,
+      "produce_name": "Tarragon",
+      "produce_type": "herb",
+      "produce_icon": "fas fa-tarragon",
+      "produce_cat": ["seed", "produce"]
+    },
+    {
+      "produce_id": 61,
+      "produce_name": "Oregano",
+      "produce_type": "herb",
+      "produce_icon": "fas fa-oregano",
+      "produce_cat": ["seed", "produce"]
+    },
+    {
+      "produce_id": 62,
+      "produce_name": "Marjoram",
+      "produce_type": "herb",
+      "produce_icon": "fas fa-marjoram",
+      "produce_cat": ["seed", "produce"]
+    },
+    {
+      "produce_id": 63,
+      "produce_name": "Bay Leaf",
+      "produce_type": "herb",
+      "produce_icon": "fas fa-leaf",
+      "produce_cat": ["seed", "produce"]
+    },
+    {
+      "produce_id": 64,
+      "produce_name": "Lemon Balm",
+      "produce_type": "herb",
+      "produce_icon": "fas fa-lemon",
+      "produce_cat": ["seed", "produce"]
+    },
+    {
+      "produce_id": 65,
+      "produce_name": "Lovage",
+      "produce_type": "herb",
+      "produce_icon": "fas fa-leaf",
+      "produce_cat": ["seed", "produce"]
+    },
+    {
+      "produce_id": 66,
+      "produce_name": "Sorrel",
+      "produce_type": "herb",
+      "produce_icon": "fas fa-leaf",
+      "produce_cat": ["seed", "produce"]
+    },
+    {
+      "produce_id": 67,
+      "produce_name": "Cilantro",
+      "produce_type": "herb",
+      "produce_icon": "fas fa-cilantro",
+      "produce_cat": ["seed", "produce"]
+    },
+    {
+      "produce_id": 68,
+      "produce_name": "Winter Savory",
+      "produce_type": "herb",
+      "produce_icon": "fas fa-leaf",
       "produce_cat": ["seed", "produce"]
     }
   ],
-  "pages": 5,
-  "total_results": 50
+  "pages": 7,
+  "total_results": 68
 }
