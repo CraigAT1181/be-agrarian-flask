@@ -26,7 +26,7 @@ def patch_produce_by_user_id(connection, user_id, produce):
                 cursor.execute(
                     """
                     UPDATE users
-                    SET produce = %s
+                    SET produce = ARRAY(SELECT DISTINCT UNNEST(%s))
                     WHERE user_id = %s
                     RETURNING *;
                     """,
