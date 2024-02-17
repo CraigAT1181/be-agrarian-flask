@@ -118,6 +118,8 @@ def seed_prod_db():
         conversation_id SERIAL PRIMARY KEY,
         user1_id INT REFERENCES users(user_id) ON DELETE CASCADE,
         user2_id INT REFERENCES users(user_id) ON DELETE CASCADE,
+        user1_is_deleted BOOLEAN DEFAULT FALSE,
+        user2_is_deleted BOOLEAN DEFAULT FALSE,
         created_at TIMESTAMP DEFAULT NOW(),
         UNIQUE (user1_id, user2_id)
         );
