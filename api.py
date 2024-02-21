@@ -26,6 +26,7 @@ from endpoints.remove_post_by_post_id import remove_post_by_post_id
 from endpoints.add_message import add_message
 from endpoints.add_conversation import add_conversation
 from endpoints.remove_conversation_by_conversation_id import remove_conversation_by_conversation_id
+from endpoints.handle_contact_form import handle_contact_form
 
 if os.getenv('FLASK_ENV') == 'production':
     load_dotenv('.env.production')
@@ -182,6 +183,13 @@ def create_post(user_id):
 @cross_origin() 
 def delete_post_by_post_id(post_id):
     return remove_post_by_post_id(post_id, connection)
+
+# Handling contact form submissions
+@app.route("/contact", methods=["POST"])
+@cross_origin() 
+def form_submission():
+    data = request.get_json()
+    return handle_contact_form(data)
 
 if __name__ == '__main__':
     app.run(debug=True)
