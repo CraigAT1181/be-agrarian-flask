@@ -27,6 +27,7 @@ from endpoints.add_message import add_message
 from endpoints.add_conversation import add_conversation
 from endpoints.remove_conversation_by_conversation_id import remove_conversation_by_conversation_id
 from endpoints.handle_contact_form import handle_contact_form
+from endpoints.fetch_all_ads import fetch_all_ads
 
 if os.getenv('FLASK_ENV') == 'production':
     load_dotenv('.env.production')
@@ -69,6 +70,13 @@ def get_endpoints():
 @cross_origin()
 def get_all_produce():
     result = fetch_all_produce(connection)
+    return result
+
+# GET all ads
+@app.route('/ads', methods=['GET'])
+@cross_origin()
+def get_all_ads():
+    result = fetch_all_ads(connection)
     return result
 
 # GET all users

@@ -24,6 +24,9 @@ def seed_dev_db():
     with open('./db/data/test_data/posts.json', 'r') as json_file:
         post_test_data = json.load(json_file)
 
+    with open('./db/data/test_data/ads.json', 'r') as json_file:
+        ad_test_data = json.load(json_file)
+
     user_values = []
     user_list = user_test_data['users']
     for user in user_list:
@@ -207,6 +210,33 @@ def seed_dev_db():
         (%s, %s, %s, %s, %s, %s, %s);
     """
 
+    ad_values = []
+    ad_list = ad_test_data['ads']
+    for ad in ad_list:
+        ad_values.append((
+            ad["image_url"],
+            ad["redirect_url"]
+        ))
+    
+    drop_ads_table = """
+        DROP TABLE IF EXISTS ads;
+    """
+    
+    create_ads_table = """
+        CREATE TABLE ads (
+        ad_id SERIAL PRIMARY KEY,
+        image_url VARCHAR(255) NOT NULL,
+        redirect_url VARCHAR(255)
+        );
+    """
+    
+    insert_ad_data = """
+        INSERT INTO ads 
+        (image_url, redirect_url)
+        VALUES 
+        (%s, %s);
+    """
+
     db_connection = None
     
     db_connection = get_connection()
@@ -221,6 +251,7 @@ def seed_dev_db():
     cursor.execute(drop_messages_table)
     cursor.execute(drop_conversations_table)
     cursor.execute(drop_posts_table)
+    cursor.execute(drop_ads_table)
 
     cursor.execute(create_produce_table)
     for item in produce_values:
@@ -243,6 +274,10 @@ def seed_dev_db():
     cursor.execute(create_posts_table)
     for post in post_values:
         cursor.execute(insert_post_data, post)
+
+    cursor.execute(create_ads_table)
+    for ad in ad_values:
+        cursor.execute(insert_ad_data, ad)
 
     db_connection.close()
 
