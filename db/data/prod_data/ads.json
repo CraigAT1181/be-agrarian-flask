@@ -1,36 +1,35 @@
 {
-    "page": 1,
-    "ads": [
-      {
-        "ad_id": 1,
-        "image_url": "https://www.pexels.com/photo/city-red-blue-building-13089557/",
-        "redirect_url": ""
-      },
-      {
-        "ad_id": 2,
-        "image_url": "https://www.pexels.com/photo/wood-landscape-nature-water-6348018/",
-        "redirect_url": ""
-      },
-      {
-        "ad_id": 3,
-        "image_url": "https://www.pexels.com/photo/photography-of-man-raising-both-hands-1066176/",
-        "redirect_url": ""
-      },
-      {
-        "ad_id": 4,
-        "image_url": "https://www.pexels.com/photo/photo-of-woman-wearing-black-top-4668509/",
-        "redirect_url": ""
-      },
-      {
-        "ad_id": 5,
-        "image_url": "https://www.pexels.com/photo/green-frog-70083/",
-        "redirect_url": ""
-      },
-      {
-        "ad_id": 6,
-        "image_url": "https://www.pexels.com/photo/person-using-a-smartphone-5077039/",
-        "redirect_url": ""
-      }
-    ]
-  }
-  
+  "page": 1,
+  "ads": [
+    {
+      "ad_id": 1,
+      "image_url": "https://picsum.photos/400/200",
+      "redirect_url": ""
+    },
+    {
+      "ad_id": 2,
+      "image_url": "https://picsum.photos/400/200",
+      "redirect_url": ""
+    },
+    {
+      "ad_id": 3,
+      "image_url": "https://picsum.photos/400/200",
+      "redirect_url": ""
+    },
+    {
+      "ad_id": 4,
+      "image_url": "https://picsum.photos/400/200",
+      "redirect_url": ""
+    },
+    {
+      "ad_id": 5,
+      "image_url": "https://picsum.photos/400/200",
+      "redirect_url": ""
+    },
+    {
+      "ad_id": 6,
+      "image_url": "https://picsum.photos/400/200",
+      "redirect_url": ""
+    }
+  ]
+}
