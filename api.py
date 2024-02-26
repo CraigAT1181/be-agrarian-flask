@@ -28,6 +28,7 @@ from endpoints.add_conversation import add_conversation
 from endpoints.remove_conversation_by_conversation_id import remove_conversation_by_conversation_id
 from endpoints.handle_contact_form import handle_contact_form
 from endpoints.fetch_all_ads import fetch_all_ads
+from endpoints.shopify.fetch_products import fetch_products
 
 if os.getenv('FLASK_ENV') == 'production':
     load_dotenv('.env.production')
@@ -198,6 +199,13 @@ def delete_post_by_post_id(post_id):
 def form_submission():
     data = request.get_json()
     return handle_contact_form(data)
+
+# Shopify API route
+@app.route('/api/shopify/products', methods=['POST'])
+@cross_origin()
+def get_shopify_products():
+    data = request.get_json()
+    return fetch_products(data)
 
 if __name__ == '__main__':
     app.run(debug=True)
