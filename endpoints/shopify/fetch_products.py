@@ -5,11 +5,14 @@ import os
 def fetch_products(data):
     try:
         query = data.get("query")
-
+        print(query, "GET PRODUCTS")
         response = requests.post(
             "https://cookingpotcic.myshopify.com/admin/api/2022-04/graphql.json",
             json={"query": query},
-            auth=(os.getenv("SHOPIFY_API_KEY"), os.getenv("SHOPIFY_PASSWORD")),
+                        headers={
+                "Content-Type": "application/json",
+                "X-Shopify-Access-Token": os.getenv("SHOPIFY_ACCESS_TOKEN"),
+            },
         )
 
         # Return the response from the Shopify API to the frontend
