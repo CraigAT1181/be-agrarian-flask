@@ -5,9 +5,8 @@ import os
 def fetch_products(data):
     try:
         query = data.get("query")
-        print(query, "GET PRODUCTS")
         response = requests.post(
-            "https://cookingpotcic.myshopify.com/admin/api/2022-04/graphql.json",
+            "https://cookingpotcic.myshopify.com/admin/api/2024-01/graphql.json",
             json={"query": query},
                         headers={
                 "Content-Type": "application/json",
