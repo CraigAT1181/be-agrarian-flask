@@ -28,6 +28,8 @@ from endpoints.add_conversation import add_conversation
 from endpoints.remove_conversation_by_conversation_id import remove_conversation_by_conversation_id
 from endpoints.handle_contact_form import handle_contact_form
 from endpoints.fetch_all_ads import fetch_all_ads
+from endpoints.fetch_all_blogs import fetch_all_blogs
+from endpoints.fetch_comments_by_blog_id import fetch_comments_by_blog_id
 from endpoints.shopify.fetch_products import fetch_products
 
 if os.getenv('FLASK_ENV') == 'production':
@@ -85,6 +87,20 @@ def get_all_ads():
 @cross_origin()
 def get_all_users():
     result = fetch_all_users(connection)
+    return result
+
+# GET all blogs
+@app.route('/blogs', methods=['GET'])
+@cross_origin()
+def get_all_blogs():
+    result = fetch_all_blogs(connection)
+    return result
+
+# GET comments by blog id
+@app.route('/comments/<blog_id>', methods=['GET'])
+@cross_origin()
+def get_comments_by_blog_id(blog_id):
+    result = fetch_comments_by_blog_id(blog_id, connection)
     return result
 
 # GET users by produce name
