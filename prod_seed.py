@@ -21,6 +21,12 @@ def seed_prod_db():
         
     with open('./db/data/test_data/ads.json', 'r') as json_file:
         ad_test_data = json.load(json_file)
+    
+    # with open('./db/data/test_data/blogs.json', 'r') as json_file:
+    #     blog_test_data = json.load(json_file)
+
+    # with open('./db/data/test_data/comments.json', 'r') as json_file:
+    #     comment_test_data = json.load(json_file)
 
     # user_values = []
     # user_list = user_test_data['users']
@@ -230,6 +236,77 @@ def seed_prod_db():
         (%s, %s);
     """
 
+# blog_values = []
+    # blog_list = blog_test_data['blogs']
+    # for blog in blog_list:
+    #     blog_values.append((
+    #         blog["blog_id"],
+    #         blog["title"],
+    #         blog["author_id"],
+    #         blog["content"],
+    #         blog["date_published"],
+    #         blog["likes"],
+    #         blog["tags"],
+    #         blog["image_url"]
+    #     ))
+    
+    drop_blogs_table = """
+        DROP TABLE IF EXISTS blogs CASCADE;
+    """
+    
+    create_blogs_table = """ 
+        CREATE TABLE blogs (
+        blog_id SERIAL PRIMARY KEY,
+        title VARCHAR(255) NOT NULL,
+        author_id INT REFERENCES users(user_id) ON DELETE SET NULL,
+        content TEXT NOT NULL,
+        tags VARCHAR(255)[],
+        date_published DATE NOT NULL,
+        likes INT DEFAULT 0,
+        image_url VARCHAR(255)
+        );
+    """
+    
+    # insert_blog_data = """
+    #     INSERT INTO blogs 
+    #     (title, author_id, content, date_published, likes, tags, image_url)
+    #     VALUES 
+    #     (%s, %s, %s, %s, %s, %s, %s);
+    # """
+
+    # comment_values = []
+    # comment_list = comment_test_data['blogs']
+    # for comment in comment_list:
+    #     comment_values.append((
+    #         comment["comment_id"],
+    #         comment["blog_id"],
+    #         comment["user_id"],
+    #         comment["comment"],
+    #         comment["date_posted"]
+    #     ))
+    
+    drop_comments_table = """
+        DROP TABLE IF EXISTS comments CASCADE;
+    """
+    
+    create_comments_table = """ 
+        CREATE TABLE comments (
+        comment_id SERIAL PRIMARY KEY,
+        blog_id INT REFERENCES blogs(blog_id) ON DELETE CASCADE,
+        user_id INT REFERENCES users(user_id),
+        comment TEXT NOT NULL,
+        date_posted TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+    """
+    
+    # insert_comment_data = """
+    #     INSERT INTO comments 
+    #     (blog_id, user_id, comment, date_posted)
+    #     VALUES 
+    #     (%s, %s, %s, %s);
+    # """
+
+
     db_connection = None
     
     db_connection = get_connection()
@@ -244,6 +321,8 @@ def seed_prod_db():
     cursor.execute(drop_conversations_table)
     cursor.execute(drop_posts_table)
     cursor.execute(drop_ads_table)
+    cursor.execute(drop_comments_table)
+    cursor.execute(drop_blogs_table)
 
     cursor.execute(create_produce_table)
     for item in produce_values:
@@ -270,6 +349,14 @@ def seed_prod_db():
     cursor.execute(create_ads_table)
     for ad in ad_values:
         cursor.execute(insert_ad_data, ad)
+    
+    cursor.execute(create_blogs_table)
+    # for blog in blog_values:
+    #     cursor.execute(insert_blog_data, blog)
+
+    cursor.execute(create_comments_table)
+    # for comment in comment_values:
+    #     cursor.execute(insert_comment_data, comment)
 
     db_connection.close()
 

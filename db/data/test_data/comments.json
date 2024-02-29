@@ -1,0 +1,49 @@
+{
+    "comments": [
+      {
+        "comment_id": 1,
+        "blog_id": 1,
+        "user_id": 2,
+        "comment": "Great tips! I'll definitely try these out in my garden.",
+        "date_posted": "2024-02-28"
+      },
+      {
+        "comment_id": 2,
+        "blog_id": 1,
+        "user_id": 6,
+        "comment": "Thanks for sharing! I've been looking for some beginner-friendly gardening advice.",
+        "date_posted": "2024-02-29"
+      },
+      {
+        "comment_id": 3,
+        "blog_id": 2,
+        "user_id": 4,
+        "comment": "I've been considering switching to organic farming methods. This article provides some compelling reasons to do so.",
+        "date_posted": "2024-02-25"
+      },
+      {
+        "comment_id": 4,
+        "blog_id": 2,
+        "user_id": 7,
+        "comment": "I'm passionate about sustainable agriculture. It's great to see more awareness being raised about organic farming practices.",
+        "date_posted": "2024-02-26"
+      },
+      {
+        "comment_id": 5,
+        "blog_id": 3,
+        "user_id": 9,
+        "comment": "I love trying out new vegetables! This article has inspired me to incorporate more variety into my meals.",
+        "date_posted": "2024-02-22"
+      },
+      {
+        "comment_id": 6,
+        "blog_id": 3,
+        "user_id": 10,
+        "comment": "As someone who enjoys cooking, I appreciate the insights into different types of vegetables and their culinary uses.",
+        "date_posted": "2024-02-23"
+      }
+    ],
+    "total_pages": 1,
+    "total_results": 6
+  }
+  

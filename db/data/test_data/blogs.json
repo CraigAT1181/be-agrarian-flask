@@ -1,0 +1,46 @@
+{
+  "blogs": [
+    {
+      "blog_id": 1,
+      "title": "Gardening Tips for Beginners",
+      "author_id": 1,
+      "content": "Are you new to gardening? Here are some essential tips to help you get started...",
+      "tags": ["gardening", "beginners", "tips"],
+      "date_published": "2024-02-28",
+      "likes": 128,
+      "image_url": "https://picsum.photos/300/300"
+    },
+    {
+      "blog_id": 2,
+      "title": "Benefits of Organic Farming",
+      "author_id": 2,
+      "content": "Organic farming has numerous benefits for both the environment and our health...",
+      "tags": ["organic", "farming", "environment", "health"],
+      "date_published": "2024-02-25",
+      "likes": 87,
+      "image_url": "https://picsum.photos/300/300"
+    },
+    {
+      "blog_id": 3,
+      "title": "Exploring Different Types of Vegetables",
+      "author_id": 3,
+      "content": "From leafy greens to root vegetables, there's a wide variety of vegetables to explore...",
+      "tags": ["vegetables", "nutrition", "health"],
+      "date_published": "2024-02-22",
+      "likes": 55,
+      "image_url": "https://picsum.photos/300/300"
+    },
+    {
+      "blog_id": 4,
+      "title": "Tips for Growing Sweetcorn in Your Garden",
+      "author_id": 4,
+      "content": "Interested in growing sweetcorn? Here are some tips to help you cultivate healthy and delicious ears of corn...",
+      "tags": ["gardening", "sweetcorn", "tips"],
+      "date_published": "2024-02-20",
+      "likes": 42,
+      "image_url": "https://picsum.photos/300/300"
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 4
+}
