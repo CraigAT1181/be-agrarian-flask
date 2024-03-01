@@ -5,7 +5,7 @@ def fetch_blog_by_blog_id(blog_id, connection):
         return jsonify({"message": "No blog_id received."}), 400
 
     query = """
-    SELECT b.blog_id, b.title, u.username, b.content, b.tags, 
+    SELECT b.blog_id, b.title, b.author_id, u.username, b.content, b.tags, 
            b.date_published, b.image_url  
     FROM blogs b
     JOIN users u ON u.user_id = b.author_id
@@ -20,11 +20,12 @@ def fetch_blog_by_blog_id(blog_id, connection):
                 return jsonify({
                     "blog_id": blog[0],
                     "title": blog[1],
-                    "username": blog[2],
-                    "content": blog[3],
-                    "tags": blog[4],
-                    "date_published": blog[5],
-                    "image_url": blog[6]
+                    "author_id": blog[2],
+                    "username": blog[3],
+                    "content": blog[4],
+                    "tags": blog[5],
+                    "date_published": blog[6],
+                    "image_url": blog[7]
                 })
             else:
                 return jsonify({"message": "Blog not found."}), 404
