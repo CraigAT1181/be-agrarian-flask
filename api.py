@@ -30,6 +30,7 @@ from endpoints.handle_contact_form import handle_contact_form
 from endpoints.fetch_all_ads import fetch_all_ads
 from endpoints.fetch_all_blogs import fetch_all_blogs
 from endpoints.fetch_comments_by_blog_id import fetch_comments_by_blog_id
+from endpoints.fetch_blog_by_blog_id import fetch_blog_by_blog_id
 from endpoints.shopify.fetch_products import fetch_products
 
 if os.getenv('FLASK_ENV') == 'production':
@@ -94,6 +95,13 @@ def get_all_users():
 @cross_origin()
 def get_all_blogs():
     result = fetch_all_blogs(connection)
+    return result
+
+# GET blog by blog id
+@app.route('/blogs/<blog_id>', methods=['GET'])
+@cross_origin()
+def get_blog_by_blog_id(blog_id):
+    result = fetch_blog_by_blog_id(blog_id, connection)
     return result
 
 # GET comments by blog id
