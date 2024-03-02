@@ -268,7 +268,7 @@ def seed_dev_db():
             author_id INT REFERENCES users(user_id) ON DELETE SET NULL,
             content TEXT NOT NULL,
             tags VARCHAR(255)[],
-            date_published DATE NOT NULL,
+            date_published DATE DEFAULT CURRENT_DATE,
             likes INT DEFAULT 0,
             image_url VARCHAR(255)
             );

@@ -31,6 +31,8 @@ from endpoints.fetch_all_ads import fetch_all_ads
 from endpoints.fetch_all_blogs import fetch_all_blogs
 from endpoints.fetch_comments_by_blog_id import fetch_comments_by_blog_id
 from endpoints.fetch_blog_by_blog_id import fetch_blog_by_blog_id
+from endpoints.fetch_blogs_by_user_id import fetch_blogs_by_user_id
+from endpoints.add_blog import add_blog
 from endpoints.shopify.fetch_products import fetch_products
 
 if os.getenv('FLASK_ENV') == 'production':
@@ -103,6 +105,26 @@ def get_all_blogs():
 def get_blog_by_blog_id(blog_id):
     result = fetch_blog_by_blog_id(blog_id, connection)
     return result
+
+# GET blog by user id
+@app.route('/users/<user_id>/blogs', methods=['GET'])
+@cross_origin()
+def get_blog_by_user_id(user_id):
+    result = fetch_blogs_by_user_id(user_id, connection)
+    return result
+
+# POST blog
+@app.route('/blogs', methods=["POST"])
+@cross_origin()
+def add_blog_by_user_id():
+    data = request.get_json()
+    return add_blog(data, connection)
+
+# PATCH blog by user id
+
+
+# DELETE blog by blog id
+
 
 # GET comments by blog id
 @app.route('/comments/<blog_id>', methods=['GET'])
