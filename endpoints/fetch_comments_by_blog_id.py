@@ -17,12 +17,13 @@ def fetch_comments_by_blog_id(blog_id, connection):
         cursor = connection.cursor()
         cursor.execute(query, (blog_id))
         comments = cursor.fetchall()
+        print(comments)
         result = []
         for comment in comments:
             result.append({
                 "comment_id": comment[0],
                 "blog_id": comment[1],
-                "user_id": comment[2],
+                "username": comment[2],
                 "comment": comment[3],
                 "date_posted": comment[4]
             })
