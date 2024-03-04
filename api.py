@@ -136,7 +136,7 @@ def delete_blog_by_blog_id(blog_id):
     return remove_blog_by_blog_id(blog_id, connection)
 
 # GET comments by blog id
-@app.route('/comments/<blog_id>', methods=['GET'])
+@app.route('/blogs/<blog_id>/comments', methods=['GET'])
 @cross_origin()
 def get_comments_by_blog_id(blog_id):
     result = fetch_comments_by_blog_id(blog_id, connection)

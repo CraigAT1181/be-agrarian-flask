@@ -12,13 +12,6 @@ def add_blog(data, connection):
     likes = 0
     image_url = data["image_url"]    
 
-    print(title, "title")
-    print(author_id, "author_id")
-    print(content, "content")
-    print(tags, "tags")
-    print(likes, "likes")
-    print(image_url, "image_url")
-
     insert_blog = """
     INSERT INTO BLOGS
     (title, author_id, content, tags, likes, image_url)
@@ -53,14 +46,12 @@ def add_blog(data, connection):
                     }
                 else:
                     return {
-                        "print": print(str(e)),
                         "message": "An error occurred while creating the blog.",
                         "status": 500,
                     }
             except Exception as e:
                 # Handle unexpected exceptions
                 return {
-                    "print": print(str(e)),
                     "message": "An unexpected error occurred.",
                     "status": 500,
                 }
