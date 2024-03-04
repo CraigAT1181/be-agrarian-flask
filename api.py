@@ -33,6 +33,8 @@ from endpoints.fetch_comments_by_blog_id import fetch_comments_by_blog_id
 from endpoints.fetch_blog_by_blog_id import fetch_blog_by_blog_id
 from endpoints.fetch_blogs_by_user_id import fetch_blogs_by_user_id
 from endpoints.add_blog import add_blog
+from endpoints.remove_blog_by_blog_id import remove_blog_by_blog_id
+from endpoints.patch_blog_by_blog_id import patch_blog_by_blog_id
 from endpoints.shopify.fetch_products import fetch_products
 
 if os.getenv('FLASK_ENV') == 'production':
@@ -120,11 +122,18 @@ def add_blog_by_user_id():
     data = request.get_json()
     return add_blog(data, connection)
 
-# PATCH blog by user id
-
+# PATCH blog by blog_id
+@app.route("/blogs/<blog_id>", methods=["PATCH"])
+@cross_origin() 
+def edit_blog_by_blog_id(blog_id):
+    data = request.get_json()
+    return patch_blog_by_blog_id(data, blog_id, connection)
 
 # DELETE blog by blog id
-
+@app.route("/blogs/<blog_id>", methods=["DELETE"])
+@cross_origin() 
+def delete_blog_by_blog_id(blog_id):
+    return remove_blog_by_blog_id(blog_id, connection)
 
 # GET comments by blog id
 @app.route('/comments/<blog_id>', methods=['GET'])
@@ -154,7 +163,7 @@ def add_conversation_by_user_id(user_id):
     data = request.get_json()
     return add_conversation(user_id, data, connection)
 
-# PATCH conversation by conversation id
+# PATCH conversation by conversation id - doesn't delete, but hides the conversation
 @app.route("/conversations/<conversation_id>", methods=["PATCH"])
 @cross_origin() 
 def delete_conversation_by_conversation_id(conversation_id):

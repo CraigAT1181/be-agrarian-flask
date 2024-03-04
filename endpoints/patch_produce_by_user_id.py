@@ -1,29 +1,5 @@
 from flask import jsonify, abort
 
-# def fetch_produce_icons(connection, produce_names):
-#     try:
-
-#         if produce_names is not None:
-        
-#             with connection.cursor() as cursor:
-#                 cursor.execute(
-#                     """
-#                     SELECT produce_icon
-#                     FROM produce
-#                     WHERE produce_name = ANY(%s)
-#                     """,
-#                     (produce_names,))
-                
-#                 returned_icons = cursor.fetchall()
-
-#                 produce_icons = [icon[0] for icon in returned_icons]
-#                 return produce_icons
-#     except Exception as e:
-#         print(f"Error fetching produce icons: {e}")
-#         return None
-
-from flask import jsonify, abort
-
 def patch_produce_by_user_id(connection, user_id, produce):
     try:
         with connection:
