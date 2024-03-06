@@ -119,11 +119,22 @@ def get_blog_by_user_id(user_id):
 @app.route('/blogs', methods=["POST"])
 @cross_origin()
 def add_blog_by_user_id():
+    # Access the headers from the incoming request
+    headers = request.headers
 
-    image_file = request.files['image']
+    # Extract the content type from the headers
+    content_type = headers.get('Content-Type')
 
-    data = request.form.to_dict()
-    return add_blog(data, image_file, connection)
+    # Check if the content type is multipart/form-data
+    if content_type and 'multipart/form-data' in content_type:
+        # Handle the multipart/form-data request
+        image_file = request.files['image']
+
+        data = request.form.to_dict()
+        return add_blog(data, image_file, connection)
+    else:
+        # Handle other types of requests (e.g., JSON)
+        return jsonify({"error": "Unsupported content type"}), 400
 
 # PATCH blog by blog_id
 @app.route("/blogs/<blog_id>", methods=["PATCH"])
