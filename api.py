@@ -119,8 +119,11 @@ def get_blog_by_user_id(user_id):
 @app.route('/blogs', methods=["POST"])
 @cross_origin()
 def add_blog_by_user_id():
-    data = request.get_json()
-    return add_blog(data, connection)
+
+    image_file = request.files['image']
+
+    data = request.form.to_dict()
+    return add_blog(data, image_file, connection)
 
 # PATCH blog by blog_id
 @app.route("/blogs/<blog_id>", methods=["PATCH"])

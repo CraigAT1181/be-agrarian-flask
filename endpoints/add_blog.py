@@ -1,6 +1,7 @@
 from psycopg2 import IntegrityError
+from utils.cloud_authentication import cloud_authentication
 
-def add_blog(data, connection):
+def add_blog(data, image_file, connection):
     
     if "title" not in data or not data["title"] or "content" not in data or not data["content"]:
          raise ValueError("Blogs must have a title and some content.")
@@ -10,7 +11,23 @@ def add_blog(data, connection):
     content = data["content"]
     tags = data["tags"]
     likes = 0
-    image_url = data["image_url"]    
+    
+    client = cloud_authentication("db/data/agrarian-405810-5078dec12eaf.json")
+
+    bucket_name = "cookingpot.live"
+    blob_name = f"images/blogs/{title}.jpg"
+
+    bucket = client.get_bucket(bucket_name)
+    blob = bucket.blob(blob_name)
+
+    if image_file.filename.endswith((".jpg", ".jpeg")):
+        content_type = "image/jpeg"
+    else:
+        content_type = "application/octet-stream"
+
+    blob.upload_from_file(image_file, content_type=content_type)
+
+    image_url = blob.public_url
 
     insert_blog = """
     INSERT INTO BLOGS
