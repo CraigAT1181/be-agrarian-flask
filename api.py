@@ -119,7 +119,7 @@ def get_blog_by_user_id(user_id):
 @app.route('/blogs', methods=["POST"])
 @cross_origin()
 def add_blog_by_user_id():
-    data = request.json()
+    data = request.json
     return add_blog(data, connection)
 
 # PATCH blog by blog_id

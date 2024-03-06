@@ -6,10 +6,10 @@ def add_blog(data, connection):
     if "title" not in data or not data["title"] or "content" not in data or not data["content"]:
          raise ValueError("Blogs must have a title and some content.")
 
-    title = data.get["title"]
-    author_id = data.get["author_id"]
-    content = data.get["content"]
-    tags = data.get["tags"]
+    title = data.get("title")
+    author_id = data.get("author_id")
+    content = data.get("content")
+    tags = data.get("tags")
     likes = 0
     image = data.get("image")
     
