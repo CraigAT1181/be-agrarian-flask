@@ -17,4 +17,5 @@ python-dotenv
 requests
 urllib3
 Werkzeug
-google
+google-auth
+google-cloud-storage
