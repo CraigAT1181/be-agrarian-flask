@@ -119,8 +119,31 @@ def get_blog_by_user_id(user_id):
 @app.route('/blogs', methods=["POST"])
 @cross_origin()
 def add_blog_by_user_id():
-    data = request.json
-    return add_blog(data, connection)
+    try:
+
+        if 'image' in request.files:
+            image = request.files['image']
+        else:
+            image = None
+
+        title = request.form.get('title')
+        author_id = request.form.get('author_id')
+        content = request.form.get('content')
+        tags = request.form.getlist('tags')
+
+        print("Received data:")
+        print("Image:", image)
+        print("Title:", title)
+        print("Author ID:", author_id)
+        print("Content:", content)
+        print("Tags:", tags)
+
+        return add_blog(image, title, author_id, content, tags, connection)
+    except Exception as e:
+        return {
+            "message": str(e),
+            "status": 400,
+        }
 
 # PATCH blog by blog_id
 @app.route("/blogs/<blog_id>", methods=["PATCH"])
