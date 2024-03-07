@@ -15,13 +15,13 @@ def add_blog(image, title, author_id, content, tags, connection):
         else:
             # Determine content type based on file extension
             content_type = "image/jpeg" if image.filename.lower().endswith(".jpeg") or image.filename.lower().endswith(".jpg") else "image/png"
-
+            print("REACHED HERE")
             client = cloud_authentication()
             bucket_name = "cookingpot.live"
             blob_name = f"/images/blogs/{title}.{content_type.split('/')[-1]}"
             bucket = client.get_bucket(bucket_name)
             blob = bucket.blob(blob_name)
-
+            print("AUTHENTICATED")
             # Read image data into BytesIO object
             image_data = BytesIO(image.read())
             # Open image using PIL to ensure valid image data
@@ -50,7 +50,7 @@ def add_blog(image, title, author_id, content, tags, connection):
             with connection.cursor() as cursor:
                 cursor.execute(insert_blog, (title, author_id, content, tags, 0, image_url))
                 new_blog = cursor.fetchone()
-                
+                print(new_blog, "NEWBLOG!")
                 return {
                     "message": "Blog created.",
                     "status": 200,
