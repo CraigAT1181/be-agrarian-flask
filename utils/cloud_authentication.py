@@ -3,8 +3,13 @@ from google.cloud import storage
 import os
 import json
 
+def print_ascii(json_str):
+    for i, char in enumerate(json_str):
+        print(f"Character at position {i}: '{char}', ASCII code: {ord(char)}")
+
 def cloud_authentication():
     credentials_json = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
+    print_ascii(credentials_json)
     print(credentials_json, "CREDS")  # Print the JSON string
     if credentials_json:
         print("Reading render environment")
