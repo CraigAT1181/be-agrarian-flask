@@ -18,9 +18,9 @@ def patch_blog_by_blog_id(data, blog_id, connection):
     try:
         with connection:
             with connection.cursor() as cursor:
-                # Check if image data is provided for update
+                
                 if image_data:
-                    # Authenticate with Google Cloud Storage and upload the new image
+                
                     client = cloud_authentication("db/data/agrarian-405810-5078dec12eaf.json")
                     
                     bucket_name = "cookingpot.live"
@@ -47,7 +47,7 @@ def patch_blog_by_blog_id(data, blog_id, connection):
                     else:
                         return jsonify({"message": "Blog not found."}), 404
                 else:
-                    # Update other fields if no image data provided
+                    
                     cursor.execute("""
                         UPDATE blogs
                         SET title = %s, content = %s, tags = %s

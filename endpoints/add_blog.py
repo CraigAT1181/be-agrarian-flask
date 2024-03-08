@@ -17,6 +17,7 @@ def add_blog(image, title, author_id, content, tags, connection):
             content_type = "image/jpeg" if image.filename.lower().endswith(".jpeg") or image.filename.lower().endswith(".jpg") else "image/png"
             print("REACHED HERE")
             client = cloud_authentication()
+            print(client, "authed!")
             bucket_name = "cookingpot.live"
             blob_name = f"/images/blogs/{title}.{content_type.split('/')[-1]}"
             bucket = client.get_bucket(bucket_name)
