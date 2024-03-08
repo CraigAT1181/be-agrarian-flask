@@ -10,6 +10,24 @@ def patch_blog_by_blog_id(blog_id, image, title, author_id, content, tags, conne
         if not blog_id:
             return jsonify({"message": "No blog_id received."}), 400
         
+        if image.startswith('https://storage'):
+            with connection:
+                with connection.cursor() as cursor:
+                    
+                    cursor.execute("""
+                        UPDATE blogs
+                        SET title = %s, content = %s, tags = %s
+                        WHERE blog_id = %s AND author_id = %s
+                        RETURNING *;
+                    """, (title, content, tags, blog_id, author_id))
+                    
+                    updated_blog = cursor.fetchone()
+
+                    if updated_blog is not None:
+                        return jsonify({"message": "Blog updated successfully.", "blog": updated_blog}), 200
+                    else:
+                        return jsonify({"message": "Blog not found."}), 404
+        
         if image is None:
             image_url = None
         

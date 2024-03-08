@@ -153,6 +153,8 @@ def edit_blog_by_blog_id(blog_id):
 
             if 'image' in request.files:
                 image = request.files['image']
+            elif 'image' in request.form:
+                image = request.form.get('image')
             else:
                 image = None
 
