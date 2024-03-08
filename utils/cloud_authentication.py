@@ -3,19 +3,14 @@ from google.cloud import storage
 import os
 import json
 
-def print_ascii(json_str):
-    for i, char in enumerate(json_str):
-        print(f"Character at position {i}: '{char}', ASCII code: {ord(char)}")
-
 def cloud_authentication():
-    credentials_json = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
-    print_ascii(credentials_json)
-    print(credentials_json, "CREDS")  # Print the JSON string
-    if credentials_json:
+    render_creds = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS')
+    print(render_creds, "CREDS")  # Print the JSON string
+    if render_creds:
         print("Reading render environment")
         try:
             # Parse the JSON string into a dictionary
-            credentials_dict = json.loads(credentials_json)
+            credentials_dict = json.loads(render_creds)
             # If the environment variable is set, use its contents
             credentials = service_account.Credentials.from_service_account_info(credentials_dict)
             print(credentials, "credentials")
