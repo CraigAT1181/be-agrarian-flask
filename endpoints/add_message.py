@@ -1,3 +1,5 @@
+import psycopg2
+
 def add_message(data, conversation_id, connection):
     conversation_id = conversation_id
     sender_id = data["sender_id"]
@@ -26,7 +28,7 @@ def add_message(data, conversation_id, connection):
                     "created_at": new_message[4]
                 }
                 
-            except connection.IntegrityError as e:
+            except psycopg2.IntegrityError as e:
                 return {
                     "message": "Message already sent.",
                     "status": 409,

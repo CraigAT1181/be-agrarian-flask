@@ -35,6 +35,7 @@ from endpoints.fetch_blogs_by_user_id import fetch_blogs_by_user_id
 from endpoints.add_blog import add_blog
 from endpoints.remove_blog_by_blog_id import remove_blog_by_blog_id
 from endpoints.patch_blog_by_blog_id import patch_blog_by_blog_id
+from endpoints.add_comment import add_comment
 from endpoints.shopify.fetch_products import fetch_products
 
 if os.getenv('FLASK_ENV') == 'production':
@@ -190,6 +191,13 @@ def delete_blog_by_blog_id(blog_id):
 def get_comments_by_blog_id(blog_id):
     result = fetch_comments_by_blog_id(blog_id, connection)
     return result
+
+# POST comment by blog id
+@app.route('/blogs/<blog_id>/comments', methods=['POST'])
+@cross_origin()
+def add_comment_by_blog_id(blog_id):
+    data = request.get_json()
+    return add_comment(blog_id, data, connection)
 
 # GET users by produce name
 @app.route('/users/<produce_list>', methods=['GET'])
