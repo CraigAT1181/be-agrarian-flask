@@ -10,7 +10,7 @@ def fetch_comments_by_blog_id(blog_id, connection):
         FROM comments c
         JOIN users u ON u.user_id = c.user_id
         WHERE c.blog_id = %s
-        ORDER BY c.date_posted;
+        ORDER BY c.date_posted DESC;
         """
         
         with connection:
