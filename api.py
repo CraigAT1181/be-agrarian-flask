@@ -202,17 +202,17 @@ def add_comment_by_blog_id(blog_id):
     return add_comment(blog_id, data, connection)
 
 # PATCH comment by comment id
-@app.route("/comments/<comment_id>", methods=["PATCH"])
+@app.route("/blogs/<blog_id>/comments/<comment_id>", methods=["PATCH"])
 @cross_origin() 
-def edit_comment_by_comment_id(comment_id):
+def edit_comment_by_comment_id(blog_id, comment_id):
     data = request.get_json()
-    return patch_comment_by_comment_id(data, comment_id, connection)
+    return patch_comment_by_comment_id(blog_id, comment_id, data, connection)
 
 # DELETE comment by comment id
-@app.route("/comments/<comment_id>", methods=["DELETE"])
+@app.route("/blogs/<blog_id>/comments/<comment_id>", methods=["DELETE"])
 @cross_origin() 
-def delete_comment_by_comment_id(comment_id):
-    return remove_comment_by_comment_id(comment_id, connection)
+def delete_comment_by_comment_id(blog_id, comment_id):
+    return remove_comment_by_comment_id(blog_id, comment_id, connection)
 
 # GET users by produce name
 @app.route('/users/<produce_list>', methods=['GET'])

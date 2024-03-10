@@ -1,19 +1,20 @@
 import psycopg2
 
-def patch_comment_by_comment_id(data, comment_id, connection):
+def patch_comment_by_comment_id(blog_id, comment_id, data, connection):
     comment = data.get("comment")
 
     patch_comment = """
     UPDATE comments
     SET comment = %s
     WHERE comment_id = %s
+    AND blog_id = %s
     RETURNING *
     """
 
     with connection:
         with connection.cursor() as cursor:
             try:
-                cursor.execute(patch_comment, (comment, comment_id))
+                cursor.execute(patch_comment, (comment, comment_id, blog_id))
                 patched_comment = cursor.fetchone()
 
                 if patched_comment:
