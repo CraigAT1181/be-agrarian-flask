@@ -36,6 +36,8 @@ from endpoints.add_blog import add_blog
 from endpoints.remove_blog_by_blog_id import remove_blog_by_blog_id
 from endpoints.patch_blog_by_blog_id import patch_blog_by_blog_id
 from endpoints.add_comment import add_comment
+from endpoints.patch_comment_by_comment_id import patch_comment_by_comment_id
+from endpoints.remove_comment_by_comment_id import remove_comment_by_comment_id
 from endpoints.shopify.fetch_products import fetch_products
 
 if os.getenv('FLASK_ENV') == 'production':
@@ -186,18 +188,32 @@ def delete_blog_by_blog_id(blog_id):
     return remove_blog_by_blog_id(blog_id, connection)
 
 # GET comments by blog id
-@app.route('/blogs/<blog_id>/comments', methods=['GET'])
+@app.route('/comments', methods=['GET'])
 @cross_origin()
-def get_comments_by_blog_id(blog_id):
-    result = fetch_comments_by_blog_id(blog_id, connection)
+def get_comments_by_blog_id():
+    data = request.get_json()
+    result = fetch_comments_by_blog_id(data, connection)
     return result
 
 # POST comment by blog id
-@app.route('/blogs/<blog_id>/comments', methods=['POST'])
+@app.route('/comments', methods=['POST'])
 @cross_origin()
-def add_comment_by_blog_id(blog_id):
+def add_comment_by_blog_id():
     data = request.get_json()
-    return add_comment(blog_id, data, connection)
+    return add_comment(data, connection)
+
+# PATCH comment by comment id
+@app.route("/comments/<comment_id>", methods=["PATCH"])
+@cross_origin() 
+def edit_comment_by_comment_id(comment_id):
+    data = request.get_json()
+    return patch_comment_by_comment_id(data, comment_id, connection)
+
+# DELETE comment by comment id
+@app.route("/comments/<comment_id>", methods=["DELETE"])
+@cross_origin() 
+def delete_comment_by_comment_id(comment_id):
+    return remove_comment_by_comment_id(comment_id, connection)
 
 # GET users by produce name
 @app.route('/users/<produce_list>', methods=['GET'])
