@@ -188,19 +188,18 @@ def delete_blog_by_blog_id(blog_id):
     return remove_blog_by_blog_id(blog_id, connection)
 
 # GET comments by blog id
-@app.route('/comments', methods=['GET'])
+@app.route("/blogs/<blog_id>/comments", methods=["GET"])
 @cross_origin()
-def get_comments_by_blog_id():
-    data = request.get_json()
-    result = fetch_comments_by_blog_id(data, connection)
+def get_comments_by_blog_id(blog_id):
+    result = fetch_comments_by_blog_id(blog_id, connection)
     return result
 
 # POST comment by blog id
-@app.route('/comments', methods=['POST'])
+@app.route('/blogs/<blog_id>/comments', methods=['POST'])
 @cross_origin()
-def add_comment_by_blog_id():
+def add_comment_by_blog_id(blog_id):
     data = request.get_json()
-    return add_comment(data, connection)
+    return add_comment(blog_id, data, connection)
 
 # PATCH comment by comment id
 @app.route("/comments/<comment_id>", methods=["PATCH"])

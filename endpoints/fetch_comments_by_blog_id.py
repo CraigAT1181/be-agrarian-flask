@@ -1,8 +1,6 @@
 from flask import jsonify
 
-def fetch_comments_by_blog_id(data, connection):
-
-    blog_id = data.get("blog_id")
+def fetch_comments_by_blog_id(blog_id, connection):
     
     try:
         if not blog_id:

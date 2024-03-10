@@ -1,8 +1,7 @@
 import psycopg2
 
-def add_comment(data, connection):
+def add_comment(blog_id, data, connection):
     
-    blog_id = data.get("blog_id")
     user_id = data.get("user_id")
     comment = data.get("comment")
 
