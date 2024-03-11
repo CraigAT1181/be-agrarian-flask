@@ -160,7 +160,6 @@ def edit_blog_by_blog_id(blog_id):
         elif 'image' not in request.files and 'image' not in request.form:
             image = None
 
-
         title = request.form.get('title')
         author_id = request.form.get('author_id')
         content = request.form.get('content')

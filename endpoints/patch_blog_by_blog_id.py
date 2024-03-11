@@ -17,24 +17,24 @@ def patch_blog_by_blog_id(blog_id, image, title, author_id, content, tags, conne
         if hasattr(image, 'read'):
             content_type = "image/jpeg" if image.filename.lower().endswith(".jpeg") or image.filename.lower().endswith(".jpg") else "image/png"
 
-        client = cloud_authentication()
-        bucket_name = "cookingpot.live"
-        blob_name = f"/images/blogs/{title}.{content_type.split('/')[-1]}"
-        bucket = client.get_bucket(bucket_name)
-        blob = bucket.blob(blob_name)
+            client = cloud_authentication()
+            bucket_name = "cookingpot.live"
+            blob_name = f"/images/blogs/{title}.{content_type.split('/')[-1]}"
+            bucket = client.get_bucket(bucket_name)
+            blob = bucket.blob(blob_name)
 
-        image_data = BytesIO(image.read())
-    
-        with Image.open(image_data) as img:
-            if content_type == "image/png":
-                img = img.convert("RGB")
-            
-            img_data_buffer = BytesIO()
-            img.save(img_data_buffer, format="JPEG" if content_type == "image/jpeg" else "PNG")
-            img_data_buffer.seek(0)
+            image_data = BytesIO(image.read())
+        
+            with Image.open(image_data) as img:
+                if content_type == "image/png":
+                    img = img.convert("RGB")
+                
+                img_data_buffer = BytesIO()
+                img.save(img_data_buffer, format="JPEG" if content_type == "image/jpeg" else "PNG")
+                img_data_buffer.seek(0)
 
-        blob.upload_from_string(img_data_buffer.getvalue(), content_type=content_type)
-        return blob.public_url
+            blob.upload_from_string(img_data_buffer.getvalue(), content_type=content_type)
+            return blob.public_url
     
     try:
         updated_image_url = process_image(image, title)
