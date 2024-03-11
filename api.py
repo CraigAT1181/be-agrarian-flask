@@ -152,34 +152,36 @@ def add_blog_by_user_id():
 @app.route("/blogs/<blog_id>", methods=["PATCH"])
 @cross_origin() 
 def edit_blog_by_blog_id(blog_id):
-        try:
+    try:
+        if 'image' in request.files:
+            image = request.files['image']
+        elif 'image' in request.form:
+            image = request.form.get('image')
+        elif 'image' not in request.files and 'image' not in request.form:
+            image = None
 
-            if 'image' in request.files:
-                image = request.files['image']
-            elif 'image' in request.form:
-                image = request.form.get('image')
-            else:
-                image = None
 
-            title = request.form.get('title')
-            author_id = request.form.get('author_id')
-            content = request.form.get('content')
-            tags = request.form.getlist('tags')
+        title = request.form.get('title')
+        author_id = request.form.get('author_id')
+        content = request.form.get('content')
+        tags = request.form.getlist('tags')
 
-            print("Received data:")
-            print("Image:", image)
-            print("Title:", title)
-            print("Author ID:", author_id)
-            print("Content:", content)
-            print("Tags:", tags)
+        print("Received data:")
+        print("Image:", image)
+        print("Title:", title)
+        print("Author ID:", author_id)
+        print("Content:", content)
+        print("Tags:", tags)
+        print("Image Type:", type(image))
+        print("Image Value:", image)
 
-            return patch_blog_by_blog_id(blog_id, image, title, author_id, content, tags, connection)
-        
-        except Exception as e:
-            return {
-                "message": str(e),
-                "status": 400,
-            }
+        return patch_blog_by_blog_id(blog_id, image, title, author_id, content, tags, connection)
+    
+    except Exception as e:
+        return {
+            "message": str(e),
+            "status": 400,
+        }
 
 # DELETE blog by blog id
 @app.route("/blogs/<blog_id>", methods=["DELETE"])

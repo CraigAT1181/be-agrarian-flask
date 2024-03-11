@@ -5,75 +5,64 @@ import psycopg2
 from utils.cloud_authentication import cloud_authentication
 
 def patch_blog_by_blog_id(blog_id, image, title, author_id, content, tags, connection):
-    try:
-
-        if not blog_id:
-            return jsonify({"message": "No blog_id received."}), 400
-        
-        if image.startswith('https://storage'):
-            with connection:
-                with connection.cursor() as cursor:
-                    
-                    cursor.execute("""
-                        UPDATE blogs
-                        SET title = %s, content = %s, tags = %s
-                        WHERE blog_id = %s AND author_id = %s
-                        RETURNING *;
-                    """, (title, content, tags, blog_id, author_id))
-                    
-                    updated_blog = cursor.fetchone()
-
-                    if updated_blog is not None:
-                        return jsonify({"message": "Blog updated successfully.", "blog": updated_blog}), 200
-                    else:
-                        return jsonify({"message": "Blog not found."}), 404
-        
-        if image is None:
-            image_url = None
-        
-        else:
-            content_type = "image/jpeg" if image.filename.lower().endswith(".jpeg") or image.filename.lower().endswith(".jpg") else "image/png"
-            print("REACHED HERE")
-            client = cloud_authentication()
-            print(client, "authed!")
-            bucket_name = "cookingpot.live"
-            blob_name = f"/images/blogs/{title}.{content_type.split('/')[-1]}"
-            bucket = client.get_bucket(bucket_name)
-            blob = bucket.blob(blob_name)
-            print("AUTHENTICATED")
-            # Read image data into BytesIO object
-            image_data = BytesIO(image.read())
-            # Open image using PIL to ensure valid image data
-            with Image.open(image_data) as img:
-                # Convert to JPEG format if PNG image is uploaded
-                if content_type == "image/png":
-                    img = img.convert("RGB")
-                # Save image data to BytesIO buffer
-                img_data_buffer = BytesIO()
-                img.save(img_data_buffer, format="JPEG" if content_type == "image/jpeg" else "PNG")
-                # Reset the BytesIO buffer's position to the start
-                img_data_buffer.seek(0)
-
-            blob.upload_from_string(img_data_buffer.getvalue(), content_type=content_type)
-            image_url = blob.public_url
     
+    def process_image(image, title):
+        print("image:", image)
+        if image is None:
+            return None
+        
+        if isinstance(image, str) and image.startswith('https://storage'):
+            return image
+    
+        if hasattr(image, 'read'):
+            content_type = "image/jpeg" if image.filename.lower().endswith(".jpeg") or image.filename.lower().endswith(".jpg") else "image/png"
+
+        client = cloud_authentication()
+        bucket_name = "cookingpot.live"
+        blob_name = f"/images/blogs/{title}.{content_type.split('/')[-1]}"
+        bucket = client.get_bucket(bucket_name)
+        blob = bucket.blob(blob_name)
+
+        image_data = BytesIO(image.read())
+    
+        with Image.open(image_data) as img:
+            if content_type == "image/png":
+                img = img.convert("RGB")
+            
+            img_data_buffer = BytesIO()
+            img.save(img_data_buffer, format="JPEG" if content_type == "image/jpeg" else "PNG")
+            img_data_buffer.seek(0)
+
+        blob.upload_from_string(img_data_buffer.getvalue(), content_type=content_type)
+        return blob.public_url
+    
+    try:
+        updated_image_url = process_image(image, title)
+
+        patch_blog = """
+        UPDATE blogs
+        SET image_url = %s, title = %s, content = %s, tags = %s
+        WHERE blog_id = %s AND author_id = %s
+        RETURNING *;
+        """
+
         with connection:
             with connection.cursor() as cursor:
-                
-                cursor.execute("""
-                    UPDATE blogs
-                    SET image_url = %s, title = %s, content = %s, tags = %s
-                    WHERE blog_id = %s AND author_id = %s
-                    RETURNING *;
-                """, (image_url, title, content, tags, blog_id, author_id))
-                
-                updated_blog = cursor.fetchone()
-
-                if updated_blog is not None:
-                    return jsonify({"message": "Blog updated successfully.", "blog": updated_blog}), 200
-                else:
-                    return jsonify({"message": "Blog not found."}), 404
-
+                cursor.execute(patch_blog, (updated_image_url, title, content, tags, blog_id, author_id))
+                patched_blog = cursor.fetchone()
+                print(patched_blog, "Patched Blog!")
+                return {
+                    "message": "Blog patched.",
+                    "status": 200,
+                    "blog_id": patched_blog[0],
+                    "title": patched_blog[1],
+                    "author_id": patched_blog[2],
+                    "content": patched_blog[3],
+                    "tags": patched_blog[4],
+                    "date_published": patched_blog[5],
+                    "image_url": patched_blog[7]
+                }
+            
     except (psycopg2.Error, psycopg2.DatabaseError) as e:
         print("Database error:", e)
-        return jsonify({"message": "Unable to process this request due to a database error"}), 500
+        raise e
