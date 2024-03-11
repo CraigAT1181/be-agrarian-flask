@@ -7,7 +7,7 @@ from utils.cloud_authentication import cloud_authentication
 def patch_blog_by_blog_id(blog_id, image, title, author_id, content, tags, connection):
     
     def process_image(image, title):
-        print("image:", image)
+        
         if image is None:
             return None
         
@@ -15,16 +15,21 @@ def patch_blog_by_blog_id(blog_id, image, title, author_id, content, tags, conne
             return image
     
         if hasattr(image, 'read'):
+            filename = image.filename
+            print(image.filename, "image file name")
+            URLname = filename.split('.')[0]  # Get the title without the file extension
+
             content_type = "image/jpeg" if image.filename.lower().endswith(".jpeg") or image.filename.lower().endswith(".jpg") else "image/png"
 
             client = cloud_authentication()
             bucket_name = "cookingpot.live"
-            blob_name = f"/images/blogs/{title}.{content_type.split('/')[-1]}"
+            
+            blob_name = f"/images/blogs/{URLname}.{content_type.split('/')[-1]}"
             bucket = client.get_bucket(bucket_name)
             blob = bucket.blob(blob_name)
-
+            
             image_data = BytesIO(image.read())
-        
+            
             with Image.open(image_data) as img:
                 if content_type == "image/png":
                     img = img.convert("RGB")
@@ -32,7 +37,7 @@ def patch_blog_by_blog_id(blog_id, image, title, author_id, content, tags, conne
                 img_data_buffer = BytesIO()
                 img.save(img_data_buffer, format="JPEG" if content_type == "image/jpeg" else "PNG")
                 img_data_buffer.seek(0)
-
+            
             blob.upload_from_string(img_data_buffer.getvalue(), content_type=content_type)
             return blob.public_url
     

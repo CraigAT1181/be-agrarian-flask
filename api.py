@@ -154,8 +154,10 @@ def add_blog_by_user_id():
 def edit_blog_by_blog_id(blog_id):
     try:
         if 'image' in request.files:
+            print("It's a file!")
             image = request.files['image']
         elif 'image' in request.form:
+            print("It's the same GCS url!")
             image = request.form.get('image')
         elif 'image' not in request.files and 'image' not in request.form:
             image = None
@@ -171,8 +173,7 @@ def edit_blog_by_blog_id(blog_id):
         print("Author ID:", author_id)
         print("Content:", content)
         print("Tags:", tags)
-        print("Image Type:", type(image))
-        print("Image Value:", image)
+        print("Image:", image)
 
         return patch_blog_by_blog_id(blog_id, image, title, author_id, content, tags, connection)
     
