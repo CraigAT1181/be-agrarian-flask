@@ -288,6 +288,7 @@ def seed_dev_db():
                 comment["blog_id"],
                 comment["user_id"],
                 comment["comment"],
+                comment["parent_comment_id"],
                 comment["date_posted"]
             ))
         
@@ -301,15 +302,16 @@ def seed_dev_db():
             blog_id INT REFERENCES blogs(blog_id) ON DELETE CASCADE,
             user_id INT REFERENCES users(user_id),
             comment TEXT NOT NULL,
+            parent_comment_id INT REFERENCES comments(comment_id) ON DELETE CASCADE,
             date_posted TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
         """
         
         insert_comment_data = """
             INSERT INTO comments 
-            (blog_id, user_id, comment, date_posted)
+            (blog_id, user_id, comment, parent_comment_id, date_posted)
             VALUES 
-            (%s, %s, %s, %s);
+            (%s, %s, %s, %s, %s);
         """
 
         print(db_connection, "CONNECTION")
