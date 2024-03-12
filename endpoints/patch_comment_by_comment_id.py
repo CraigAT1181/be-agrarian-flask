@@ -35,6 +35,7 @@ def format_response(message, status, patched_comment=None):
             "blog_id": patched_comment[1],
             "user_id": patched_comment[2],
             "comment": patched_comment[3],
-            "date_posted": patched_comment[4],
+            "parent_comment_id": patched_comment[4],
+            "date_posted": patched_comment[5],
         })
     return response
