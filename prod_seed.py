@@ -282,6 +282,7 @@ def seed_prod_db():
     #         comment["blog_id"],
     #         comment["user_id"],
     #         comment["comment"],
+    #         comment["parent_comment_id"],
     #         comment["date_posted"]
     #     ))
     
@@ -302,9 +303,9 @@ def seed_prod_db():
     
     # insert_comment_data = """
     #     INSERT INTO comments 
-    #     (blog_id, user_id, comment, date_posted)
+    #     (blog_id, user_id, comment, parent_comment_id, date_posted)
     #     VALUES 
-    #     (%s, %s, %s, %s);
+    #     (%s, %s, %s, %s, %s);
     # """
 
 
