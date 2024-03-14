@@ -295,6 +295,7 @@ def seed_prod_db():
         blog_id INT REFERENCES blogs(blog_id) ON DELETE CASCADE,
         user_id INT REFERENCES users(user_id),
         comment TEXT NOT NULL,
+        parent_comment_id INT REFERENCES comments(comment_id) ON DELETE CASCADE,
         date_posted TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
     """
