@@ -95,8 +95,72 @@
       "comment": "Absolutely! Trying out new recipes can be a fun and rewarding experience.",
       "date_posted": "2024-03-04",
       "parent_comment_id": 9
+    },
+    {
+      "comment_id": 13,
+      "blog_id": 1,
+      "user_id": 6,
+      "comment": "I tried the tips as well, and my garden looks amazing now!",
+      "date_posted": "2024-03-05",
+      "parent_comment_id": 1
+    },
+    {
+      "comment_id": 14,
+      "blog_id": 1,
+      "user_id": 3,
+      "comment": "That's fantastic! Gardening can be so rewarding.",
+      "date_posted": "2024-03-06",
+      "parent_comment_id": 13
+    },
+    {
+      "comment_id": 15,
+      "blog_id": 2,
+      "user_id": 4,
+      "comment": "Absolutely, organic farming has numerous benefits.",
+      "date_posted": "2024-03-07",
+      "parent_comment_id": 8
+    },
+    {
+      "comment_id": 16,
+      "blog_id": 2,
+      "user_id": 5,
+      "comment": "Yes, it's important to consider the long-term effects of conventional farming on the environment.",
+      "date_posted": "2024-03-08",
+      "parent_comment_id": 8
+    },
+    {
+      "comment_id": 17,
+      "blog_id": 3,
+      "user_id": 9,
+      "comment": "I'm already trying out some new recipes and they're delicious!",
+      "date_posted": "2024-03-09",
+      "parent_comment_id": 9
+    },
+    {
+      "comment_id": 18,
+      "blog_id": 3,
+      "user_id": 8,
+      "comment": "That's wonderful to hear! Cooking with fresh ingredients always enhances the flavor.",
+      "date_posted": "2024-03-10",
+      "parent_comment_id": 17
+    },
+    {
+      "comment_id": 19,
+      "blog_id": 1,
+      "user_id": 1,
+      "comment": "It's great to see so many people benefiting from these gardening tips!",
+      "date_posted": "2024-03-11",
+      "parent_comment_id": 13
+    },
+    {
+      "comment_id": 20,
+      "blog_id": 1,
+      "user_id": 2,
+      "comment": "Indeed! Gardening is a wonderful hobby with endless possibilities.",
+      "date_posted": "2024-03-12",
+      "parent_comment_id": 13
     }
   ],
   "total_pages": 1,
-  "total_results": 12
+  "total_results": 20
 }

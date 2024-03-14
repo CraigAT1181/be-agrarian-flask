@@ -25,7 +25,8 @@ def fetch_conversations_by_user_id(connection, user_id):
                 SELECT 1 FROM messages m
                 WHERE m.conversation_id = c.conversation_id
             )
-        );
+        )
+        ORDER BY c.created_at DESC;
     """
     
     with connection:
