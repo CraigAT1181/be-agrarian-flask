@@ -4,6 +4,25 @@ from db.connection import get_connection
 
 def seed_dev_db():
 
+    # Functions
+    create_update_activity_timestamp_function = """
+    CREATE OR REPLACE FUNCTION update_activity_timestamp()
+    RETURNS TRIGGER AS $$
+    BEGIN
+        NEW.updated_at = CURRENT_TIMESTAMP;
+        RETURN NEW;
+    END;
+    $$ LANGUAGE plpgsql;
+    """
+
+    # Triggers
+    create_update_activity_timestamp_trigger = """
+    CREATE TRIGGER update_activity_timestamp_trigger
+    BEFORE UPDATE ON activities
+    FOR EACH ROW
+    EXECUTE FUNCTION update_activity_timestamp();
+    """
+
     with get_connection() as db_connection:
         print("Connecting to database with the following settings:")
         print("Host:", db_connection.get_dsn_parameters().get('host'))
@@ -33,6 +52,9 @@ def seed_dev_db():
 
         with open('./db/data/test_data/comments.json', 'r') as json_file:
             comment_test_data = json.load(json_file)
+        
+        with open('./db/data/test_data/activities.json', 'r') as json_file:
+            activity_test_data = json.load(json_file)
 
         user_values = []
         user_list = user_test_data['users']
@@ -314,6 +336,45 @@ def seed_dev_db():
             (%s, %s, %s, %s, %s);
         """
 
+        activity_values = []
+        activity_list = activity_test_data['activities']
+        for activity in activity_list:
+            activity_values.append((
+                activity["user_id"],
+                activity["title"],
+                activity["description"],
+                activity["datetime"],
+                activity["location"],
+                activity["image_url"],
+                activity["created_at"],
+                activity["updated_at"]
+            ))
+        
+        drop_activities_table = """
+            DROP TABLE IF EXISTS activities CASCADE;
+        """
+        
+        create_activities_table = """ 
+            CREATE TABLE activities (
+            activity_id SERIAL PRIMARY KEY,
+            user_id INT REFERENCES users(user_id),
+            title VARCHAR(255) NOT NULL,
+            description TEXT,
+            datetime TIMESTAMP NOT NULL,
+            location VARCHAR(255) NOT NULL,
+            image_url VARCHAR(255),
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            );
+        """
+        
+        insert_activity_data = """
+            INSERT INTO activities 
+            (user_id, title, description, datetime, location, image_url, created_at, updated_at)
+            VALUES 
+            (%s, %s, %s, %s, %s, %s, %s, %s);
+        """
+
         print(db_connection, "CONNECTION")
         db_connection.autocommit = True
 
@@ -327,6 +388,7 @@ def seed_dev_db():
             cursor.execute(drop_ads_table)
             cursor.execute(drop_comments_table)
             cursor.execute(drop_blogs_table)
+            cursor.execute(drop_activities_table)
 
             cursor.execute(create_produce_table)
             for item in produce_values:
@@ -361,6 +423,14 @@ def seed_dev_db():
             cursor.execute(create_comments_table)
             for comment in comment_values:
                 cursor.execute(insert_comment_data, comment)
+            
+            cursor.execute(create_activities_table)
+            for activity in activity_values:
+                cursor.execute(insert_activity_data, activity)
+            
+            # Functions & Triggers
+            cursor.execute(create_update_activity_timestamp_function)
+            cursor.execute(create_update_activity_timestamp_trigger)
 
             print("Data seeded successfully!")
            
