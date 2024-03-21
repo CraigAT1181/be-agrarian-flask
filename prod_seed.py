@@ -314,6 +314,10 @@ def seed_prod_db():
             (%s, %s, %s, %s, %s);
         """
 
+        drop_activities_table = """
+            DROP TABLE IF EXISTS activities CASCADE;
+        """
+
         print(db_connection, "CONNECTION")
         db_connection.autocommit = True
 
@@ -327,6 +331,7 @@ def seed_prod_db():
             cursor.execute(drop_ads_table)
             cursor.execute(drop_comments_table)
             cursor.execute(drop_blogs_table)
+            cursor.execute(drop_activities_table)
 
             cursor.execute(create_produce_table)
             for item in produce_values:
