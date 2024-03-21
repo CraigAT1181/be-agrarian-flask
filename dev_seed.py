@@ -429,6 +429,7 @@ def seed_dev_db():
                 cursor.execute(insert_activity_data, activity)
             
             # Functions & Triggers
+        with db_connection.cursor() as cursor:
             cursor.execute(create_update_activity_timestamp_function)
             cursor.execute(create_update_activity_timestamp_trigger)
 

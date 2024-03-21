@@ -28,6 +28,7 @@ from endpoints.add_conversation import add_conversation
 from endpoints.remove_conversation_by_conversation_id import remove_conversation_by_conversation_id
 from endpoints.handle_contact_form import handle_contact_form
 from endpoints.fetch_all_ads import fetch_all_ads
+from endpoints.fetch_all_activities import fetch_all_activities
 from endpoints.fetch_all_blogs import fetch_all_blogs
 from endpoints.fetch_comments_by_blog_id import fetch_comments_by_blog_id
 from endpoints.fetch_blog_by_blog_id import fetch_blog_by_blog_id
@@ -95,6 +96,13 @@ def get_all_ads():
 @cross_origin()
 def get_all_users():
     result = fetch_all_users(connection)
+    return result
+
+# GET all activities
+@app.route('/activities', methods=['GET'])
+@cross_origin()
+def get_all_activities():
+    result = fetch_all_activities(connection)
     return result
 
 # GET all blogs

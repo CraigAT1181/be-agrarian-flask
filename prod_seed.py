@@ -4,24 +4,24 @@ from db.connection import get_connection
 
 def seed_prod_db():
 
-    # Functions
-    create_update_activity_timestamp_function = """
-    CREATE OR REPLACE FUNCTION update_activity_timestamp()
-    RETURNS TRIGGER AS $$
-    BEGIN
-        NEW.updated_at = CURRENT_TIMESTAMP;
-        RETURN NEW;
-    END;
-    $$ LANGUAGE plpgsql;
-    """
+     # # Functions
+    # create_update_activity_timestamp_function = """
+    # CREATE OR REPLACE FUNCTION update_activity_timestamp()
+    # RETURNS TRIGGER AS $$
+    # BEGIN
+    #     NEW.updated_at = CURRENT_TIMESTAMP;
+    #     RETURN NEW;
+    # END;
+    # $$ LANGUAGE plpgsql;
+    # """
 
-    # Triggers
-    create_update_activity_timestamp_trigger = """
-    CREATE TRIGGER update_activity_timestamp_trigger
-    BEFORE UPDATE ON activities
-    FOR EACH ROW
-    EXECUTE FUNCTION update_activity_timestamp();
-    """
+    # # Triggers
+    # create_update_activity_timestamp_trigger = """
+    # CREATE TRIGGER update_activity_timestamp_trigger
+    # BEFORE UPDATE ON activities
+    # FOR EACH ROW
+    # EXECUTE FUNCTION update_activity_timestamp();
+    # """
 
     with get_connection() as db_connection:
         print("Connecting to database with the following settings:")
@@ -29,48 +29,48 @@ def seed_prod_db():
         print("Database:", db_connection.get_dsn_parameters().get('dbname'))
         print("User:", db_connection.get_dsn_parameters().get('user'))
 
-        # with open('./db/data/prod_data/users.json', 'r') as json_file:
-        #     user_test_data = json.load(json_file)
+        with open('./db/data/test_data/users.json', 'r') as json_file:
+            user_test_data = json.load(json_file)
 
-        with open('./db/data/prod_data/produce.json', 'r') as json_file:
+        with open('./db/data/test_data/produce.json', 'r') as json_file:
             produce_test_data = json.load(json_file)
 
-        # with open('./db/data/prod_data/conversations.json', 'r') as json_file:
-        #     conversation_test_data = json.load(json_file)
+        with open('./db/data/test_data/conversations.json', 'r') as json_file:
+            conversation_test_data = json.load(json_file)
 
-        # with open('./db/data/prod_data/messages.json', 'r') as json_file:
-        #     message_test_data = json.load(json_file)
+        with open('./db/data/test_data/messages.json', 'r') as json_file:
+            message_test_data = json.load(json_file)
         
-        # with open('./db/data/prod_data/posts.json', 'r') as json_file:
-        #     post_test_data = json.load(json_file)
-            
+        with open('./db/data/test_data/posts.json', 'r') as json_file:
+            post_test_data = json.load(json_file)
+
         with open('./db/data/test_data/ads.json', 'r') as json_file:
             ad_test_data = json.load(json_file)
-        
-        # with open('./db/data/test_data/blogs.json', 'r') as json_file:
-        #     blog_test_data = json.load(json_file)
 
-        # with open('./db/data/test_data/comments.json', 'r') as json_file:
-        #     comment_test_data = json.load(json_file)
-            
+        with open('./db/data/test_data/blogs.json', 'r') as json_file:
+            blog_test_data = json.load(json_file)
+
+        with open('./db/data/test_data/comments.json', 'r') as json_file:
+            comment_test_data = json.load(json_file)
+        
         # with open('./db/data/test_data/activities.json', 'r') as json_file:
         #     activity_test_data = json.load(json_file)
 
-        # user_values = []
-        # user_list = user_test_data['users']
-        # for user in user_list:
-        #     user_values.append((
-        #         user["username"],
-        #         user["email"],
-        #         user["password"],
-        #         user["postcode"],
-        #         user["produce"]
-        #     ))
+        user_values = []
+        user_list = user_test_data['users']
+        for user in user_list:
+            user_values.append((
+                user["username"],
+                user["email"],
+                user["password"],
+                user["postcode"],
+                user["produce"]
+            ))
         
         drop_users_table = """
             DROP TABLE IF EXISTS users CASCADE;
         """
-    
+        
         create_users_table = """
             CREATE TABLE users (
             user_id SERIAL PRIMARY KEY,
@@ -82,17 +82,17 @@ def seed_prod_db():
             );
         """
         
-        # insert_user_data = """
-        #     INSERT INTO users 
-        #     (username, email, password, postcode, produce)
-        #     VALUES 
-        #     (%s, %s, %s, %s, %s);
-        # """
+        insert_user_data = """
+            INSERT INTO users 
+            (username, email, password, postcode, produce)
+            VALUES 
+            (%s, %s, %s, %s, %s);
+        """
 
         drop_verifications_table = """
             DROP TABLE IF EXISTS verifications;
         """
-    
+        
         create_verifications_table = """
             CREATE TABLE verifications (
             verification_id SERIAL PRIMARY KEY,
@@ -137,14 +137,16 @@ def seed_prod_db():
             (%s, %s, %s, %s);
         """
 
-        # conversation_values = []
-        # conversation_list = conversation_test_data['conversations']
-        # for conversation in conversation_list:
-        #     conversation_values.append((
-        #         conversation["user1_id"],
-        #         conversation["user2_id"],
-        #         conversation["created_at"]
-        #     ))
+        conversation_values = []
+        conversation_list = conversation_test_data['conversations']
+        for conversation in conversation_list:
+            conversation_values.append((
+                conversation["user1_id"],
+                conversation["user2_id"],
+                conversation["user1_is_deleted"],
+                conversation["user2_is_deleted"],
+                conversation["created_at"]
+            ))
         
         drop_conversations_table = """
             DROP TABLE IF EXISTS conversations;
@@ -161,28 +163,28 @@ def seed_prod_db():
             UNIQUE (user1_id, user2_id)
             );
         """
-    
-        # insert_conversation_data = """
-        #     INSERT INTO conversations 
-        #     (user1_id, user2_id, created_at)
-        #     VALUES 
-        #     (%s, %s, %s);
-        # """
+        
+        insert_conversation_data = """
+            INSERT INTO conversations 
+            (user1_id, user2_id, user1_is_deleted, user2_is_deleted, created_at)
+            VALUES 
+            (%s, %s, %s, %s, %s);
+        """
 
-        # message_values = []
-        # message_list = message_test_data['messages']
-        # for message in message_list:
-        #     message_values.append((
-        #         message["conversation_id"],
-        #         message["sender_id"],
-        #         message["message"],
-        #         message["created_at"]
-        #     ))
+        message_values = []
+        message_list = message_test_data['messages']
+        for message in message_list:
+            message_values.append((
+                message["conversation_id"],
+                message["sender_id"],
+                message["message"],
+                message["created_at"]
+            ))
         
         drop_messages_table = """
             DROP TABLE IF EXISTS messages;
         """
-    
+        
         create_messages_table = """
             CREATE TABLE messages (
             message_id SERIAL PRIMARY KEY,
@@ -193,26 +195,26 @@ def seed_prod_db():
             );
         """
         
-        # insert_message_data = """
-        #     INSERT INTO messages 
-        #     (conversation_id, sender_id, message, created_at)
-        #     VALUES 
-        #     (%s, %s, %s, %s);
-        # """
+        insert_message_data = """
+            INSERT INTO messages 
+            (conversation_id, sender_id, message, created_at)
+            VALUES 
+            (%s, %s, %s, %s);
+        """
 
-        # post_values = []
-        # post_list = post_test_data['posts']
-        # for post in post_list:
-        #     post_values.append((
-        #         post["user_id"],
-        #         post["status"],
-        #         post["type"],
-        #         post["item"],
-        #         post["image"],
-        #         post["body"],
-        #         post["created_at"]
-        #     ))
-    
+        post_values = []
+        post_list = post_test_data['posts']
+        for post in post_list:
+            post_values.append((
+                post["user_id"],
+                post["status"],
+                post["type"],
+                post["item"],
+                post["image"],
+                post["body"],
+                post["created_at"]
+            ))
+        
         drop_posts_table = """
             DROP TABLE IF EXISTS posts CASCADE;
         """
@@ -230,12 +232,12 @@ def seed_prod_db():
             );
         """
         
-        # insert_post_data = """
-        #     INSERT INTO posts 
-        #     (user_id, status, type, item, image, body, created_at)
-        #     VALUES 
-        #     (%s, %s, %s, %s, %s, %s, %s);
-        # """
+        insert_post_data = """
+            INSERT INTO posts 
+            (user_id, status, type, item, image, body, created_at)
+            VALUES 
+            (%s, %s, %s, %s, %s, %s, %s);
+        """
 
         ad_values = []
         ad_list = ad_test_data['ads']
@@ -264,19 +266,18 @@ def seed_prod_db():
             (%s, %s);
         """
 
-        # blog_values = []
-            # blog_list = blog_test_data['blogs']
-            # for blog in blog_list:
-            #     blog_values.append((
-            #         blog["blog_id"],
-            #         blog["title"],
-            #         blog["author_id"],
-            #         blog["content"],
-            #         blog["date_published"],
-            #         blog["likes"],
-            #         blog["tags"],
-            #         blog["image_url"]
-            #     ))
+        blog_values = []
+        blog_list = blog_test_data['blogs']
+        for blog in blog_list:
+            blog_values.append((
+                blog["title"],
+                blog["author_id"],
+                blog["content"],
+                blog["tags"],
+                blog["date_published"],
+                blog["likes"],
+                blog["image_url"]
+            ))
         
         drop_blogs_table = """
             DROP TABLE IF EXISTS blogs CASCADE;
@@ -294,30 +295,29 @@ def seed_prod_db():
             image_url VARCHAR(255)
             );
         """
-    
-        # insert_blog_data = """
-        #     INSERT INTO blogs 
-        #     (title, author_id, content, date_published, likes, tags, image_url)
-        #     VALUES 
-        #     (%s, %s, %s, %s, %s, %s, %s);
-        # """
+        
+        insert_blog_data = """
+            INSERT INTO blogs 
+            (title, author_id, content, tags, date_published, likes, image_url)
+            VALUES 
+            (%s, %s, %s, %s, %s, %s, %s);
+        """
 
-        # comment_values = []
-        # comment_list = comment_test_data['blogs']
-        # for comment in comment_list:
-        #     comment_values.append((
-        #         comment["comment_id"],
-        #         comment["blog_id"],
-        #         comment["user_id"],
-        #         comment["comment"],
-        #         comment["parent_comment_id"],
-        #         comment["date_posted"]
-        #     ))
+        comment_values = []
+        comment_list = comment_test_data['comments']
+        for comment in comment_list:
+            comment_values.append((
+                comment["blog_id"],
+                comment["user_id"],
+                comment["comment"],
+                comment["parent_comment_id"],
+                comment["date_posted"]
+            ))
         
         drop_comments_table = """
             DROP TABLE IF EXISTS comments CASCADE;
         """
-
+        
         create_comments_table = """ 
             CREATE TABLE comments (
             comment_id SERIAL PRIMARY KEY,
@@ -328,13 +328,13 @@ def seed_prod_db():
             date_posted TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
         """
-
-        # insert_comment_data = """
-        #     INSERT INTO comments 
-        #     (blog_id, user_id, comment, parent_comment_id, date_posted)
-        #     VALUES 
-        #     (%s, %s, %s, %s, %s);
-        # """
+        
+        insert_comment_data = """
+            INSERT INTO comments 
+            (blog_id, user_id, comment, parent_comment_id, date_posted)
+            VALUES 
+            (%s, %s, %s, %s, %s);
+        """
 
         # activity_values = []
         # activity_list = activity_test_data['activities']
@@ -350,23 +350,23 @@ def seed_prod_db():
         #         activity["updated_at"]
         #     ))
         
-        drop_activities_table = """
-            DROP TABLE IF EXISTS activities CASCADE;
-        """
-    
-        create_activities_table = """ 
-            CREATE TABLE activities (
-            activity_id SERIAL PRIMARY KEY,
-            user_id INT REFERENCES users(user_id),
-            title VARCHAR(255) NOT NULL,
-            description TEXT,
-            datetime TIMESTAMP NOT NULL,
-            location VARCHAR(255) NOT NULL,
-            image_url VARCHAR(255),
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            );
-        """
+        # drop_activities_table = """
+        #     DROP TABLE IF EXISTS activities CASCADE;
+        # """
+        
+        # create_activities_table = """ 
+        #     CREATE TABLE activities (
+        #     activity_id SERIAL PRIMARY KEY,
+        #     user_id INT REFERENCES users(user_id),
+        #     title VARCHAR(255) NOT NULL,
+        #     description TEXT,
+        #     datetime TIMESTAMP NOT NULL,
+        #     location VARCHAR(255) NOT NULL,
+        #     image_url VARCHAR(255),
+        #     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        #     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        #     );
+        # """
         
         # insert_activity_data = """
         #     INSERT INTO activities 
@@ -375,9 +375,6 @@ def seed_prod_db():
         #     (%s, %s, %s, %s, %s, %s, %s, %s);
         # """
 
-
-    
-    
         print(db_connection, "CONNECTION")
         db_connection.autocommit = True
 
@@ -391,49 +388,49 @@ def seed_prod_db():
             cursor.execute(drop_ads_table)
             cursor.execute(drop_comments_table)
             cursor.execute(drop_blogs_table)
-            cursor.execute(drop_activities_table)
+            # cursor.execute(drop_activities_table)
 
             cursor.execute(create_produce_table)
             for item in produce_values:
                 cursor.execute(insert_produce_data, item)
 
             cursor.execute(create_users_table)
-            # for user in user_values:     
-            #     cursor.execute(insert_user_data, user)
+            for user in user_values:     
+                cursor.execute(insert_user_data, user)
 
             cursor.execute(create_verifications_table)
 
             cursor.execute(create_conversations_table)
-            # for conversation in conversation_values:
-            #     cursor.execute(insert_conversation_data, conversation)
+            for conversation in conversation_values:
+                cursor.execute(insert_conversation_data, conversation)
 
             cursor.execute(create_messages_table)
-            # for message in message_values:
-            #     cursor.execute(insert_message_data, message)
+            for message in message_values:
+                cursor.execute(insert_message_data, message)
             
             cursor.execute(create_posts_table)
-            # for post in post_values:
-            #     cursor.execute(insert_post_data, post)
+            for post in post_values:
+                cursor.execute(insert_post_data, post)
 
             cursor.execute(create_ads_table)
             for ad in ad_values:
                 cursor.execute(insert_ad_data, ad)
-            
+
             cursor.execute(create_blogs_table)
-            # for blog in blog_values:
-            #     cursor.execute(insert_blog_data, blog)
+            for blog in blog_values:
+                cursor.execute(insert_blog_data, blog)
 
             cursor.execute(create_comments_table)
-            # for comment in comment_values:
-            #     cursor.execute(insert_comment_data, comment)
-
-            cursor.execute(create_activities_table)
+            for comment in comment_values:
+                cursor.execute(insert_comment_data, comment)
+            
+            # cursor.execute(create_activities_table)
             # for activity in activity_values:
             #     cursor.execute(insert_activity_data, activity)
-
-            # Functions & Triggers
-            cursor.execute(create_update_activity_timestamp_function)
-            cursor.execute(create_update_activity_timestamp_trigger)
+            
+            # # Functions & Triggers
+            # cursor.execute(create_update_activity_timestamp_function)
+            # cursor.execute(create_update_activity_timestamp_trigger)
 
             print("Data seeded successfully!")
            
