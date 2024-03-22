@@ -1,4 +1,5 @@
 import psycopg2
+import logging
 
 def add_conversation(user_id, data, connection):
     user1_id = user_id
@@ -35,9 +36,9 @@ def add_conversation(user_id, data, connection):
         RETURNING *
         """
 
-    with connection:
-        with connection.cursor() as cursor:
-            try:
+    try:
+        with connection:
+            with connection.cursor() as cursor:
                 # Check if there's an existing conversation with is_deleted = True
                 cursor.execute(select_conversation, (user1_id, user2_id, user2_id, user1_id))
                 existing_conversation = cursor.fetchone()
@@ -74,8 +75,16 @@ def add_conversation(user_id, data, connection):
                         "created_at": new_conversation[5]
                     }
                 
-            except psycopg2.IntegrityError as e:
-                return {
-                    "message": "Conversation already exists.",
-                    "status": 409,
-                }
+    except psycopg2.IntegrityError as e:
+        return {
+            "message": "Conversation already exists.",
+            "status": 409,
+        }
+
+    except Exception as e:
+        # Log unexpected errors
+        logging.error(f"An unexpected error occurred: {e}")
+        return {
+            "message": "An unexpected error occurred.",
+            "status": 500,
+        }
