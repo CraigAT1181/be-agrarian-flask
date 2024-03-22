@@ -1,9 +1,9 @@
 import psycopg2
+import logging
 
 def add_message(data, conversation_id, connection):
-    conversation_id = conversation_id
-    sender_id = data["sender_id"]
-    message = data["message"]
+    sender_id = data.get("sender_id")
+    message = data.get("message")
 
     insert_message = """
     INSERT INTO MESSAGES
@@ -12,9 +12,9 @@ def add_message(data, conversation_id, connection):
     RETURNING *
     """
 
-    with connection:
-        with connection.cursor() as cursor:
-            try:
+    try:
+        with connection:
+            with connection.cursor() as cursor:
                 cursor.execute(insert_message, (conversation_id, sender_id, message))
                 new_message = cursor.fetchone()
                 
@@ -28,8 +28,18 @@ def add_message(data, conversation_id, connection):
                     "created_at": new_message[4]
                 }
                 
-            except psycopg2.IntegrityError as e:
-                return {
-                    "message": "Message already sent.",
-                    "status": 409,
-                }
+    except psycopg2.IntegrityError as e:
+        # Log specific integrity errors
+        logging.error(f"IntegrityError occurred while adding message: {e}")
+        return {
+            "message": "Message already sent.",
+            "status": 409,
+        }
+    
+    except Exception as e:
+        # Log unexpected errors
+        logging.error(f"An unexpected error occurred: {e}")
+        return {
+            "message": "An unexpected error occurred.",
+            "status": 500,
+        }
