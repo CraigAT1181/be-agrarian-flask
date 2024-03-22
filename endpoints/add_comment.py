@@ -1,4 +1,5 @@
 import psycopg2
+import logging
 
 def add_comment(blog_id, data, connection):
     
@@ -13,9 +14,10 @@ def add_comment(blog_id, data, connection):
     RETURNING *
     """
 
-    with connection:
-        with connection.cursor() as cursor:
-            try:
+    try:
+
+        with connection:
+            with connection.cursor() as cursor:
                 cursor.execute(insert_comment, (blog_id, user_id, comment, parent_comment_id))
                 new_comment = cursor.fetchone()
                 
@@ -30,9 +32,16 @@ def add_comment(blog_id, data, connection):
                     "date_posted": new_comment[5]
                 }
                 
-            except psycopg2.IntegrityError as e:
-                return {
-                    "message": "Comment already exists.",
-                    "status": 409,
-                }
+    except psycopg2.IntegrityError as e:
+        logging.error(f"An unexpected error occurred: {e}")
+        return {
+            "message": "Comment already exists.",
+            "status": 409,
+        }
     
+    except Exception as e:
+    # Handle unexpected exceptions
+        return {
+            "message": "An unexpected error occurred.",
+            "status": 500,
+        }

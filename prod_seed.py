@@ -305,7 +305,7 @@ def seed_prod_db():
 
                 # Insert comments data
                 cursor.execute("""
-                    CREATE TABLE comments (
+                    CREATE TABLE IF NOT EXISTS comments (
                         comment_id SERIAL PRIMARY KEY,
                         blog_id INT REFERENCES blogs(blog_id) ON DELETE CASCADE,
                         user_id INT REFERENCES users(user_id),
@@ -325,7 +325,7 @@ def seed_prod_db():
 
                 # Insert activity data
                 cursor.execute("""
-                    CREATE TABLE activities (
+                    CREATE TABLE IF NOT EXISTS activities (
                         activity_id SERIAL PRIMARY KEY,
                         user_id INT REFERENCES users(user_id),
                         title VARCHAR(255) NOT NULL,
@@ -348,7 +348,7 @@ def seed_prod_db():
    
                 # Insert verification data
                 cursor.execute("""
-                    CREATE TABLE verifications (
+                    CREATE TABLE IF NOT EXISTS verifications (
                         verification_id SERIAL PRIMARY KEY,
                         user_id INT,
                         token VARCHAR(255) UNIQUE NOT NULL,
