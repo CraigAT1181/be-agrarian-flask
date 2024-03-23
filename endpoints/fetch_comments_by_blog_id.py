@@ -1,4 +1,6 @@
 from flask import jsonify
+import logging
+import psycopg2
 
 def fetch_comments_by_blog_id(blog_id, connection):
     
@@ -34,42 +36,43 @@ def fetch_comments_by_blog_id(blog_id, connection):
         """
         
         with connection:
-            cursor = connection.cursor()
-            cursor.execute(query, (blog_id,))
-            comments = cursor.fetchall()
-            result = []
-            for comment in comments:
-                parent_comment_id = comment[5]
-                if parent_comment_id is None:
-                    # Top-level comment
-                    parent_comment = None
-                    parent_user_id = None
-                    parent_username = None
-                    parent_date_posted = None
-                else:
-                    # Reply to another comment
-                    parent_comment = comment[6]
-                    parent_user_id = comment[7]
-                    parent_username = comment[8]
-                    parent_date_posted = comment[9]
-                
-                result.append({
-                    "comment_id": comment[0],
-                    "comment": comment[1],
-                    "user_id": comment[2],
-                    "username": comment[3],
-                    "date_posted": comment[4],
-                    "parent_comment_id": parent_comment_id,
-                    "parent_comment": parent_comment,
-                    "parent_user_id": parent_user_id,
-                    "parent_username": parent_username,
-                    "parent_date_posted": parent_date_posted
-                })
+            with connection.cursor() as cursor:
+                cursor.execute(query, (blog_id,))
+                comments = cursor.fetchall()
+                result = []
+                for comment in comments:
+                    parent_comment_id = comment[5]
+                    if parent_comment_id is None:
+                        # Top-level comment
+                        parent_comment = None
+                        parent_user_id = None
+                        parent_username = None
+                        parent_date_posted = None
+                    else:
+                        # Reply to another comment
+                        parent_comment = comment[6]
+                        parent_user_id = comment[7]
+                        parent_username = comment[8]
+                        parent_date_posted = comment[9]
+                    
+                    result.append({
+                        "comment_id": comment[0],
+                        "comment": comment[1],
+                        "user_id": comment[2],
+                        "username": comment[3],
+                        "date_posted": comment[4],
+                        "parent_comment_id": parent_comment_id,
+                        "parent_comment": parent_comment,
+                        "parent_user_id": parent_user_id,
+                        "parent_username": parent_username,
+                        "parent_date_posted": parent_date_posted
+                    })
 
-                
-            return jsonify({"comments": result}), 200
+                return jsonify({"comments": result}), 200
+            
+    except psycopg2.Error as e:
+        logging.error(f"Database error occurred: {e}")
+        return jsonify({"message": "Database error occurred."}), 500
     except Exception as e:
-        # Log the error for debugging
-        print("Error:", e)
-        # Return a meaningful error message with status code 500
-        return jsonify({"message": "Unable to process this request due to a server error."}), 500
+        logging.error(f"An unexpected error occurred: {e}")
+        return jsonify({"message": "An unexpected error occurred."}), 500

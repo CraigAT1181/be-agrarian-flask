@@ -1,4 +1,5 @@
 from flask import jsonify
+import logging
 
 def fetch_blogs_by_user_id(user_id, connection):
     if not user_id:
@@ -13,24 +14,26 @@ def fetch_blogs_by_user_id(user_id, connection):
     """
 
     try:
-        with connection.cursor() as cursor:
-            cursor.execute(query, (user_id,))
-            blogs = cursor.fetchall()
+        with connection:
+            with connection.cursor() as cursor:
+                cursor.execute(query, (user_id,))
+                blogs = cursor.fetchall()
 
-            result = []
-            for blog in blogs:
-                result.append({
-                    "blog_id": blog[0],
-                    "title": blog[1],
-                    "author_id": blog[2],
-                    "username": blog[3],
-                    "content": blog[4],
-                    "tags": blog[5],
-                    "date_published": blog[6],
-                    "image_url": blog[7]
-                })
-            
-            return jsonify({"blogs": result}), 200
+                result = []
+                for blog in blogs:
+                    result.append({
+                        "blog_id": blog[0],
+                        "title": blog[1],
+                        "author_id": blog[2],
+                        "username": blog[3],
+                        "content": blog[4],
+                        "tags": blog[5],
+                        "date_published": blog[6],
+                        "image_url": blog[7]
+                    })
+                
+                return jsonify({"blogs": result}), 200
         
     except Exception as e:
+        logging.error(f"An unexpected error occurred: {e}")
         return jsonify({"message": "An error occurred: " + str(e)}), 500

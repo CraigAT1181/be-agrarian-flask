@@ -1,4 +1,6 @@
 from flask import jsonify
+import psycopg2
+import logging
 
 def fetch_messages_by_conversation_id(connection, conversation_id):
 
@@ -13,25 +15,29 @@ def fetch_messages_by_conversation_id(connection, conversation_id):
     WHERE m.conversation_id = %s
     ORDER BY m.created_at;
     """
+
     try:
         with connection:
-            cursor = connection.cursor()
-            cursor.execute(query, (conversation_id,))
-            messages = cursor.fetchall()
+            with connection.cursor() as cursor:
+                cursor.execute(query, (conversation_id,))
+                messages = cursor.fetchall()
 
-            result = []
-            for message in messages:
-                result.append({
-                    "message_id": message[0],
-                    "conversation_id": message[1],
-                    "sender_id": message[2],
-                    "sender_name": message[3],
-                    "message": message[4],
-                    "created_at": message[5]
-                })
-            
-            return jsonify({"messages": result}), 200
+                result = []
+                for message in messages:
+                    result.append({
+                        "message_id": message[0],
+                        "conversation_id": message[1],
+                        "sender_id": message[2],
+                        "sender_name": message[3],
+                        "message": message[4],
+                        "created_at": message[5]
+                    })
+                
+                return jsonify({"messages": result}), 200
     
+    except psycopg2.Error as e:
+        logging.error(f"Database error occurred: {e}")
+        return jsonify({"message": "Database error occurred."}), 500
     except Exception as e:
-        print(f"Error fetching messages: {e}")
-        return jsonify({"error": "Internal server error"}), 500
+        logging.error(f"An unexpected error occurred: {e}")
+        return jsonify({"message": "An unexpected error occurred."}), 500
