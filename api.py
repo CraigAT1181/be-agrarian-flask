@@ -21,7 +21,7 @@ from endpoints.add_new_user import add_new_user
 from endpoints.remove_user_by_user_id import remove_user_by_user_id
 from endpoints.patch_produce_by_user_id import patch_produce_by_user_id
 from endpoints.fetch_all_posts import fetch_all_posts
-from endpoints.add_post import add_new_post
+from endpoints.add_post import add_post
 from endpoints.remove_post_by_post_id import remove_post_by_post_id
 from endpoints.add_message import add_message
 from endpoints.add_conversation import add_conversation
@@ -317,11 +317,11 @@ def get_all_posts():
     return result
 
 # POST new post by user id
-@app.route('/posts/<user_id>', methods=['POST'])
+@app.route('/users/<user_id>/posts', methods=['POST'])
 @cross_origin()
 def create_post(user_id):
     data = request.get_json()
-    result = add_new_post(data, user_id, connection)
+    result = add_post(data, user_id, connection)
     return jsonify(result)
 
 # DELETE post by post id

@@ -1,14 +1,17 @@
-def add_new_post(data, user_id, connection):
+import psycopg2
+import logging
+
+def add_post(data, user_id, connection):
     user_id = user_id,
 
     if "status" not in data or not data["status"] or "type" not in data or not data["type"]:
          raise ValueError("Ensure you've selected a Status and a Type (e.g. 'Wanted' 'Seeds')")
 
-    status = data["status"]
-    type = data["type"]
-    item = data["item"]
-    image = data["image"]
-    body = data["body"]
+    status = data.get("status")
+    type = data.get("type")
+    item = data.get("item")
+    image = data.get("image")
+    body = data.get("body")
 
     insert_post = """
     INSERT INTO POSTS
@@ -16,10 +19,9 @@ def add_new_post(data, user_id, connection):
     VALUES (%s, %s, %s, %s, %s, %s)
     RETURNING *
     """
-
-    with connection:
-        with connection.cursor() as cursor:
-            try:
+    try:
+        with connection:
+            with connection.cursor() as cursor:
                 cursor.execute(insert_post, (user_id, status, type, item, image, body))
                 new_post = cursor.fetchone()
                 
@@ -35,9 +37,21 @@ def add_new_post(data, user_id, connection):
                     "body": body,
                     "created_at": new_post[7]
                 }
-                
-            except connection.IntegrityError as e:
-                return {
-                    "message": "Post already created.",
-                    "status": 409,
-                }
+                    
+    except ValueError as e:
+        return {
+            "message": str(e),
+            "status": 400,
+        }
+    except psycopg2.IntegrityError as e:
+        return {
+            "message": "Post already created.",
+            "status": 409,
+        }
+    except Exception as e:
+        # Log unexpected errors
+        logging.error(f"An unexpected error occurred: {e}")
+        return {
+            "message": "An unexpected error occurred.",
+            "status": 500,
+        }
