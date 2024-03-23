@@ -1,5 +1,7 @@
 import re
 from flask_bcrypt import Bcrypt
+import psycopg2
+import logging
 
 INSERT_USER = "INSERT INTO users (username, email, password, postcode, produce) VALUES (%s, %s, %s, %s, %s) RETURNING user_id;"
 
@@ -37,42 +39,49 @@ def add_new_user(data, connection):
     
     bcrypt = Bcrypt()
 
-    username = data["username"]
-    email = data["email"]
-    password = bcrypt.generate_password_hash(data["password"]).decode('utf-8')
-    postcode = data["postcode"]
+    username = data.get("username")
+    email = data.get("email")
+    password = bcrypt.generate_password_hash(data.get("password")).decode('utf-8')
+    postcode = data.get("postcode")
     produce = []
 
-    with connection:
-        with connection.cursor() as cursor:
-            try:
-                cursor.execute(INSERT_USER, (username, email, password, postcode, produce))
-                new_user = cursor.fetchone()
+    try:
+        with connection:
+            with connection.cursor() as cursor:
+                    cursor.execute(INSERT_USER, (username, email, password, postcode, produce))
+                    new_user = cursor.fetchone()
+                    
+                    return {
+                        "message": "New user registered.",
+                        "status": 200,
+                        "user_id": new_user[0],
+                        "username": username,
+                        "email": email,
+                        "postcode": postcode,
+                        "produce": []
+                    }
                 
-                return {
-                    "message": "New user registered.",
-                    "status": 200,
-                    "user_id": new_user[0],
-                    "username": username,
-                    "email": email,
-                    "postcode": postcode,
-                    "produce": []
-                }
-                
-            except connection.IntegrityError as e:
-                error_message = e.args[0]
-                if 'email' in error_message:
-                    return {
-                        "message": "Email already registered.",
-                        "status": 409,
-                    }
-                elif 'username' in error_message:
-                    return {
-                        "message": "Username already taken.",
-                        "status": 409,
-                    }
-                else:
-                    return {
-                        "message": "Error occurred while registering user.",
-                        "status": 500,  # Internal Server Error
-                    }
+    except psycopg2.IntegrityError as e:
+        error_message = e.args[0]
+        if 'email' in error_message:
+            return {
+                "message": "Email already registered.",
+                "status": 409,
+            }
+        elif 'username' in error_message:
+            return {
+                "message": "Username already taken.",
+                "status": 409,
+            }
+        else:
+            logging.error(f"Error occurred while registering user: {error_message}")
+            return {
+                "message": "Error occurred while registering user.",
+                "status": 500,  # Internal Server Error
+            }
+    except Exception as e:
+        logging.error(f"An unexpected error occurred: {e}")
+        return {
+            "message": "An unexpected error occurred.",
+            "status": 500,
+        }
