@@ -2,6 +2,7 @@ from flask import jsonify
 from io import BytesIO
 from PIL import Image
 import psycopg2
+import logging
 from utils.cloud_authentication import cloud_authentication
 
 def patch_blog_by_blog_id(blog_id, image, title, author_id, content, tags, connection):
@@ -16,7 +17,7 @@ def patch_blog_by_blog_id(blog_id, image, title, author_id, content, tags, conne
     
         if hasattr(image, 'read'):
             filename = image.filename
-            print(image.filename, "image file name")
+            
             URLname = filename.split('.')[0]  # Get the title without the file extension
 
             content_type = "image/jpeg" if image.filename.lower().endswith(".jpeg") or image.filename.lower().endswith(".jpg") else "image/png"
@@ -41,16 +42,17 @@ def patch_blog_by_blog_id(blog_id, image, title, author_id, content, tags, conne
             blob.upload_from_string(img_data_buffer.getvalue(), content_type=content_type)
             return blob.public_url
     
+    
+    updated_image_url = process_image(image, title)
+
+    patch_blog = """
+    UPDATE blogs
+    SET image_url = %s, title = %s, content = %s, tags = %s
+    WHERE blog_id = %s AND author_id = %s
+    RETURNING *;
+    """
+
     try:
-        updated_image_url = process_image(image, title)
-
-        patch_blog = """
-        UPDATE blogs
-        SET image_url = %s, title = %s, content = %s, tags = %s
-        WHERE blog_id = %s AND author_id = %s
-        RETURNING *;
-        """
-
         with connection:
             with connection.cursor() as cursor:
                 cursor.execute(patch_blog, (updated_image_url, title, content, tags, blog_id, author_id))
@@ -68,6 +70,8 @@ def patch_blog_by_blog_id(blog_id, image, title, author_id, content, tags, conne
                     "image_url": patched_blog[7]
                 }
             
-    except (psycopg2.Error, psycopg2.DatabaseError) as e:
-        print("Database error:", e)
-        raise e
+    except psycopg2.Error as e:
+        # Log the database error for debugging
+        logging.error(f"Database error: {e}")
+        # Return an appropriate error response
+        return jsonify({"message": "Failed to update the blog."}), 500
