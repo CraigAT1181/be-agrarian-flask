@@ -1,15 +1,18 @@
 from datetime import datetime, timedelta
+import psycopg2
+import logging
 
 def add_verification(email, token, verification_type, connection):
 
     GET_USER_ID = """
-        SELECT user_id FROM users WHERE email = %s;
-    """
+            SELECT user_id FROM users WHERE email = %s;
+        """
+
     CREATE_VERIFICATION = "INSERT INTO verifications (user_id, token, verification_type, expires_at) VALUES (%s, %s, %s, %s) RETURNING *;"
 
-    with connection:
-        with connection.cursor() as cursor:
-            try:
+    try:
+        with connection:
+            with connection.cursor() as cursor:
                 cursor.execute(GET_USER_ID, (email,))
                 fetched_user_id = cursor.fetchone()
 
@@ -19,18 +22,9 @@ def add_verification(email, token, verification_type, connection):
                         "status": 404,
                     }
 
-            except Exception as e:
-                return {
-                    "message": "Error fetching user ID.",
-                    "status": 500,
-                    "error": str(e),
-                }
+                user_id = fetched_user_id[0]
+                expires_at = datetime.utcnow() + timedelta(minutes=60)
 
-        user_id = fetched_user_id[0]
-        expires_at = datetime.utcnow() + timedelta(minutes=60)
-
-        with connection.cursor() as cursor:
-            try:
                 cursor.execute(CREATE_VERIFICATION, (user_id, token, verification_type, expires_at))
                 new_entry = cursor.fetchone()
     
@@ -45,9 +39,9 @@ def add_verification(email, token, verification_type, connection):
                     "is_used": new_entry[6]
                 }
 
-            except Exception as e:
-                return {
-                    "message": "Error creating verification entry.",
-                    "status": 500,
-                    "error": str(e),
-                }
+    except psycopg2.Error as e:
+        logging.error(f"Error occurred during verification creation: {e}")
+        return {
+            "message": "Error creating verification entry.",
+            "status": 500,
+        }
