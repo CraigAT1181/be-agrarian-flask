@@ -1,5 +1,6 @@
 from utils.send_email import send_email
 from flask import jsonify, request
+import logging
 
 def handle_contact_form(data):
     try:
@@ -19,6 +20,7 @@ def handle_contact_form(data):
         send_email(subject, "craig@cookingpot.live", body)
 
         return jsonify({"message": "Contact form submitted successfully"})
+    
     except Exception as e:
-        print("Error handling contact form:", e)
+        logging.error(f"Error handling contact form: {e}")
         return jsonify({"error": "Failed to submit contact form"}), 500
