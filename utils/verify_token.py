@@ -20,6 +20,10 @@ def verify_token(token, verification_type, connection):
             
             user_id = token_info[1]
             expires_at = token_info[5]
+            is_used = token_info[6]
+
+            if is_used:
+                return None
 
             if datetime.utcnow() > expires_at:
                 return None
