@@ -1,6 +1,7 @@
 from flask import jsonify
 import requests
 import os
+import logging
 
 def fetch_products(data):
     try:
@@ -14,10 +15,9 @@ def fetch_products(data):
             },
         )
 
-        # Return the response from the Shopify API to the frontend
+        logging.info(f"Request to Shopify API successful. Status code: {response.status_code}")
         return jsonify(response.json()), response.status_code
     
     except Exception as e:
-        
-        # Handle errors gracefully
+        logging.error(f"Error fetching products from Shopify API: {e}")
         return jsonify({"error": str(e)}), 500
