@@ -1,8 +1,9 @@
 from flask import jsonify
 import psycopg2
+import logging
 
 def remove_user_by_user_id(user_id, connection):
-    print(user_id, "<<<<<<<<<<<<<<<<")
+    
     DELETE_USER_BY_USER_ID = """
     DELETE FROM users WHERE user_id = %s
     RETURNING *;
@@ -21,6 +22,9 @@ def remove_user_by_user_id(user_id, connection):
                     return jsonify({'message': f'User with User ID: {user_id} not found.'}), 404
                 
     except (psycopg2.Error, psycopg2.DatabaseError) as e:
-        print(f"Database error: {e}")
+        logging.error(f"Database error occurred: {e}")
         return jsonify({'message': 'Unable to process this request due to a database error'}), 500
-    
+
+    except Exception as e:
+        logging.error(f"An unexpected error occurred: {e}")
+        return jsonify({'message': 'An unexpected error occurred'}), 500
