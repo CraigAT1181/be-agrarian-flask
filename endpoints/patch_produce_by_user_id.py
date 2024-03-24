@@ -1,4 +1,6 @@
 from flask import jsonify, abort
+import logging
+import psycopg2
 
 def patch_produce_by_user_id(connection, user_id, produce):
     try:
@@ -37,7 +39,11 @@ def patch_produce_by_user_id(connection, user_id, produce):
                 else:
                     abort(404, description="User not found")
 
+    except psycopg2.Error as e:
+        logging.error(f"Database error occurred: {e}")
+        abort(500, description="Database Error")
+
     except Exception as e:
-        print(f"Error updating user: {e}")
+        logging.error(f"An unexpected error occurred: {e}")
         abort(500, description="Internal Server Error")
 

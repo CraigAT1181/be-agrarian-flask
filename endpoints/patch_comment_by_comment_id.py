@@ -1,4 +1,5 @@
 import psycopg2
+import logging
 
 def patch_comment_by_comment_id(blog_id, comment_id, data, connection):
     comment = data.get("comment")
@@ -11,9 +12,9 @@ def patch_comment_by_comment_id(blog_id, comment_id, data, connection):
     RETURNING *
     """
 
-    with connection:
-        with connection.cursor() as cursor:
-            try:
+    try:
+        with connection:
+            with connection.cursor() as cursor:
                 cursor.execute(patch_comment, (comment, comment_id, blog_id))
                 patched_comment = cursor.fetchone()
 
@@ -21,8 +22,10 @@ def patch_comment_by_comment_id(blog_id, comment_id, data, connection):
                     return format_response("Comment edited.", 200, patched_comment)
                 else:
                     return format_response("Comment not found.", 404)
-            except psycopg2.Error as e:
-                return format_response("Database error: " + str(e), 500)
+                
+    except psycopg2.DatabaseError as e:
+        logging.error(f"Database error occurred: {e}")
+        return format_response("Database error occurred.", 500)
 
 def format_response(message, status, patched_comment=None):
     response = {
