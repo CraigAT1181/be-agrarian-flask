@@ -1,9 +1,10 @@
 from flask_mail import Message
-from api import mail
 import logging
 
 def send_email(subject, recipient, body):
     try:
+        from api import mail
+        
         if not subject or not recipient or not body:
             raise ValueError("Subject, recipient, or body cannot be empty.")
         
