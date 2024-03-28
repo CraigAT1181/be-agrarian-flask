@@ -31,5 +31,7 @@
       "image_url": "https://picsum.photos/400/200",
       "redirect_url": ""
     }
-  ]
+  ],
+  "total_pages": 1,
+  "total_results": 6
 }

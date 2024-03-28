@@ -1,6 +1,87 @@
 {
   "page": 1,
-  "conversations": [],
+  "conversations": [
+    {
+      "conversation_id": 1,
+      "user1_id": 1,
+      "user2_id": 4,
+      "user1_is_deleted": false,
+      "user2_is_deleted": true,
+      "created_at": "2023-11-24"
+    },
+    {
+      "conversation_id": 2,
+      "user1_id": 2,
+      "user2_id": 5,
+      "user1_is_deleted": false,
+      "user2_is_deleted": false,
+      "created_at": "2023-11-25"
+    },
+    {
+      "conversation_id": 3,
+      "user1_id": 3,
+      "user2_id": 6,
+      "user1_is_deleted": true,
+      "user2_is_deleted": false,
+      "created_at": "2023-11-26"
+    },
+    {
+      "conversation_id": 4,
+      "user1_id": 4,
+      "user2_id": 7,
+      "user1_is_deleted": false,
+      "user2_is_deleted": false,
+      "created_at": "2023-11-27"
+    },
+    {
+      "conversation_id": 5,
+      "user1_id": 5,
+      "user2_id": 8,
+      "user1_is_deleted": true,
+      "user2_is_deleted": true,
+      "created_at": "2023-11-28"
+    },
+    {
+      "conversation_id": 6,
+      "user1_id": 6,
+      "user2_id": 9,
+      "user1_is_deleted": false,
+      "user2_is_deleted": false,
+      "created_at": "2023-11-29"
+    },
+    {
+      "conversation_id": 7,
+      "user1_id": 7,
+      "user2_id": 10,
+      "user1_is_deleted": false,
+      "user2_is_deleted": false,
+      "created_at": "2023-11-30"
+    },
+    {
+      "conversation_id": 8,
+      "user1_id": 1,
+      "user2_id": 8,
+      "user1_is_deleted": false,
+      "user2_is_deleted": false,
+      "created_at": "2023-12-01"
+    },
+    {
+      "conversation_id": 9,
+      "user1_id": 9,
+      "user2_id": 2,
+      "user1_is_deleted": false,
+      "user2_is_deleted": false,
+      "created_at": "2023-12-02"
+    },
+    {
+      "conversation_id": 10,
+      "user1_id": 3,
+      "user2_id": 10,
+      "user1_is_deleted": false,
+      "user2_is_deleted": false,
+      "created_at": "2023-12-03"
+    }
+  ],
   "total_pages": 1,
-  "total_results": 0
+  "total_results": 10
 }

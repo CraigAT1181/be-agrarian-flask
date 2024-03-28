@@ -1,6 +1,167 @@
 {
   "page": 1,
-  "comments": [],
+  "comments": [
+    {
+      "comment_id": 1,
+      "blog_id": 1,
+      "user_id": 2,
+      "comment": "Great tips! I'll definitely try these out in my garden.",
+      "date_posted": "2024-02-28",
+      "parent_comment_id": null
+    },
+    {
+      "comment_id": 2,
+      "blog_id": 1,
+      "user_id": 6,
+      "comment": "Thanks for sharing! I've been looking for some beginner-friendly gardening advice.",
+      "date_posted": "2024-02-29",
+      "parent_comment_id": null
+    },
+    {
+      "comment_id": 3,
+      "blog_id": 2,
+      "user_id": 4,
+      "comment": "I've been considering switching to organic farming methods. This article provides some compelling reasons to do so.",
+      "date_posted": "2024-02-25",
+      "parent_comment_id": null
+    },
+    {
+      "comment_id": 4,
+      "blog_id": 2,
+      "user_id": 7,
+      "comment": "I'm passionate about sustainable agriculture. It's great to see more awareness being raised about organic farming practices.",
+      "date_posted": "2024-02-26",
+      "parent_comment_id": null
+    },
+    {
+      "comment_id": 5,
+      "blog_id": 3,
+      "user_id": 9,
+      "comment": "I love trying out new vegetables! This article has inspired me to incorporate more variety into my meals.",
+      "date_posted": "2024-02-22",
+      "parent_comment_id": null
+    },
+    {
+      "comment_id": 6,
+      "blog_id": 3,
+      "user_id": 10,
+      "comment": "As someone who enjoys cooking, I appreciate the insights into different types of vegetables and their culinary uses.",
+      "date_posted": "2024-02-23",
+      "parent_comment_id": null
+    },
+    {
+      "comment_id": 7,
+      "blog_id": 1,
+      "user_id": 3,
+      "comment": "I've tried them out and they worked wonders for my garden!",
+      "date_posted": "2024-03-01",
+      "parent_comment_id": 1
+    },
+    {
+      "comment_id": 8,
+      "blog_id": 2,
+      "user_id": 5,
+      "comment": "I completely agree with you! Organic farming is the way forward.",
+      "date_posted": "2024-02-27",
+      "parent_comment_id": 3
+    },
+    {
+      "comment_id": 9,
+      "blog_id": 3,
+      "user_id": 8,
+      "comment": "The article was indeed informative. I'm looking forward to trying some new recipes with different vegetables!",
+      "date_posted": "2024-02-24",
+      "parent_comment_id": 5
+    },
+    {
+      "comment_id": 10,
+      "blog_id": 1,
+      "user_id": 1,
+      "comment": "I'm glad you found the tips useful! Let me know if you need further advice.",
+      "date_posted": "2024-03-02",
+      "parent_comment_id": 7
+    },
+    {
+      "comment_id": 11,
+      "blog_id": 2,
+      "user_id": 2,
+      "comment": "Organic farming is not only environmentally friendly but also promotes healthier produce.",
+      "date_posted": "2024-03-03",
+      "parent_comment_id": 8
+    },
+    {
+      "comment_id": 12,
+      "blog_id": 3,
+      "user_id": 7,
+      "comment": "Absolutely! Trying out new recipes can be a fun and rewarding experience.",
+      "date_posted": "2024-03-04",
+      "parent_comment_id": 9
+    },
+    {
+      "comment_id": 13,
+      "blog_id": 1,
+      "user_id": 6,
+      "comment": "I tried the tips as well, and my garden looks amazing now!",
+      "date_posted": "2024-03-05",
+      "parent_comment_id": 1
+    },
+    {
+      "comment_id": 14,
+      "blog_id": 1,
+      "user_id": 3,
+      "comment": "That's fantastic! Gardening can be so rewarding.",
+      "date_posted": "2024-03-06",
+      "parent_comment_id": 13
+    },
+    {
+      "comment_id": 15,
+      "blog_id": 2,
+      "user_id": 4,
+      "comment": "Absolutely, organic farming has numerous benefits.",
+      "date_posted": "2024-03-07",
+      "parent_comment_id": 8
+    },
+    {
+      "comment_id": 16,
+      "blog_id": 2,
+      "user_id": 5,
+      "comment": "Yes, it's important to consider the long-term effects of conventional farming on the environment.",
+      "date_posted": "2024-03-08",
+      "parent_comment_id": 8
+    },
+    {
+      "comment_id": 17,
+      "blog_id": 3,
+      "user_id": 9,
+      "comment": "I'm already trying out some new recipes and they're delicious!",
+      "date_posted": "2024-03-09",
+      "parent_comment_id": 9
+    },
+    {
+      "comment_id": 18,
+      "blog_id": 3,
+      "user_id": 8,
+      "comment": "That's wonderful to hear! Cooking with fresh ingredients always enhances the flavor.",
+      "date_posted": "2024-03-10",
+      "parent_comment_id": 17
+    },
+    {
+      "comment_id": 19,
+      "blog_id": 1,
+      "user_id": 1,
+      "comment": "It's great to see so many people benefiting from these gardening tips!",
+      "date_posted": "2024-03-11",
+      "parent_comment_id": 13
+    },
+    {
+      "comment_id": 20,
+      "blog_id": 1,
+      "user_id": 2,
+      "comment": "Indeed! Gardening is a wonderful hobby with endless possibilities.",
+      "date_posted": "2024-03-12",
+      "parent_comment_id": 13
+    }
+  ],
   "total_pages": 1,
-  "total_results": 0
+  "total_results": 20
 }

@@ -1,6 +1,87 @@
 {
   "page": 1,
-  "users": [],
+  "users": [
+    {
+      "user_id": 1,
+      "username": "John Doe",
+      "email": "john.doe@example.com",
+      "password": "random_password_1",
+      "postcode": "SW1A 1AA",
+      "produce": ["Carrot", "Tomato"]
+    },
+    {
+      "user_id": 2,
+      "username": "Jane Smith",
+      "email": "jane.smith@example.com",
+      "password": "random_password_2",
+      "postcode": "EC1A 1BB",
+      "produce": ["Tomato", "Cucumber", "Lettuce"]
+    },
+    {
+      "user_id": 3,
+      "username": "Alice Johnson",
+      "email": "alice.johnson@example.com",
+      "password": "random_password_3",
+      "postcode": "W1A 1AB",
+      "produce": ["Lettuce", "Broccoli", "Apple"]
+    },
+    {
+      "user_id": 4,
+      "username": "Bob Williams",
+      "email": "bob.williams@example.com",
+      "password": "random_password_4",
+      "postcode": "NW1A 1AD",
+      "produce": ["Broccoli", "Sweetcorn"]
+    },
+    {
+      "user_id": 5,
+      "username": "Eva Martinez",
+      "email": "eva.martinez@example.com",
+      "password": "random_password_5",
+      "postcode": "SW1A 0AA",
+      "produce": ["Cucumber", "Pepper"]
+    },
+    {
+      "user_id": 6,
+      "username": "Michael Lee",
+      "email": "michael.lee@example.com",
+      "password": "random_password_6",
+      "postcode": "SE1 7PB",
+      "produce": ["Pepper", "Sweetcorn"]
+    },
+    {
+      "user_id": 7,
+      "username": "Sara Brown",
+      "email": "sara.brown@example.com",
+      "password": "random_password_7",
+      "postcode": "E1 8PY",
+      "produce": ["Broccoli"]
+    },
+    {
+      "user_id": 8,
+      "username": "Daniel Chen",
+      "email": "daniel.chen@example.com",
+      "password": "random_password_8",
+      "postcode": "N1C 4QP",
+      "produce": ["Pear", "Cucumber"]
+    },
+    {
+      "user_id": 9,
+      "username": "Olivia Kim",
+      "email": "olivia.kim@example.com",
+      "password": "random_password_9",
+      "postcode": "SW1E 5LH",
+      "produce": ["Sweetcorn"]
+    },
+    {
+      "user_id": 10,
+      "username": "William Wilson",
+      "email": "william.wilson@example.com",
+      "password": "random_password_10",
+      "postcode": "EC2A 4BX",
+      "produce": ["Cauliflower"]
+    }
+  ],
   "total_pages": 1,
-  "total_results": 0
+  "total_results": 10
 }
