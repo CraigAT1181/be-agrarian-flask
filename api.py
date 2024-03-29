@@ -9,37 +9,63 @@ from db.connection import get_connection
 from dotenv import load_dotenv
 import json
 import os
-from endpoints.fetch_all_produce import fetch_all_produce
-from endpoints.fetch_all_users import fetch_all_users
-from endpoints.fetch_users_by_produce_name import fetch_users_by_produce_name
-from endpoints.fetch_conversations_by_user_id import fetch_conversations_by_user_id
-from endpoints.fetch_messages_by_conversation_id import fetch_messages_by_conversation_id
+# Authentication
 from endpoints.authenticate_user import authenticate_user
 from endpoints.password_reset_request import password_reset_request
 from endpoints.set_new_password import set_new_password
+
+# User Management
+from endpoints.fetch_all_users import fetch_all_users
 from endpoints.add_new_user import add_new_user
 from endpoints.remove_user_by_user_id import remove_user_by_user_id
+
+# Produce Management
+from endpoints.fetch_all_produce import fetch_all_produce
+from endpoints.fetch_users_by_produce_name import fetch_users_by_produce_name
 from endpoints.patch_produce_by_user_id import patch_produce_by_user_id
-from endpoints.fetch_all_posts import fetch_all_posts
-from endpoints.add_post import add_post
-from endpoints.remove_post_by_post_id import remove_post_by_post_id
+
+# Conversation Management
+from endpoints.fetch_conversations_by_user_id import fetch_conversations_by_user_id
+from endpoints.fetch_messages_by_conversation_id import fetch_messages_by_conversation_id
 from endpoints.add_message import add_message
 from endpoints.add_conversation import add_conversation
 from endpoints.remove_conversation_by_conversation_id import remove_conversation_by_conversation_id
-from endpoints.handle_contact_form import handle_contact_form
-from endpoints.fetch_all_ads import fetch_all_ads
-from endpoints.fetch_all_activities import fetch_all_activities
-from endpoints.fetch_all_blogs import fetch_all_blogs
+
+# Post Management
+from endpoints.fetch_all_posts import fetch_all_posts
+from endpoints.add_post import add_post
+from endpoints.remove_post_by_post_id import remove_post_by_post_id
+
+# Comment Management
 from endpoints.fetch_comments_by_blog_id import fetch_comments_by_blog_id
+from endpoints.add_comment import add_comment
+from endpoints.patch_comment_by_comment_id import patch_comment_by_comment_id
+from endpoints.remove_comment_by_comment_id import remove_comment_by_comment_id
+
+# Blog Management
+from endpoints.fetch_all_blogs import fetch_all_blogs
 from endpoints.fetch_blog_by_blog_id import fetch_blog_by_blog_id
 from endpoints.fetch_blogs_by_user_id import fetch_blogs_by_user_id
 from endpoints.add_blog import add_blog
 from endpoints.remove_blog_by_blog_id import remove_blog_by_blog_id
 from endpoints.patch_blog_by_blog_id import patch_blog_by_blog_id
-from endpoints.add_comment import add_comment
-from endpoints.patch_comment_by_comment_id import patch_comment_by_comment_id
-from endpoints.remove_comment_by_comment_id import remove_comment_by_comment_id
+
+# Activity Management
+from endpoints.fetch_all_activities import fetch_all_activities
+from endpoints.fetch_activities_by_user_id import fetch_activities_by_user_id
+from endpoints.add_activity import add_activity
+from endpoints.fetch_activity_by_activity_id import fetch_activity_by_activity_id
+from endpoints.patch_activity_by_activity_id import patch_activity_by_activity_id
+
+# Ads Management
+from endpoints.fetch_all_ads import fetch_all_ads
+
+# Contact Form Handling
+from endpoints.handle_contact_form import handle_contact_form
+
+# Shopify Integration
 from endpoints.shopify.fetch_products import fetch_products
+
 
 if os.getenv('FLASK_ENV') == 'production':
     load_dotenv('.env.production')
@@ -119,7 +145,7 @@ def get_blog_by_blog_id(blog_id):
     result = fetch_blog_by_blog_id(blog_id, connection)
     return result
 
-# GET blog by user id
+# GET blogs by user id
 @app.route('/users/<user_id>/blogs', methods=['GET'])
 @cross_origin()
 def get_blog_by_user_id(user_id):
@@ -162,10 +188,8 @@ def add_blog_by_user_id():
 def edit_blog_by_blog_id(blog_id):
     try:
         if 'image' in request.files:
-            print("It's a file!")
             image = request.files['image']
         elif 'image' in request.form:
-            print("It's the same GCS url!")
             image = request.form.get('image')
         elif 'image' not in request.files and 'image' not in request.form:
             image = None
@@ -174,14 +198,6 @@ def edit_blog_by_blog_id(blog_id):
         author_id = request.form.get('author_id')
         content = request.form.get('content')
         tags = request.form.getlist('tags')
-
-        print("Received data:")
-        print("Image:", image)
-        print("Title:", title)
-        print("Author ID:", author_id)
-        print("Content:", content)
-        print("Tags:", tags)
-        print("Image:", image)
 
         return patch_blog_by_blog_id(blog_id, image, title, author_id, content, tags, connection)
     
@@ -336,6 +352,71 @@ def delete_post_by_post_id(post_id):
 def form_submission():
     data = request.get_json()
     return handle_contact_form(data)
+
+# GET activities by user id
+@app.route('/users/<user_id>/activities', methods=['GET'])
+@cross_origin()
+def get_activities_by_user_id(user_id):
+    result = fetch_activities_by_user_id(connection, user_id)
+    return result
+
+# GET activities by activity id
+@app.route('/activities/<activity_id>', methods=['GET'])
+@cross_origin()
+def get_activity_by_activity_id(activity_id):
+    result = fetch_activity_by_activity_id(connection, activity_id)
+    return result
+
+# POST activity
+@app.route('/users/<user_id>/activities', methods=["POST"])
+@cross_origin()
+def add_activity_by_user_id(user_id):
+    try:
+        if 'image' in request.files:
+            image = request.files['image']
+        else:
+            image = None
+
+        user_id = user_id
+        title = request.form.get('title')
+        description = request.form.get('description')
+        date_s_time = request.form.get('date_s_time')
+        date_e_time = request.form.get('date_e_time')
+        location = request.form.get('location')
+
+        return add_activity(user_id, title, description, date_s_time, date_e_time, location, image, connection)
+    except Exception as e:
+        return {
+            "message": str(e),
+            "status": 400,
+        }
+
+# PATCH activity by activity_id
+@app.route("/activities/<activity_id>", methods=["PATCH"])
+@cross_origin() 
+def edit_activity_by_activity_id(activity_id):
+    try:
+        if 'image' in request.files:
+            image = request.files['image']
+        elif 'image' in request.form:
+            image = request.form.get('image')
+        elif 'image' not in request.files and 'image' not in request.form:
+            image = None
+
+        title = request.form.get('title')
+        user_id = request.form.get('user_id')
+        description = request.form.get('description')
+        date_s_time = request.form.get('date_s_time')
+        date_e_time = request.form.get('date_e_time')
+        location = request.form.get('location')
+
+        return patch_activity_by_activity_id(activity_id, title, user_id, description, date_s_time, date_e_time, location, image, connection)
+    
+    except Exception as e:
+        return {
+            "message": str(e),
+            "status": 400,
+        }
 
 # Shopify API route
 @app.route('/api/shopify/products', methods=['POST'])
