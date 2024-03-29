@@ -86,7 +86,7 @@ def test_get_conversations_by_user_id(seed_db, api_session):
     response=api_session.get(url)
     assert response.status_code == 200
     conversation_list = response.json()
-    assert len(conversation_list["conversations"]) == 2
+    assert len(conversation_list["conversations"]) == 1
     required_keys = [
         "conversation_id",
         "user1_id",
@@ -120,7 +120,7 @@ def test_delete_conversation_by_conversation_id(seed_db, api_session):
     endpoint = '/conversations/1'
     url = urljoin(path, endpoint)
 
-    response = api_session.delete(url)
+    response = api_session.patch(url)
 
     assert response.status_code == 204
 

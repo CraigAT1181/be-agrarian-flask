@@ -28,7 +28,8 @@ def fetch_activity_by_activity_id(connection, activity_id):
                         "location": activity[6],
                         "image_url": activity[7],
                         "create_at": activity[8],
-                        "updated_at": activity[9]
+                        "updated_at": activity[9],
+                        "username": activity[10]
                     })
                 else:
                     return jsonify({"message": "Activity not found."}), 404
