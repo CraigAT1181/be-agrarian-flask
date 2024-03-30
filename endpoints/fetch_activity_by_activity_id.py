@@ -27,7 +27,7 @@ def fetch_activity_by_activity_id(connection, activity_id):
                         "date_e_time": activity[5],
                         "location": activity[6],
                         "image_url": activity[7],
-                        "create_at": activity[8],
+                        "created_at": activity[8],
                         "updated_at": activity[9],
                         "username": activity[10]
                     })
