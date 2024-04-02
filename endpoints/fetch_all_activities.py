@@ -27,9 +27,10 @@ def fetch_all_activities(connection):
                         "date_e_time": activity[5],
                         "location": activity[6],
                         "image_url": activity[7],
-                        "created_at": activity[8],
-                        "updated_at": activity[9],
-                        "username": activity[10]
+                        "is_cancelled": activity[8],
+                        "created_at": activity[9],
+                        "updated_at": activity[10],
+                        "username": activity[11]
                     })
 
                 return jsonify({"activities": result}), 200

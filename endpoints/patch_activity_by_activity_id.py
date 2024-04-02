@@ -47,7 +47,7 @@ def patch_activity_by_activity_id(activity_id, title, user_id, description, date
 
     patch_activity = """
     UPDATE activities
-    SET image_url = %s, title = %s, description = %s, date_s_time = %s, date_e_time = %s, location = %s
+    SET image_url = %s, title = %s, description = %s, date_s_time = %s, date_e_time = %s, location = %s, is_cancelled = %s
     WHERE activity_id = %s AND user_id = %s
     RETURNING *;
     """
@@ -55,7 +55,7 @@ def patch_activity_by_activity_id(activity_id, title, user_id, description, date
     try:
         with connection:
             with connection.cursor() as cursor:
-                cursor.execute(patch_activity, (updated_image_url, title, description, date_s_time, date_e_time, location, activity_id, user_id))
+                cursor.execute(patch_activity, (updated_image_url, title, description, date_s_time, date_e_time, location, False, activity_id, user_id))
                 patched_activity = cursor.fetchone()
                 
                 return {
@@ -69,8 +69,9 @@ def patch_activity_by_activity_id(activity_id, title, user_id, description, date
                     "date_e_time": patched_activity[5],
                     "location": patched_activity[6],
                     "image_url": patched_activity[7],
-                    "created_at": patched_activity[8],
-                    "updated_at": patched_activity[9] 
+                    "is_cancelled": patched_activity[8],
+                    "created_at": patched_activity[9],
+                    "updated_at": patched_activity[10] 
                 }
             
     except psycopg2.Error as e:

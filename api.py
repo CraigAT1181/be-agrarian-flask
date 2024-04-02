@@ -372,7 +372,7 @@ def get_activity_by_activity_id(activity_id):
 @cross_origin()
 def add_activity_by_user_id(user_id):
     try:
-        if 'image' in request.files:
+        if 'image' in request.files:    
             image = request.files['image']
         else:
             image = None

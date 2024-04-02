@@ -7,7 +7,7 @@ import logging
 def add_activity(user_id, title, description, date_s_time, date_e_time, location, image, connection):
     try:
         # Check if title and content are provided
-        if not title or not description or not date_s_time or not date_e_time or not location:
+        if not all([title, description, date_s_time, date_e_time, location]):
             raise ValueError("Activity must contain a title, description, date/time and location.")
 
         # Set image to None if not provided
@@ -43,14 +43,14 @@ def add_activity(user_id, title, description, date_s_time, date_e_time, location
         # Insert the blog into the database
         insert_activity = """
         INSERT INTO activities
-        (user_id, title, description, date_s_time, date_e_time, location, image_url)
-        VALUES (%s, %s, %s, %s, %s, %s, %s)
+        (user_id, title, description, date_s_time, date_e_time, location, image_url, is_cancelled)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
         RETURNING *
         """
         
         with connection:
             with connection.cursor() as cursor:
-                cursor.execute(insert_activity, (user_id, title, description, date_s_time, date_e_time, location, image_url))
+                cursor.execute(insert_activity, (user_id, title, description, date_s_time, date_e_time, location, image_url, False))
                 new_activity = cursor.fetchone()
                 
                 return {
@@ -64,8 +64,9 @@ def add_activity(user_id, title, description, date_s_time, date_e_time, location
                     "date_e_time": new_activity[5],
                     "location": new_activity[6],
                     "image_url": new_activity[7],
-                    "created_at": new_activity[8],
-                    "updated_at": new_activity[9]   
+                    "is_cancelled": new_activity[8],
+                    "created_at": new_activity[9],
+                    "updated_at": new_activity[10]   
                 }
     except ValueError as e:
         return {

@@ -139,6 +139,7 @@ def seed_prod_db():
                     activity["date_e_time"],
                     activity["location"],
                     activity["image_url"],
+                    activity["is_cancelled"],
                     activity["created_at"],
                     activity["updated_at"]
                 ))
@@ -335,6 +336,7 @@ def seed_prod_db():
                         date_e_time TIMESTAMP NOT NULL,
                         location VARCHAR(255) NOT NULL,
                         image_url VARCHAR(255),
+                        is_cancelled BOOLEAN DEFAULT FALSE,
                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                     );
@@ -343,9 +345,9 @@ def seed_prod_db():
                 for activity in activity_values:
                     cursor.execute("""
                         INSERT INTO activities 
-                        (user_id, title, description, date_s_time, date_e_time, location, image_url, created_at, updated_at)
+                        (user_id, title, description, date_s_time, date_e_time, location, image_url, is_cancelled, created_at, updated_at)
                         VALUES 
-                        (%s, %s, %s, %s, %s, %s, %s, %s, %s);
+                        (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
                     """, activity)
    
                 # Insert verification data
