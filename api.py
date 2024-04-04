@@ -9,6 +9,9 @@ from db.connection import get_connection
 from dotenv import load_dotenv
 import json
 import os
+import psycopg2
+import logging
+
 # Authentication
 from endpoints.authenticate_user import authenticate_user
 from endpoints.password_reset_request import password_reset_request
@@ -56,6 +59,7 @@ from endpoints.fetch_activities_by_user_id import fetch_activities_by_user_id
 from endpoints.add_activity import add_activity
 from endpoints.fetch_activity_by_activity_id import fetch_activity_by_activity_id
 from endpoints.patch_activity_by_activity_id import patch_activity_by_activity_id
+from endpoints.patch_cancel_activity import patch_cancel_activity
 
 # Ads Management
 from endpoints.fetch_all_ads import fetch_all_ads
@@ -391,10 +395,10 @@ def add_activity_by_user_id(user_id):
             "status": 400,
         }
 
-# PATCH activity by activity_id
-@app.route("/activities/<activity_id>", methods=["PATCH"])
+# PATCH activity by activity_id (EDIT ACTIVITY)
+@app.route("/users/<user_id>/activities", methods=["PATCH"])
 @cross_origin() 
-def edit_activity_by_activity_id(activity_id):
+def edit_activity_by_activity_id(user_id):
     try:
         if 'image' in request.files:
             image = request.files['image']
@@ -404,19 +408,43 @@ def edit_activity_by_activity_id(activity_id):
             image = None
 
         title = request.form.get('title')
-        user_id = request.form.get('user_id')
+        activity_id = request.form.get('activity_id')
         description = request.form.get('description')
         date_s_time = request.form.get('date_s_time')
         date_e_time = request.form.get('date_e_time')
         location = request.form.get('location')
 
-        return patch_activity_by_activity_id(activity_id, title, user_id, description, date_s_time, date_e_time, location, image, connection)
+        return patch_activity_by_activity_id(user_id, title, activity_id, description, date_s_time, date_e_time, location, image, connection)
     
     except Exception as e:
         return {
             "message": str(e),
             "status": 400,
         }
+
+# PATCH (Cancel) activity by activity_id
+@app.route("/activities/<activity_id>", methods=["PATCH"])
+@cross_origin() 
+def cancel_activity_by_activity_id(activity_id):
+    try:
+        request_data = request.get_json()
+        if request_data is None or 'is_cancelled' not in request_data:
+            return jsonify({"error": "Invalid request. 'is_cancelled' field is missing."}), 400
+        
+        is_cancelled = request_data['is_cancelled']
+        if not isinstance(is_cancelled, bool):
+            return jsonify({"error": "Invalid request. 'is_cancelled' must be a boolean."}), 400
+
+        return patch_cancel_activity(activity_id, is_cancelled, connection)
+    
+    except psycopg2.Error as e:
+        logging.error(f"Database error occurred: {e}")
+        return jsonify({"error": "Database error occurred."}), 500
+
+    except Exception as e:
+        logging.error(f"An unexpected error occurred: {e}")
+        return jsonify({"error": "An unexpected error occurred."}), 500
+
 
 # Shopify API route
 @app.route('/api/shopify/products', methods=['POST'])

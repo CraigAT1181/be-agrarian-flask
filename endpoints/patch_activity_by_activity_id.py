@@ -5,7 +5,7 @@ import psycopg2
 import logging
 from utils.cloud_authentication import cloud_authentication
 
-def patch_activity_by_activity_id(activity_id, title, user_id, description, date_s_time, date_e_time, location, image, connection):
+def patch_activity_by_activity_id(user_id, title, activity_id, description, date_s_time, date_e_time, location, image, connection):
     
     def process_image(image, title):
         
