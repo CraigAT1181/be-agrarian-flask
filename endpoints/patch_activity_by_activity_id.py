@@ -7,6 +7,9 @@ from utils.cloud_authentication import cloud_authentication
 
 def patch_activity_by_activity_id(user_id, title, activity_id, description, date_s_time, date_e_time, location, image, connection):
     
+    if date_s_time is None or date_e_time is None:
+            return jsonify({"error": "Both start and end times should be given."}), 400
+
     def process_image(image, title):
         
         if image is None:
