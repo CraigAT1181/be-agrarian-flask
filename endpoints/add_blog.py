@@ -53,7 +53,7 @@ def add_blog(image, title, author_id, content, tags, connection):
                 cursor.execute(insert_blog, (title, author_id, content, tags, 0, image_url))
                 new_blog = cursor.fetchone()
                 
-                return {"new_blog": {
+                return {
                     "message": "Blog created.",
                     "status": 200,
                     "blog_id": new_blog[0],
@@ -64,7 +64,7 @@ def add_blog(image, title, author_id, content, tags, connection):
                     "date_published": new_blog[5],
                     "likes": new_blog[6],
                     "image_url": new_blog[7]
-                }}
+                }
     except ValueError as e:
         return {
             "error": str(e),
