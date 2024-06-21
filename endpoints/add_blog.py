@@ -67,26 +67,26 @@ def add_blog(image, title, author_id, content, tags, connection):
                 }
     except ValueError as e:
         return {
-            "message": str(e),
+            "error": str(e),
             "status": 400,
         }
     except IntegrityError as e:
         # Check the specific error message to determine the cause of the integrity error
         if "duplicate key value violates unique constraint" in str(e):
             return {
-                "message": "Blog with the same title already exists.",
+                "error": "Blog with the same title already exists.",
                 "status": 409,
             }
         else:
             logging.error(f"Error inserting blog into database: {e}")
             return {
-                "message": "An error occurred while creating the blog.",
+                "error": "An error occurred while creating the blog.",
                 "status": 500,
             }
     except Exception as e:
         # Handle unexpected exceptions
         logging.error(f"An unexpected error occurred: {e}")
         return {
-            "message": "An unexpected error occurred.",
+            "error": "An unexpected error occurred.",
             "status": 500,
         }
