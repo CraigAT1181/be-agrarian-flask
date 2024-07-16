@@ -6,140 +6,140 @@
       "conversation_id": 1,
       "sender_id": 1,
       "message": "Hi, do you have any tomatoes available for exchange?",
-      "created_at": "2023-11-24"
+      "created_at": "2023-11-24T09:15:00"
     },
     {
       "message_id": 2,
       "conversation_id": 1,
       "sender_id": 4,
       "message": "No, sorry John, I just swapped the last box of tomatoes. How about cucumbers?",
-      "created_at": "2023-11-24"
+      "created_at": "2023-11-24T09:20:00"
     },
     {
       "message_id": 3,
       "conversation_id": 2,
       "sender_id": 2,
       "message": "Hello! How are you? I have some fresh apples from my orchard. Interested?",
-      "created_at": "2023-11-25"
+      "created_at": "2023-11-25T14:30:00"
     },
     {
       "message_id": 4,
       "conversation_id": 2,
       "sender_id": 5,
       "message": "I'm good, thanks! Sure, I'd love some apples. What can we swap for them?",
-      "created_at": "2023-11-25"
+      "created_at": "2023-11-25T14:35:00"
     },
     {
       "message_id": 5,
       "conversation_id": 3,
       "sender_id": 3,
-      "message": "Hey there! I have a surplus of zucchinis. Interested in a trade?",
-      "created_at": "2023-11-26"
+      "message": "Hey there! I have a surplus of courgettes. Interested in a trade?",
+      "created_at": "2023-11-26T11:45:00"
     },
     {
       "message_id": 6,
       "conversation_id": 3,
       "sender_id": 6,
-      "message": "Not much, just chilling. Zucchinis sound great! What do you need in return?",
-      "created_at": "2023-11-26"
+      "message": "Not much, just chilling. Courgettes sound great! What do you need in return?",
+      "created_at": "2023-11-26T11:50:00"
     },
     {
       "message_id": 7,
       "conversation_id": 4,
       "sender_id": 4,
       "message": "Do you have any plans for the weekend? I'm thinking of bringing some homemade jams.",
-      "created_at": "2023-11-27"
+      "created_at": "2023-11-27T16:10:00"
     },
     {
       "message_id": 8,
       "conversation_id": 4,
       "sender_id": 7,
-      "message": "Not really, just relaxing. Homemade jams sound delightful! What flavors do you have?",
-      "created_at": "2023-11-27"
+      "message": "Not really, just relaxing. Homemade jams sound delightful! What flavours do you have?",
+      "created_at": "2023-11-27T16:20:00"
     },
     {
       "message_id": 9,
       "conversation_id": 5,
       "sender_id": 5,
-      "message": "What's your favorite movie? Also, I have some fresh honey if you're interested.",
-      "created_at": "2023-11-28"
+      "message": "What's your favourite movie? Also, I have some fresh honey if you're interested.",
+      "created_at": "2023-11-28T18:30:00"
     },
     {
       "message_id": 10,
       "conversation_id": 5,
       "sender_id": 8,
       "message": "I love sci-fi movies! Fresh honey sounds amazing. What can I offer in return?",
-      "created_at": "2023-11-28"
+      "created_at": "2023-11-28T18:40:00"
     },
     {
       "message_id": 11,
       "conversation_id": 6,
       "sender_id": 6,
       "message": "Hey, did you watch the latest episode of that show? Also, I have some organic eggs available.",
-      "created_at": "2023-11-29"
+      "created_at": "2023-11-29T19:50:00"
     },
     {
       "message_id": 12,
       "conversation_id": 6,
       "sender_id": 9,
       "message": "Yes! It was amazing! What did you think? Organic eggs sound fantastic. What are you looking for?",
-      "created_at": "2023-11-29"
+      "created_at": "2023-11-29T19:55:00"
     },
     {
       "message_id": 13,
       "conversation_id": 7,
       "sender_id": 7,
       "message": "Good morning! How's your day going? I've got some fresh herbs from my garden.",
-      "created_at": "2023-11-30"
+      "created_at": "2023-11-30T08:15:00"
     },
     {
       "message_id": 14,
       "conversation_id": 7,
       "sender_id": 10,
       "message": "Morning! It's going well. Fresh herbs sound perfect! What varieties do you have?",
-      "created_at": "2023-11-30"
+      "created_at": "2023-11-30T08:25:00"
     },
     {
       "message_id": 15,
       "conversation_id": 8,
       "sender_id": 1,
       "message": "Hey! Long time no talk. How have you been? I have some homemade pickles if you're interested.",
-      "created_at": "2023-12-01"
+      "created_at": "2023-12-01T10:00:00"
     },
     {
       "message_id": 16,
       "conversation_id": 8,
       "sender_id": 8,
       "message": "I've been good! Busy with work. Homemade pickles? Count me in! What do you need in return?",
-      "created_at": "2023-12-01"
+      "created_at": "2023-12-01T10:10:00"
     },
     {
       "message_id": 17,
       "conversation_id": 9,
       "sender_id": 9,
       "message": "Hey, do you have any plans for the weekend? I'll be bringing some fresh flowers.",
-      "created_at": "2023-12-02"
+      "created_at": "2023-12-02T11:20:00"
     },
     {
       "message_id": 18,
       "conversation_id": 9,
       "sender_id": 2,
       "message": "Not yet. Thinking of going hiking. Fresh flowers sound lovely! What are you looking for?",
-      "created_at": "2023-12-02"
+      "created_at": "2023-12-02T11:30:00"
     },
     {
       "message_id": 19,
       "conversation_id": 10,
       "sender_id": 3,
       "message": "Happy Sunday! Any exciting plans for the day? I have some homemade bread available.",
-      "created_at": "2023-12-03"
+      "created_at": "2023-12-03T09:45:00"
     },
     {
       "message_id": 20,
       "conversation_id": 10,
       "sender_id": 10,
       "message": "Just relaxing at home. Homemade bread? Sounds delicious! What can I offer in return?",
-      "created_at": "2023-12-03"
+      "created_at": "2023-12-03T09:55:00"
     }
   ],
   "total_pages": 1,
